@@ -1,0 +1,18 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.std_logic_arith.ALL;
+USE ieee.std_logic_unsigned.ALL;
+
+ENTITY Extender_8to12 IS
+    PORT (
+        i_data  : IN  STD_LOGIC_VECTOR (7 DOWNTO 0);  -- 8-bit input
+        o_data  : OUT STD_LOGIC_VECTOR (11 DOWNTO 0)  -- 12-bit output
+    );
+END Extender_8to12;
+
+ARCHITECTURE Behavioral OF Extender_8to12 IS
+BEGIN
+    -- Mapping input[7..0] to output[11..4], filling the rest with 0s
+    o_data <= i_data & "0000"  ;
+END Behavioral;
+

@@ -1,0 +1,28 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity MUX4to1 is
+    Port (
+        sel   : in  STD_LOGIC_VECTOR(1 downto 0); -- 2-bit select input
+        A     : in  STD_LOGIC; -- Input 0
+        B     : in  STD_LOGIC; -- Input 1
+        C     : in  STD_LOGIC; -- Input 2
+        D     : in  STD_LOGIC; -- Input 3
+        Y     : out STD_LOGIC  -- Output
+    );
+end MUX4to1;
+
+architecture Behavioral of MUX4to1 is
+begin
+    -- Process to implement MUX behavior
+    process(sel, A, B, C, D)
+    begin
+        case sel is
+            when "00" => Y <= A; -- Select input A
+            when "01" => Y <= B; -- Select input B
+            when "10" => Y <= C; -- Select input C
+            when "11" => Y <= D; -- Select input D
+            when others => Y <= '0'; -- Default case
+        end case;
+    end process;
+end Behavioral;

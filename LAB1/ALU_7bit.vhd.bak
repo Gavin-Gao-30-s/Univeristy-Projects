@@ -1,0 +1,43 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+-- 8-bit ALU
+entity ALU_7bit is
+    port (
+        A, B     : in  STD_LOGIC_VECTOR(6 downto 0); -- Two input 7-bit vectors
+        Sel, Cin : in  STD_LOGIC; -- Sel for operation (0 for add, 1 for subtract)
+        Result   : out STD_LOGIC_VECTOR(6 downto 0); -- 7-bit result
+        Cout     : out STD_LOGIC -- Carry out
+    );
+end ALU_7bit;
+
+architecture struct of ALU_7bit is
+    -- Signal declarations
+    signal B_sel : STD_LOGIC_VECTOR(6 downto 0);
+
+    -- Component declarations
+    component fullAdder7_bit
+        port (
+            A, B  : in  STD_LOGIC_VECTOR(6 downto 0);
+            Cin   : in  STD_LOGIC;
+            Sum   : out STD_LOGIC_VECTOR(6 downto 0);
+            Cout  : out STD_LOGIC
+        );
+    end component;
+
+begin
+    -- Invert B if subtraction is selected
+    B_sel <= B XOR (Sel & Sel & Sel & Sel & Sel & Sel & Sel & Sel);
+
+
+    -- Instantiate the 7-bit full adder
+    adder_inst : fullAdder7_bit
+        port map (
+            A => A,
+            B => B_sel,
+            Cin => Cin, 
+            Sum => Result,
+            Cout => Cout
+        );
+
+end struct;

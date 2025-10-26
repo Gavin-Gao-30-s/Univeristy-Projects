@@ -1,0 +1,64 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY fourbitcounter IS
+    PORT(
+        i_clock : IN STD_LOGIC;
+        i_enable : IN STD_LOGIC;
+        i_async_reset : IN STD_LOGIC;
+        o_count : OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
+    );
+END fourbitcounter;
+
+ARCHITECTURE structural OF fourbitcounter IS
+    -- Component Declaration
+    COMPONENT dflipflop
+        PORT(
+            i_d : IN STD_LOGIC;
+            i_clock : IN STD_LOGIC;
+            i_enable : IN STD_LOGIC;
+            i_async_reset : IN STD_LOGIC;
+            i_async_set : IN STD_LOGIC;
+            o_q, o_qBar : OUT STD_LOGIC
+        );
+    END COMPONENT;
+
+    COMPONENT twoonemux
+        PORT(
+            w0 : IN STD_LOGIC;
+            w1 : IN STD_LOGIC;
+            s : IN STD_LOGIC;
+            f : OUT STD_LOGIC
+        );
+    END COMPONENT;
+
+    SIGNAL int_q : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL int_qBar : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL int_next_q : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL int_carry : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL int_mux_out : STD_LOGIC_VECTOR(3 DOWNTO 0);
+
+BEGIN
+    -- Half-Adder Logic for Next State
+    int_carry(0) <= int_q(0);
+    int_carry(1) <= int_q(1) XOR int_q(0);
+    int_carry(2) <= int_q(2) XOR (int_q(1) AND int_q(0));
+    int_carry(3) <= int_q(3) XOR (int_q(2) AND int_q(1) AND int_q(0));
+
+    -- Multiplexer to select between current and next state
+    mux0: twoonemux PORT MAP (w0 => int_q(0), w1 => int_carry(0), s => i_enable, f => int_mux_out(0));
+    mux1: twoonemux PORT MAP (w0 => int_q(1), w1 => int_carry(1), s => i_enable, f => int_mux_out(1));
+    mux2: twoonemux PORT MAP (w0 => int_q(2), w1 => int_carry(2), s => i_enable, f => int_mux_out(2));
+    mux3: twoonemux PORT MAP (w0 => int_q(3), w1 => int_carry(3), s => i_enable, f => int_mux_out(3));
+
+    -- D Flip-Flops for Storage
+    dff0: dflipflop PORT MAP (i_d => int_mux_out(0), i_clock => i_clock, i_enable => '1', i_async_reset => i_async_reset, i_async_set => '0', o_q => int_q(0), o_qBar => int_qBar(0));
+    dff1: dflipflop PORT MAP (i_d => int_mux_out(1), i_clock => i_clock, i_enable => '1', i_async_reset => i_async_reset, i_async_set => '0', o_q => int_q(1), o_qBar => int_qBar(1));
+    dff2: dflipflop PORT MAP (i_d => int_mux_out(2), i_clock => i_clock, i_enable => '1', i_async_reset => i_async_reset, i_async_set => '0', o_q => int_q(2), o_qBar => int_qBar(2));
+    dff3: dflipflop PORT MAP (i_d => int_mux_out(3), i_clock => i_clock, i_enable => '1', i_async_reset => i_async_reset, i_async_set => '0', o_q => int_q(3), o_qBar => int_qBar(3));
+
+    -- Output Assignment
+    o_count <= int_q;
+
+END structural;
+

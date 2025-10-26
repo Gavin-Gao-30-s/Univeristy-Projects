@@ -1,0 +1,49 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+-- 3-to-1 8-bit MUX using 2-to-1 1-bit MUXes
+ENTITY MUX3_8bit_for_PC IS
+    PORT (
+        d0      : IN  STD_LOGIC_VECTOR(7 DOWNTO 0); -- input 0
+        d1      : IN  STD_LOGIC_VECTOR(7 DOWNTO 0); -- input 1
+        d2      : IN  STD_LOGIC_VECTOR(7 DOWNTO 0); -- input 2
+        sel     : IN  STD_LOGIC_VECTOR(1 DOWNTO 0); -- 2-bit select
+        o_Value : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)  -- selected output
+    );
+END MUX3_8bit_for_PC;
+
+ARCHITECTURE rtl OF MUX3_8bit_for_PC IS
+    COMPONENT MUX2_1bit
+        PORT (
+            s  : IN  STD_LOGIC;
+            d0 : IN  STD_LOGIC;
+            d1 : IN  STD_LOGIC;
+            y  : OUT STD_LOGIC
+        );
+    END COMPONENT;
+
+    SIGNAL stage1 : STD_LOGIC_VECTOR(7 DOWNTO 0); -- intermediate between d0/d1
+    SIGNAL stage2 : STD_LOGIC_VECTOR(7 DOWNTO 0); -- final output between stage1 and d2
+
+BEGIN
+    gen_mux_stage1: FOR i IN 0 TO 7 GENERATE
+        mux_stage1: MUX2_1bit
+            PORT MAP (
+                s  => sel(0),   -- first stage select: 0 = d0, 1 = d1
+                d0 => d0(i),
+                d1 => d1(i),
+                y  => stage1(i)
+            );
+    END GENERATE;
+
+    gen_mux_stage2: FOR i IN 0 TO 7 GENERATE
+        mux_stage2: MUX2_1bit
+            PORT MAP (
+                s  => sel(1),   -- second stage select: 0 = stage1, 1 = d2
+                d0 => stage1(i),
+                d1 => d2(i),
+                y  => o_Value(i)
+            );
+    END GENERATE;
+
+END rtl;

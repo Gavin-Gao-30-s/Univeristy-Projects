@@ -1,0 +1,168 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY ID_EX IS
+    PORT (
+        i_clock           : IN  STD_LOGIC;
+        i_reset           : IN  STD_LOGIC;
+        i_enable          : IN  STD_LOGIC;
+
+        -- WB control signals
+        i_WB_RegWrite     : IN  STD_LOGIC;
+        i_WB_MemToReg     : IN  STD_LOGIC;
+
+        -- M control signals
+        i_M_MemRead       : IN  STD_LOGIC;
+        i_M_MemWrite      : IN  STD_LOGIC;
+
+        -- EX control signals
+        i_EX_RegDst       : IN  STD_LOGIC;
+        i_EX_ALUSrc       : IN  STD_LOGIC;
+        i_EX_ALUOp        : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+
+        -- Data Inputs
+        i_ReadData1       : IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+        i_ReadData2       : IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+        i_Rs              : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
+        i_Rt              : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
+        i_Rd              : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
+        i_RegDstMuxOut    : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
+
+        -- WB outputs
+        o_WB_RegWrite     : OUT STD_LOGIC;
+        o_WB_MemToReg     : OUT STD_LOGIC;
+
+        -- M outputs
+        o_M_MemRead       : OUT STD_LOGIC;
+        o_M_MemWrite      : OUT STD_LOGIC;
+
+        -- EX outputs
+        o_EX_RegDst       : OUT STD_LOGIC;
+        o_EX_ALUSrc       : OUT STD_LOGIC;
+        o_EX_ALUOp        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+
+        -- Data Outputs
+        o_ReadData1       : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+        o_ReadData2       : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+        o_Rs              : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+        o_Rt              : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+        o_Rd              : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+        o_RegDstMuxOut    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
+    );
+END ID_EX;
+
+ARCHITECTURE structural OF ID_EX IS
+    COMPONENT OneBitRegister
+        PORT (
+            i_input       : IN  STD_LOGIC;
+            i_enable      : IN  STD_LOGIC;
+            i_clock       : IN  STD_LOGIC;
+            i_async_reset : IN  STD_LOGIC;
+            i_async_set   : IN  STD_LOGIC;
+            o_q           : OUT STD_LOGIC;
+            o_qBar        : OUT STD_LOGIC
+        );
+    END COMPONENT;
+BEGIN
+
+    -- WB: RegWrite, MemToReg
+    OneBitRegister PORT MAP(i_WB_RegWrite, i_enable, i_clock, i_reset, '0', o_WB_RegWrite, OPEN);
+    OneBitRegister PORT MAP(i_WB_MemToReg, i_enable, i_clock, i_reset, '0', o_WB_MemToReg, OPEN);
+
+    -- M: MemRead, MemWrite
+    OneBitRegister PORT MAP(i_M_MemRead, i_enable, i_clock, i_reset, '0', o_M_MemRead, OPEN);
+    OneBitRegister PORT MAP(i_M_MemWrite, i_enable, i_clock, i_reset, '0', o_M_MemWrite, OPEN);
+
+    -- EX: RegDst, ALUSrc
+    OneBitRegister PORT MAP(i_EX_RegDst, i_enable, i_clock, i_reset, '0', o_EX_RegDst, OPEN);
+    OneBitRegister PORT MAP(i_EX_ALUSrc, i_enable, i_clock, i_reset, '0', o_EX_ALUSrc, OPEN);
+
+    -- EX: ALUOp (2 bits)
+    GEN_ALUOP: FOR i IN 0 TO 1 GENERATE
+        reg_ALUOp: OneBitRegister
+        PORT MAP (
+            i_input       => i_EX_ALUOp(i),
+            i_enable      => i_enable,
+            i_clock       => i_clock,
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => o_EX_ALUOp(i),
+            o_qBar        => OPEN
+        );
+    END GENERATE;
+
+    -- ReadData1 and ReadData2 (8 bits each)
+    GEN_RD1: FOR i IN 0 TO 7 GENERATE
+        rd1_reg: OneBitRegister
+        PORT MAP (
+            i_input       => i_ReadData1(i),
+            i_enable      => i_enable,
+            i_clock       => i_clock,
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => o_ReadData1(i),
+            o_qBar        => OPEN
+        );
+    END GENERATE;
+
+    GEN_RD2: FOR i IN 0 TO 7 GENERATE
+        rd2_reg: OneBitRegister
+        PORT MAP (
+            i_input       => i_ReadData2(i),
+            i_enable      => i_enable,
+            i_clock       => i_clock,
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => o_ReadData2(i),
+            o_qBar        => OPEN
+        );
+    END GENERATE;
+
+    -- Rs, Rt, Rd, RegDstMuxOut (3 bits each)
+    FOR_GEN: FOR i IN 0 TO 2 GENERATE
+        rs_reg: OneBitRegister
+        PORT MAP (
+            i_input       => i_Rs(i),
+            i_enable      => i_enable,
+            i_clock       => i_clock,
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => o_Rs(i),
+            o_qBar        => OPEN
+        );
+
+        rt_reg: OneBitRegister
+        PORT MAP (
+            i_input       => i_Rt(i),
+            i_enable      => i_enable,
+            i_clock       => i_clock,
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => o_Rt(i),
+            o_qBar        => OPEN
+        );
+
+        rd_reg: OneBitRegister
+        PORT MAP (
+            i_input       => i_Rd(i),
+            i_enable      => i_enable,
+            i_clock       => i_clock,
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => o_Rd(i),
+            o_qBar        => OPEN
+        );
+
+        muxout_reg: OneBitRegister
+        PORT MAP (
+            i_input       => i_RegDstMuxOut(i),
+            i_enable      => i_enable,
+            i_clock       => i_clock,
+            i_async_reset => i_reset,
+            i_async_set   => '0',
+            o_q           => o_RegDstMuxOut(i),
+            o_qBar        => OPEN
+        );
+    END GENERATE;
+
+END structural;

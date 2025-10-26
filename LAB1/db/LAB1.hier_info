@@ -1,0 +1,5433 @@
+|FP_16bit_Adder
+OVERFLOW <= CONTROL_PATH:inst.EXCEPTION
+GCLOCK => CONTROL_PATH:inst.i_clock
+GCLOCK => DATAPATH:inst14.clk
+GRESET => CONTROL_PATH:inst.i_async_reset
+signA => DATAPATH:inst14.signA
+signB => DATAPATH:inst14.signB
+ExponentA[0] => DATAPATH:inst14.expA[0]
+ExponentA[1] => DATAPATH:inst14.expA[1]
+ExponentA[2] => DATAPATH:inst14.expA[2]
+ExponentA[3] => DATAPATH:inst14.expA[3]
+ExponentA[4] => DATAPATH:inst14.expA[4]
+ExponentA[5] => DATAPATH:inst14.expA[5]
+ExponentA[6] => DATAPATH:inst14.expA[6]
+ExponentB[0] => DATAPATH:inst14.expB[0]
+ExponentB[1] => DATAPATH:inst14.expB[1]
+ExponentB[2] => DATAPATH:inst14.expB[2]
+ExponentB[3] => DATAPATH:inst14.expB[3]
+ExponentB[4] => DATAPATH:inst14.expB[4]
+ExponentB[5] => DATAPATH:inst14.expB[5]
+ExponentB[6] => DATAPATH:inst14.expB[6]
+MantissaA[0] => DATAPATH:inst14.mantissaA[0]
+MantissaA[1] => DATAPATH:inst14.mantissaA[1]
+MantissaA[2] => DATAPATH:inst14.mantissaA[2]
+MantissaA[3] => DATAPATH:inst14.mantissaA[3]
+MantissaA[4] => DATAPATH:inst14.mantissaA[4]
+MantissaA[5] => DATAPATH:inst14.mantissaA[5]
+MantissaA[6] => DATAPATH:inst14.mantissaA[6]
+MantissaA[7] => DATAPATH:inst14.mantissaA[7]
+MantissaB[0] => DATAPATH:inst14.mantissaB[0]
+MantissaB[1] => DATAPATH:inst14.mantissaB[1]
+MantissaB[2] => DATAPATH:inst14.mantissaB[2]
+MantissaB[3] => DATAPATH:inst14.mantissaB[3]
+MantissaB[4] => DATAPATH:inst14.mantissaB[4]
+MantissaB[5] => DATAPATH:inst14.mantissaB[5]
+MantissaB[6] => DATAPATH:inst14.mantissaB[6]
+MantissaB[7] => DATAPATH:inst14.mantissaB[7]
+SignOut <= DATAPATH:inst14.signOut
+S0 <= CONTROL_PATH:inst.S0_out
+S1 <= CONTROL_PATH:inst.S1_out
+S2 <= CONTROL_PATH:inst.S2_out
+S3 <= CONTROL_PATH:inst.S3_out
+S4 <= CONTROL_PATH:inst.S4_out
+S5 <= CONTROL_PATH:inst.S5_out
+S6 <= CONTROL_PATH:inst.S6_out
+S7 <= CONTROL_PATH:inst.S7_out
+S8 <= CONTROL_PATH:inst.S8_out
+S9 <= CONTROL_PATH:inst.S9_out
+S10 <= CONTROL_PATH:inst.S10_out
+S11 <= CONTROL_PATH:inst.S11_out
+ExponentOut[0] <= DATAPATH:inst14.expOut[0]
+ExponentOut[1] <= DATAPATH:inst14.expOut[1]
+ExponentOut[2] <= DATAPATH:inst14.expOut[2]
+ExponentOut[3] <= DATAPATH:inst14.expOut[3]
+ExponentOut[4] <= DATAPATH:inst14.expOut[4]
+ExponentOut[5] <= DATAPATH:inst14.expOut[5]
+ExponentOut[6] <= DATAPATH:inst14.expOut[6]
+MantissaOut[0] <= DATAPATH:inst14.mantissaOut[0]
+MantissaOut[1] <= DATAPATH:inst14.mantissaOut[1]
+MantissaOut[2] <= DATAPATH:inst14.mantissaOut[2]
+MantissaOut[3] <= DATAPATH:inst14.mantissaOut[3]
+MantissaOut[4] <= DATAPATH:inst14.mantissaOut[4]
+MantissaOut[5] <= DATAPATH:inst14.mantissaOut[5]
+MantissaOut[6] <= DATAPATH:inst14.mantissaOut[6]
+MantissaOut[7] <= DATAPATH:inst14.mantissaOut[7]
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst
+i_clock => dflipflop:dff_S0.i_clock
+i_clock => dflipflop:dff_S1.i_clock
+i_clock => dflipflop:dff_S2.i_clock
+i_clock => dflipflop:dff_S3.i_clock
+i_clock => dflipflop:dff_S4.i_clock
+i_clock => dflipflop:dff_S5.i_clock
+i_clock => dflipflop:dff_S6.i_clock
+i_clock => dflipflop:dff_Sextra.i_clock
+i_clock => dflipflop:dff_S7.i_clock
+i_clock => dflipflop:dff_S8.i_clock
+i_clock => dflipflop:dff_S9.i_clock
+i_clock => dflipflop:dff_S10.i_clock
+i_clock => dflipflop:dff_S11.i_clock
+i_enable => dflipflop:dff_S0.i_enable
+i_enable => dflipflop:dff_S1.i_enable
+i_enable => dflipflop:dff_S2.i_enable
+i_enable => dflipflop:dff_S3.i_enable
+i_enable => dflipflop:dff_S4.i_enable
+i_enable => dflipflop:dff_S5.i_enable
+i_enable => dflipflop:dff_S6.i_enable
+i_enable => dflipflop:dff_Sextra.i_enable
+i_enable => dflipflop:dff_S7.i_enable
+i_enable => dflipflop:dff_S8.i_enable
+i_enable => dflipflop:dff_S9.i_enable
+i_enable => dflipflop:dff_S10.i_enable
+i_enable => dflipflop:dff_S11.i_enable
+i_async_reset => dflipflop:dff_S0.i_async_set
+i_async_reset => dflipflop:dff_S1.i_async_reset
+i_async_reset => dflipflop:dff_S2.i_async_reset
+i_async_reset => dflipflop:dff_S3.i_async_reset
+i_async_reset => dflipflop:dff_S4.i_async_reset
+i_async_reset => dflipflop:dff_S5.i_async_reset
+i_async_reset => dflipflop:dff_S6.i_async_reset
+i_async_reset => dflipflop:dff_Sextra.i_async_reset
+i_async_reset => dflipflop:dff_S7.i_async_reset
+i_async_reset => dflipflop:dff_S8.i_async_reset
+i_async_reset => dflipflop:dff_S9.i_async_reset
+i_async_reset => dflipflop:dff_S10.i_async_reset
+i_async_reset => dflipflop:dff_S11.i_async_reset
+A_eq_B => comb.IN1
+A_eq_B => comb.IN1
+A_eq_B => comb.IN1
+A_gt_B => comb.IN1
+A_gt_B => comb.IN1
+Valid => comb.IN1
+Valid => comb.IN1
+Valid => comb.IN1
+Valid => comb.IN1
+Matched => comb.IN1
+Matched => comb.IN1
+Matched => comb.IN1
+isAdd => comb.IN1
+isAdd => comb.IN1
+isAdd => shiftL.IN1
+isAdd => comb.IN1
+isAdd => comb.IN1
+normalized => comb.IN1
+normalized => comb.IN1
+normalized => comb.IN1
+normalized => comb.IN1
+normalized => comb.IN1
+ShiftRMAN => comb.IN1
+ShiftRMAN => comb.IN1
+ShiftRMAN => comb.IN1
+S0_out <= dflipflop:dff_S0.o_q
+S1_out <= dflipflop:dff_S1.o_q
+S2_out <= dflipflop:dff_S2.o_q
+S3_out <= dflipflop:dff_S3.o_q
+S4_out <= dflipflop:dff_S4.o_q
+S5_out <= dflipflop:dff_S5.o_q
+S6_out <= dflipflop:dff_S6.o_q
+S7_out <= dflipflop:dff_S7.o_q
+S8_out <= dflipflop:dff_S8.o_q
+S9_out <= dflipflop:dff_S9.o_q
+S10_out <= dflipflop:dff_S10.o_q
+S11_out <= comb.DB_MAX_OUTPUT_PORT_TYPE
+rst <= dflipflop:dff_S0.o_q
+count1 <= count1.DB_MAX_OUTPUT_PORT_TYPE
+sel1 <= dflipflop:dff_S0.o_q
+sel2 <= dflipflop:dff_S1.o_q
+sel3 <= sel3.DB_MAX_OUTPUT_PORT_TYPE
+sel4 <= dflipflop:dff_S2.o_q
+sel5 <= dflipflop:dff_S6.o_q
+load1 <= dflipflop:dff_S0.o_q
+load2 <= load2.DB_MAX_OUTPUT_PORT_TYPE
+load3 <= dflipflop:dff_S7.o_q
+load4 <= load4.DB_MAX_OUTPUT_PORT_TYPE
+loadALU <= loadALU.DB_MAX_OUTPUT_PORT_TYPE
+shiftL <= shiftL.DB_MAX_OUTPUT_PORT_TYPE
+shiftR1 <= dflipflop:dff_S4.o_q
+shiftR2 <= dflipflop:dff_S8.o_q
+INC <= INC.DB_MAX_OUTPUT_PORT_TYPE
+DEC <= dflipflop:dff_S9.o_q
+Round <= dflipflop:dff_S10.o_q
+EXCEPTION <= dflipflop:dff_S11.o_q
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S0
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S0|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S1
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S1|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S1|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S1|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S2
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S2|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S2|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S2|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S3
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S3|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S3|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S3|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S4
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S4|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S4|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S4|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S5
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S5|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S5|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S5|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S6
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S6|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S6|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S6|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_Sextra
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_Sextra|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_Sextra|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_Sextra|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S7
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S7|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S7|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S7|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S8
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S8|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S8|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S8|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S9
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S9|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S9|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S9|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S10
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S10|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S10|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S10|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S11
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S11|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S11|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S11|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14
+A_eq_B <= DifferenceChecker:inst30.A_eq_B
+sel1 => DifferenceChecker:inst30.Enable
+expA[0] => DifferenceChecker:inst30.A[0]
+expA[0] => incrementor_reg:inst2.expA[0]
+expA[1] => DifferenceChecker:inst30.A[1]
+expA[1] => incrementor_reg:inst2.expA[1]
+expA[2] => DifferenceChecker:inst30.A[2]
+expA[2] => incrementor_reg:inst2.expA[2]
+expA[3] => DifferenceChecker:inst30.A[3]
+expA[3] => incrementor_reg:inst2.expA[3]
+expA[4] => DifferenceChecker:inst30.A[4]
+expA[4] => incrementor_reg:inst2.expA[4]
+expA[5] => DifferenceChecker:inst30.A[5]
+expA[5] => incrementor_reg:inst2.expA[5]
+expA[6] => DifferenceChecker:inst30.A[6]
+expA[6] => incrementor_reg:inst2.expA[6]
+expB[0] => DifferenceChecker:inst30.B[0]
+expB[0] => incrementor_reg:inst2.expB[0]
+expB[1] => DifferenceChecker:inst30.B[1]
+expB[1] => incrementor_reg:inst2.expB[1]
+expB[2] => DifferenceChecker:inst30.B[2]
+expB[2] => incrementor_reg:inst2.expB[2]
+expB[3] => DifferenceChecker:inst30.B[3]
+expB[3] => incrementor_reg:inst2.expB[3]
+expB[4] => DifferenceChecker:inst30.B[4]
+expB[4] => incrementor_reg:inst2.expB[4]
+expB[5] => DifferenceChecker:inst30.B[5]
+expB[5] => incrementor_reg:inst2.expB[5]
+expB[6] => DifferenceChecker:inst30.B[6]
+expB[6] => incrementor_reg:inst2.expB[6]
+Matched <= Comparator_4bit:inst12.A_eq_B
+clk => Register4bit:inst.i_clk
+clk => fourbitcounter:inst16.i_clock
+clk => ALU_12b:inst32.clk
+clk => bi_shift_12bit:inst19.i_clock
+clk => bi_shift_12bit:inst25.i_clock
+clk => bi_shift_12bit_filledWith1:inst20.i_clock
+clk => incrementor_reg:inst2.clk
+load1 => Register4bit:inst.i_load
+count1 => fourbitcounter:inst16.i_enable
+rst => fourbitcounter:inst16.i_async_reset
+rst => bi_shift_12bit:inst19.i_rst
+rst => bi_shift_12bit:inst25.i_rst
+rst => bi_shift_12bit_filledWith1:inst20.i_rst
+rst => incrementor_reg:inst2.rst
+A_gt_B <= DifferenceChecker:inst30.A_gt_B
+Valid <= DifferenceChecker:inst30.Valid
+Cout <= ALU_12b:inst32.Cout
+loadALU => ALU_12b:inst32.load
+sel5 => ALU_12b:inst32.Sel
+sel3 => MUX2_8bit:Man_MUXA.s
+mantissaA[0] => MUX2_8bit:Man_MUXA.d0[0]
+mantissaA[0] => MUX2_8bit:MAN_MUXB.d0[0]
+mantissaA[1] => MUX2_8bit:Man_MUXA.d0[1]
+mantissaA[1] => MUX2_8bit:MAN_MUXB.d0[1]
+mantissaA[2] => MUX2_8bit:Man_MUXA.d0[2]
+mantissaA[2] => MUX2_8bit:MAN_MUXB.d0[2]
+mantissaA[3] => MUX2_8bit:Man_MUXA.d0[3]
+mantissaA[3] => MUX2_8bit:MAN_MUXB.d0[3]
+mantissaA[4] => MUX2_8bit:Man_MUXA.d0[4]
+mantissaA[4] => MUX2_8bit:MAN_MUXB.d0[4]
+mantissaA[5] => MUX2_8bit:Man_MUXA.d0[5]
+mantissaA[5] => MUX2_8bit:MAN_MUXB.d0[5]
+mantissaA[6] => MUX2_8bit:Man_MUXA.d0[6]
+mantissaA[6] => MUX2_8bit:MAN_MUXB.d0[6]
+mantissaA[7] => MUX2_8bit:Man_MUXA.d0[7]
+mantissaA[7] => MUX2_8bit:MAN_MUXB.d0[7]
+mantissaB[0] => MUX2_8bit:Man_MUXA.d1[0]
+mantissaB[0] => MUX2_8bit:MAN_MUXB.d1[0]
+mantissaB[1] => MUX2_8bit:Man_MUXA.d1[1]
+mantissaB[1] => MUX2_8bit:MAN_MUXB.d1[1]
+mantissaB[2] => MUX2_8bit:Man_MUXA.d1[2]
+mantissaB[2] => MUX2_8bit:MAN_MUXB.d1[2]
+mantissaB[3] => MUX2_8bit:Man_MUXA.d1[3]
+mantissaB[3] => MUX2_8bit:MAN_MUXB.d1[3]
+mantissaB[4] => MUX2_8bit:Man_MUXA.d1[4]
+mantissaB[4] => MUX2_8bit:MAN_MUXB.d1[4]
+mantissaB[5] => MUX2_8bit:Man_MUXA.d1[5]
+mantissaB[5] => MUX2_8bit:MAN_MUXB.d1[5]
+mantissaB[6] => MUX2_8bit:Man_MUXA.d1[6]
+mantissaB[6] => MUX2_8bit:MAN_MUXB.d1[6]
+mantissaB[7] => MUX2_8bit:Man_MUXA.d1[7]
+mantissaB[7] => MUX2_8bit:MAN_MUXB.d1[7]
+load2 => bi_shift_12bit:inst19.i_load
+load2 => bi_shift_12bit:inst25.i_load
+shiftR1 => bi_shift_12bit:inst19.i_shiftR
+opRegOut[0] <= bi_shift_12bit:inst25.O_0
+opRegOut[1] <= bi_shift_12bit:inst25.O_1
+opRegOut[2] <= bi_shift_12bit:inst25.O_2
+opRegOut[3] <= bi_shift_12bit:inst25.O_3
+opRegOut[4] <= bi_shift_12bit:inst25.O_4
+opRegOut[5] <= bi_shift_12bit:inst25.O_5
+opRegOut[6] <= bi_shift_12bit:inst25.O_6
+opRegOut[7] <= bi_shift_12bit:inst25.O_7
+opRegOut[8] <= bi_shift_12bit:inst25.O_8
+opRegOut[9] <= bi_shift_12bit:inst25.O_9
+opRegOut[10] <= bi_shift_12bit:inst25.O_10
+opRegOut[11] <= bi_shift_12bit:inst25.O_11
+sel4 => MUX2_8bit:MAN_MUXB.s
+isAdd <= inst18.DB_MAX_OUTPUT_PORT_TYPE
+signA => inst22.IN0
+signA => inst14.IN0
+signA => inst17.IN1
+signA => SignBitLogic:inst31.SignA
+signB => inst21.IN0
+signB => inst14.IN1
+signB => inst17.IN0
+signB => SignBitLogic:inst31.SignB
+isSub <= inst17.DB_MAX_OUTPUT_PORT_TYPE
+normalized <= inst33.DB_MAX_OUTPUT_PORT_TYPE
+load3 => bi_shift_12bit_filledWith1:inst20.i_load
+shiftL => bi_shift_12bit_filledWith1:inst20.i_shiftL
+shiftR2 => bi_shift_12bit_filledWith1:inst20.i_shiftR
+shiftRMAN <= inst27.DB_MAX_OUTPUT_PORT_TYPE
+signOut <= SignBitLogic:inst31.SignOut
+addCondition <= inst23.DB_MAX_OUTPUT_PORT_TYPE
+subCondition <= inst24.DB_MAX_OUTPUT_PORT_TYPE
+absDiffofExp[0] <= Register4bit:inst.o_data[0]
+absDiffofExp[1] <= Register4bit:inst.o_data[1]
+absDiffofExp[2] <= Register4bit:inst.o_data[2]
+absDiffofExp[3] <= Register4bit:inst.o_data[3]
+ALU_Result[0] <= Result[0].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[1] <= Result[1].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[2] <= Result[2].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[3] <= Result[3].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[4] <= Result[4].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[5] <= Result[5].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[6] <= Result[6].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[7] <= Result[7].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[8] <= Result[8].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[9] <= Result[9].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[10] <= Result[10].DB_MAX_OUTPUT_PORT_TYPE
+ALU_Result[11] <= Result[11].DB_MAX_OUTPUT_PORT_TYPE
+Counter_out[0] <= fourbitcounter:inst16.o_count[0]
+Counter_out[1] <= fourbitcounter:inst16.o_count[1]
+Counter_out[2] <= fourbitcounter:inst16.o_count[2]
+Counter_out[3] <= fourbitcounter:inst16.o_count[3]
+DFC_out[0] <= DFC[0].DB_MAX_OUTPUT_PORT_TYPE
+DFC_out[1] <= DFC[1].DB_MAX_OUTPUT_PORT_TYPE
+DFC_out[2] <= DFC[2].DB_MAX_OUTPUT_PORT_TYPE
+DFC_out[3] <= DFC[3].DB_MAX_OUTPUT_PORT_TYPE
+expOut[0] <= RoundingUnit:inst10.exponent_out[0]
+expOut[1] <= RoundingUnit:inst10.exponent_out[1]
+expOut[2] <= RoundingUnit:inst10.exponent_out[2]
+expOut[3] <= RoundingUnit:inst10.exponent_out[3]
+expOut[4] <= RoundingUnit:inst10.exponent_out[4]
+expOut[5] <= RoundingUnit:inst10.exponent_out[5]
+expOut[6] <= RoundingUnit:inst10.exponent_out[6]
+Round => RoundingUnit:inst10.round_enable
+DEC => incrementor_reg:inst2.DEC
+INC => incrementor_reg:inst2.INC
+load4 => incrementor_reg:inst2.load4
+sel2 => incrementor_reg:inst2.sel2
+incrementor_out[0] <= incrementor_reg:inst2.incrementor_out[0]
+incrementor_out[1] <= incrementor_reg:inst2.incrementor_out[1]
+incrementor_out[2] <= incrementor_reg:inst2.incrementor_out[2]
+incrementor_out[3] <= incrementor_reg:inst2.incrementor_out[3]
+incrementor_out[4] <= incrementor_reg:inst2.incrementor_out[4]
+incrementor_out[5] <= incrementor_reg:inst2.incrementor_out[5]
+incrementor_out[6] <= incrementor_reg:inst2.incrementor_out[6]
+mantissaOut[0] <= RoundingUnit:inst10.mantissa_out[0]
+mantissaOut[1] <= RoundingUnit:inst10.mantissa_out[1]
+mantissaOut[2] <= RoundingUnit:inst10.mantissa_out[2]
+mantissaOut[3] <= RoundingUnit:inst10.mantissa_out[3]
+mantissaOut[4] <= RoundingUnit:inst10.mantissa_out[4]
+mantissaOut[5] <= RoundingUnit:inst10.mantissa_out[5]
+mantissaOut[6] <= RoundingUnit:inst10.mantissa_out[6]
+mantissaOut[7] <= RoundingUnit:inst10.mantissa_out[7]
+shiftReg2_out[0] <= shiftReg20.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[1] <= shiftReg21.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[2] <= shiftReg22.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[3] <= shiftReg23.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[4] <= shiftReg24.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[5] <= shiftReg25.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[6] <= shiftReg26.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[7] <= shiftReg27.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[8] <= shiftReg28.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[9] <= shiftReg29.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[10] <= shiftReg210.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg2_out[11] <= shiftReg211.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[0] <= shiftReg0.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[1] <= shiftReg1.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[2] <= shiftReg2.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[3] <= shiftReg3.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[4] <= shiftReg4.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[5] <= shiftReg5.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[6] <= shiftReg6.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[7] <= shiftReg7.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[8] <= shiftReg8.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[9] <= shiftReg9.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[10] <= shiftReg10.DB_MAX_OUTPUT_PORT_TYPE
+shiftReg_out[11] <= shiftReg11.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|DifferenceChecker:inst30
+A[0] => Add0.IN14
+A[1] => Add0.IN13
+A[2] => Add0.IN12
+A[3] => Add0.IN11
+A[4] => Add0.IN10
+A[5] => Add0.IN9
+A[6] => Add0.IN8
+A[6] => Add0.IN17
+B[0] => Add1.IN14
+B[1] => Add1.IN13
+B[2] => Add1.IN12
+B[3] => Add1.IN11
+B[4] => Add1.IN10
+B[5] => Add1.IN9
+B[6] => Add1.IN8
+B[6] => Add1.IN17
+Enable => Diff.OUTPUTSELECT
+Enable => Diff.OUTPUTSELECT
+Enable => Diff.OUTPUTSELECT
+Enable => Diff.OUTPUTSELECT
+Enable => Valid.OUTPUTSELECT
+Enable => A_eq_B.OUTPUTSELECT
+Enable => A_lt_B.OUTPUTSELECT
+Enable => A_gt_B.OUTPUTSELECT
+Enable => abs_diff[8].LATCH_ENABLE
+Enable => abs_diff[7].LATCH_ENABLE
+Enable => abs_diff[6].LATCH_ENABLE
+Enable => abs_diff[5].LATCH_ENABLE
+Enable => abs_diff[4].LATCH_ENABLE
+Enable => abs_diff[3].LATCH_ENABLE
+Enable => abs_diff[2].LATCH_ENABLE
+Enable => abs_diff[1].LATCH_ENABLE
+Enable => abs_diff[0].LATCH_ENABLE
+Enable => abs_diff[9].LATCH_ENABLE
+Enable => abs_diff[10].LATCH_ENABLE
+Enable => abs_diff[11].LATCH_ENABLE
+Enable => abs_diff[12].LATCH_ENABLE
+Enable => abs_diff[13].LATCH_ENABLE
+Enable => abs_diff[14].LATCH_ENABLE
+Enable => abs_diff[15].LATCH_ENABLE
+Enable => abs_diff[16].LATCH_ENABLE
+Enable => abs_diff[17].LATCH_ENABLE
+Enable => abs_diff[18].LATCH_ENABLE
+Enable => abs_diff[19].LATCH_ENABLE
+Enable => abs_diff[20].LATCH_ENABLE
+Enable => abs_diff[21].LATCH_ENABLE
+Enable => abs_diff[22].LATCH_ENABLE
+Enable => abs_diff[23].LATCH_ENABLE
+Enable => abs_diff[24].LATCH_ENABLE
+Enable => abs_diff[25].LATCH_ENABLE
+Enable => abs_diff[26].LATCH_ENABLE
+Enable => abs_diff[27].LATCH_ENABLE
+Enable => abs_diff[28].LATCH_ENABLE
+Enable => abs_diff[29].LATCH_ENABLE
+Enable => abs_diff[30].LATCH_ENABLE
+Enable => abs_diff[31].LATCH_ENABLE
+Enable => B_dec[0].LATCH_ENABLE
+Enable => B_dec[1].LATCH_ENABLE
+Enable => B_dec[2].LATCH_ENABLE
+Enable => B_dec[3].LATCH_ENABLE
+Enable => B_dec[4].LATCH_ENABLE
+Enable => B_dec[5].LATCH_ENABLE
+Enable => B_dec[6].LATCH_ENABLE
+Enable => B_dec[7].LATCH_ENABLE
+Enable => B_dec[8].LATCH_ENABLE
+Enable => B_dec[9].LATCH_ENABLE
+Enable => B_dec[10].LATCH_ENABLE
+Enable => B_dec[11].LATCH_ENABLE
+Enable => B_dec[12].LATCH_ENABLE
+Enable => B_dec[13].LATCH_ENABLE
+Enable => B_dec[14].LATCH_ENABLE
+Enable => B_dec[15].LATCH_ENABLE
+Enable => B_dec[16].LATCH_ENABLE
+Enable => B_dec[17].LATCH_ENABLE
+Enable => B_dec[18].LATCH_ENABLE
+Enable => B_dec[19].LATCH_ENABLE
+Enable => B_dec[20].LATCH_ENABLE
+Enable => B_dec[21].LATCH_ENABLE
+Enable => B_dec[22].LATCH_ENABLE
+Enable => B_dec[23].LATCH_ENABLE
+Enable => B_dec[24].LATCH_ENABLE
+Enable => B_dec[25].LATCH_ENABLE
+Enable => B_dec[26].LATCH_ENABLE
+Enable => B_dec[27].LATCH_ENABLE
+Enable => B_dec[28].LATCH_ENABLE
+Enable => B_dec[29].LATCH_ENABLE
+Enable => B_dec[30].LATCH_ENABLE
+Enable => B_dec[31].LATCH_ENABLE
+Enable => A_dec[0].LATCH_ENABLE
+Enable => A_dec[1].LATCH_ENABLE
+Enable => A_dec[2].LATCH_ENABLE
+Enable => A_dec[3].LATCH_ENABLE
+Enable => A_dec[4].LATCH_ENABLE
+Enable => A_dec[5].LATCH_ENABLE
+Enable => A_dec[6].LATCH_ENABLE
+Enable => A_dec[7].LATCH_ENABLE
+Enable => A_dec[8].LATCH_ENABLE
+Enable => A_dec[9].LATCH_ENABLE
+Enable => A_dec[10].LATCH_ENABLE
+Enable => A_dec[11].LATCH_ENABLE
+Enable => A_dec[12].LATCH_ENABLE
+Enable => A_dec[13].LATCH_ENABLE
+Enable => A_dec[14].LATCH_ENABLE
+Enable => A_dec[15].LATCH_ENABLE
+Enable => A_dec[16].LATCH_ENABLE
+Enable => A_dec[17].LATCH_ENABLE
+Enable => A_dec[18].LATCH_ENABLE
+Enable => A_dec[19].LATCH_ENABLE
+Enable => A_dec[20].LATCH_ENABLE
+Enable => A_dec[21].LATCH_ENABLE
+Enable => A_dec[22].LATCH_ENABLE
+Enable => A_dec[23].LATCH_ENABLE
+Enable => A_dec[24].LATCH_ENABLE
+Enable => A_dec[25].LATCH_ENABLE
+Enable => A_dec[26].LATCH_ENABLE
+Enable => A_dec[27].LATCH_ENABLE
+Enable => A_dec[28].LATCH_ENABLE
+Enable => A_dec[29].LATCH_ENABLE
+Enable => A_dec[30].LATCH_ENABLE
+Enable => A_dec[31].LATCH_ENABLE
+Diff[0] <= Diff.DB_MAX_OUTPUT_PORT_TYPE
+Diff[1] <= Diff.DB_MAX_OUTPUT_PORT_TYPE
+Diff[2] <= Diff.DB_MAX_OUTPUT_PORT_TYPE
+Diff[3] <= Diff.DB_MAX_OUTPUT_PORT_TYPE
+Valid <= Valid.DB_MAX_OUTPUT_PORT_TYPE
+A_eq_B <= A_eq_B.DB_MAX_OUTPUT_PORT_TYPE
+A_lt_B <= A_lt_B.DB_MAX_OUTPUT_PORT_TYPE
+A_gt_B <= A_gt_B.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Comparator_4bit:inst12
+A[0] => comparator_1bit:COMP0.A
+A[1] => comparator_1bit:COMP1.A
+A[2] => comparator_1bit:COMP2.A
+A[3] => comparator_1bit:COMP3.A
+B[0] => comparator_1bit:COMP0.B
+B[1] => comparator_1bit:COMP1.B
+B[2] => comparator_1bit:COMP2.B
+B[3] => comparator_1bit:COMP3.B
+A_eq_B <= A_eq_B.DB_MAX_OUTPUT_PORT_TYPE
+A_gt_B <= A_gt_B.DB_MAX_OUTPUT_PORT_TYPE
+A_lt_B <= A_lt_B.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Comparator_4bit:inst12|Comparator_1bit:COMP0
+A => A_eq_B.IN0
+A => A_gt_B.IN0
+A => A_lt_B.IN0
+B => A_eq_B.IN1
+B => A_lt_B.IN1
+B => A_gt_B.IN1
+A_eq_B <= A_eq_B.DB_MAX_OUTPUT_PORT_TYPE
+A_gt_B <= A_gt_B.DB_MAX_OUTPUT_PORT_TYPE
+A_lt_B <= A_lt_B.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Comparator_4bit:inst12|Comparator_1bit:COMP1
+A => A_eq_B.IN0
+A => A_gt_B.IN0
+A => A_lt_B.IN0
+B => A_eq_B.IN1
+B => A_lt_B.IN1
+B => A_gt_B.IN1
+A_eq_B <= A_eq_B.DB_MAX_OUTPUT_PORT_TYPE
+A_gt_B <= A_gt_B.DB_MAX_OUTPUT_PORT_TYPE
+A_lt_B <= A_lt_B.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Comparator_4bit:inst12|Comparator_1bit:COMP2
+A => A_eq_B.IN0
+A => A_gt_B.IN0
+A => A_lt_B.IN0
+B => A_eq_B.IN1
+B => A_lt_B.IN1
+B => A_gt_B.IN1
+A_eq_B <= A_eq_B.DB_MAX_OUTPUT_PORT_TYPE
+A_gt_B <= A_gt_B.DB_MAX_OUTPUT_PORT_TYPE
+A_lt_B <= A_lt_B.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Comparator_4bit:inst12|Comparator_1bit:COMP3
+A => A_eq_B.IN0
+A => A_gt_B.IN0
+A => A_lt_B.IN0
+B => A_eq_B.IN1
+B => A_lt_B.IN1
+B => A_gt_B.IN1
+A_eq_B <= A_eq_B.DB_MAX_OUTPUT_PORT_TYPE
+A_gt_B <= A_gt_B.DB_MAX_OUTPUT_PORT_TYPE
+A_lt_B <= A_lt_B.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst
+o_data[0] <= dflipflop:inst7.o_q
+o_data[1] <= dflipflop:inst5.o_q
+o_data[2] <= dflipflop:inst3.o_q
+o_data[3] <= dflipflop:inst1.o_q
+i_data[0] => dflipflop:inst7.i_d
+i_data[1] => dflipflop:inst5.i_d
+i_data[2] => dflipflop:inst3.i_d
+i_data[3] => dflipflop:inst1.i_d
+i_clk => dflipflop:inst1.i_clock
+i_clk => dflipflop:inst3.i_clock
+i_clk => dflipflop:inst5.i_clock
+i_clk => dflipflop:inst7.i_clock
+i_load => dflipflop:inst1.i_enable
+i_load => dflipflop:inst3.i_enable
+i_load => dflipflop:inst5.i_enable
+i_load => dflipflop:inst7.i_enable
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst1
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst1|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst1|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst1|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst3
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst3|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst3|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst3|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst5
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst5|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst5|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst5|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst7
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst7|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst7|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst7|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|fourbitcounter:inst16
+i_clock => int_q[0].CLK
+i_clock => int_q[1].CLK
+i_clock => int_q[2].CLK
+i_clock => int_q[3].CLK
+i_enable => int_q[3].ENA
+i_enable => int_q[2].ENA
+i_enable => int_q[1].ENA
+i_enable => int_q[0].ENA
+i_async_reset => int_q[0].PRESET
+i_async_reset => int_q[1].ACLR
+i_async_reset => int_q[2].ACLR
+i_async_reset => int_q[3].ACLR
+o_count[0] <= int_q[0].DB_MAX_OUTPUT_PORT_TYPE
+o_count[1] <= int_q[1].DB_MAX_OUTPUT_PORT_TYPE
+o_count[2] <= int_q[2].DB_MAX_OUTPUT_PORT_TYPE
+o_count[3] <= int_q[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32
+clk => Cout~reg0.CLK
+clk => Result[0]~reg0.CLK
+clk => Result[1]~reg0.CLK
+clk => Result[2]~reg0.CLK
+clk => Result[3]~reg0.CLK
+clk => Result[4]~reg0.CLK
+clk => Result[5]~reg0.CLK
+clk => Result[6]~reg0.CLK
+clk => Result[7]~reg0.CLK
+clk => Result[8]~reg0.CLK
+clk => Result[9]~reg0.CLK
+clk => Result[10]~reg0.CLK
+clk => Result[11]~reg0.CLK
+clk => stored_B[0].CLK
+clk => stored_B[1].CLK
+clk => stored_B[2].CLK
+clk => stored_B[3].CLK
+clk => stored_B[4].CLK
+clk => stored_B[5].CLK
+clk => stored_B[6].CLK
+clk => stored_B[7].CLK
+clk => stored_B[8].CLK
+clk => stored_B[9].CLK
+clk => stored_B[10].CLK
+clk => stored_B[11].CLK
+clk => stored_A[0].CLK
+clk => stored_A[1].CLK
+clk => stored_A[2].CLK
+clk => stored_A[3].CLK
+clk => stored_A[4].CLK
+clk => stored_A[5].CLK
+clk => stored_A[6].CLK
+clk => stored_A[7].CLK
+clk => stored_A[8].CLK
+clk => stored_A[9].CLK
+clk => stored_A[10].CLK
+clk => stored_A[11].CLK
+load => stored_B[0].ENA
+load => stored_B[1].ENA
+load => stored_B[2].ENA
+load => stored_B[3].ENA
+load => stored_B[4].ENA
+load => stored_B[5].ENA
+load => stored_B[6].ENA
+load => stored_B[7].ENA
+load => stored_B[8].ENA
+load => stored_B[9].ENA
+load => stored_B[10].ENA
+load => stored_B[11].ENA
+load => stored_A[0].ENA
+load => stored_A[1].ENA
+load => stored_A[2].ENA
+load => stored_A[3].ENA
+load => stored_A[4].ENA
+load => stored_A[5].ENA
+load => stored_A[6].ENA
+load => stored_A[7].ENA
+load => stored_A[8].ENA
+load => stored_A[9].ENA
+load => stored_A[10].ENA
+load => stored_A[11].ENA
+A[0] => stored_A[0].DATAIN
+A[1] => stored_A[1].DATAIN
+A[2] => stored_A[2].DATAIN
+A[3] => stored_A[3].DATAIN
+A[4] => stored_A[4].DATAIN
+A[5] => stored_A[5].DATAIN
+A[6] => stored_A[6].DATAIN
+A[7] => stored_A[7].DATAIN
+A[8] => stored_A[8].DATAIN
+A[9] => stored_A[9].DATAIN
+A[10] => stored_A[10].DATAIN
+A[11] => stored_A[11].DATAIN
+B[0] => stored_B[0].DATAIN
+B[1] => stored_B[1].DATAIN
+B[2] => stored_B[2].DATAIN
+B[3] => stored_B[3].DATAIN
+B[4] => stored_B[4].DATAIN
+B[5] => stored_B[5].DATAIN
+B[6] => stored_B[6].DATAIN
+B[7] => stored_B[7].DATAIN
+B[8] => stored_B[8].DATAIN
+B[9] => stored_B[9].DATAIN
+B[10] => stored_B[10].DATAIN
+B[11] => stored_B[11].DATAIN
+Sel => B_sel[0].IN1
+Sel => B_sel[1].IN1
+Sel => B_sel[2].IN1
+Sel => B_sel[3].IN1
+Sel => B_sel[4].IN1
+Sel => B_sel[5].IN1
+Sel => B_sel[6].IN1
+Sel => B_sel[7].IN1
+Sel => B_sel[8].IN1
+Sel => B_sel[9].IN1
+Sel => B_sel[10].IN1
+Sel => B_sel[11].IN1
+Sel => fullAdder12_bit:adder_inst.Cin
+Result[0] <= Result[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[1] <= Result[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[2] <= Result[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[3] <= Result[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[4] <= Result[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[5] <= Result[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[6] <= Result[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[7] <= Result[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[8] <= Result[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[9] <= Result[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[10] <= Result[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Result[11] <= Result[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst
+A[0] => fullAdder:GEN_FA:0:FA.A
+A[1] => fullAdder:GEN_FA:1:FA.A
+A[2] => fullAdder:GEN_FA:2:FA.A
+A[3] => fullAdder:GEN_FA:3:FA.A
+A[4] => fullAdder:GEN_FA:4:FA.A
+A[5] => fullAdder:GEN_FA:5:FA.A
+A[6] => fullAdder:GEN_FA:6:FA.A
+A[7] => fullAdder:GEN_FA:7:FA.A
+A[8] => fullAdder:GEN_FA:8:FA.A
+A[9] => fullAdder:GEN_FA:9:FA.A
+A[10] => fullAdder:GEN_FA:10:FA.A
+A[11] => fullAdder:GEN_FA:11:FA.A
+B[0] => fullAdder:GEN_FA:0:FA.B
+B[1] => fullAdder:GEN_FA:1:FA.B
+B[2] => fullAdder:GEN_FA:2:FA.B
+B[3] => fullAdder:GEN_FA:3:FA.B
+B[4] => fullAdder:GEN_FA:4:FA.B
+B[5] => fullAdder:GEN_FA:5:FA.B
+B[6] => fullAdder:GEN_FA:6:FA.B
+B[7] => fullAdder:GEN_FA:7:FA.B
+B[8] => fullAdder:GEN_FA:8:FA.B
+B[9] => fullAdder:GEN_FA:9:FA.B
+B[10] => fullAdder:GEN_FA:10:FA.B
+B[11] => fullAdder:GEN_FA:11:FA.B
+Cin => fullAdder:GEN_FA:0:FA.Cin
+Sum[0] <= fullAdder:GEN_FA:0:FA.Sum
+Sum[1] <= fullAdder:GEN_FA:1:FA.Sum
+Sum[2] <= fullAdder:GEN_FA:2:FA.Sum
+Sum[3] <= fullAdder:GEN_FA:3:FA.Sum
+Sum[4] <= fullAdder:GEN_FA:4:FA.Sum
+Sum[5] <= fullAdder:GEN_FA:5:FA.Sum
+Sum[6] <= fullAdder:GEN_FA:6:FA.Sum
+Sum[7] <= fullAdder:GEN_FA:7:FA.Sum
+Sum[8] <= fullAdder:GEN_FA:8:FA.Sum
+Sum[9] <= fullAdder:GEN_FA:9:FA.Sum
+Sum[10] <= fullAdder:GEN_FA:10:FA.Sum
+Sum[11] <= fullAdder:GEN_FA:11:FA.Sum
+Cout <= fullAdder:GEN_FA:11:FA.Cout
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:0:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:1:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:2:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:3:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:4:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:5:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:6:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:7:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:8:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:9:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:10:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:11:FA
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19
+O_11 <= dflipflop:inst.o_q
+i_data11 => fouronemux:inst10.w0
+i_data10 => fouronemux:inst11.w0
+i_data9 => fouronemux:inst12.w0
+i_data8 => fouronemux:inst13.w0
+i_data7 => fouronemux:inst19.w0
+i_data6 => fouronemux:inst18.w0
+i_data5 => fouronemux:inst17.w0
+i_data4 => fouronemux:inst16.w0
+i_data3 => fouronemux:inst15.w0
+i_data2 => fouronemux:inst23.w0
+i_data1 => fouronemux:inst28.w0
+i_data0 => fouronemux:inst29.w0
+i_shiftR => fouronemux:inst29.s0
+i_shiftR => inst6.IN1
+i_shiftR => fouronemux:inst28.s0
+i_shiftR => fouronemux:inst23.s0
+i_shiftR => fouronemux:inst15.s0
+i_shiftR => fouronemux:inst16.s0
+i_shiftR => fouronemux:inst17.s0
+i_shiftR => fouronemux:inst18.s0
+i_shiftR => fouronemux:inst19.s0
+i_shiftR => fouronemux:inst13.s0
+i_shiftR => fouronemux:inst12.s0
+i_shiftR => fouronemux:inst11.s0
+i_shiftR => fouronemux:inst10.s0
+i_shiftL => fouronemux:inst29.s1
+i_shiftL => inst6.IN0
+i_shiftL => fouronemux:inst28.s1
+i_shiftL => fouronemux:inst23.s1
+i_shiftL => fouronemux:inst15.s1
+i_shiftL => fouronemux:inst16.s1
+i_shiftL => fouronemux:inst17.s1
+i_shiftL => fouronemux:inst18.s1
+i_shiftL => fouronemux:inst19.s1
+i_shiftL => fouronemux:inst13.s1
+i_shiftL => fouronemux:inst12.s1
+i_shiftL => fouronemux:inst11.s1
+i_shiftL => fouronemux:inst10.s1
+i_load => fouronemux:inst29.rst
+i_load => inst6.IN2
+i_load => fouronemux:inst28.rst
+i_load => fouronemux:inst23.rst
+i_load => fouronemux:inst15.rst
+i_load => fouronemux:inst16.rst
+i_load => fouronemux:inst17.rst
+i_load => fouronemux:inst18.rst
+i_load => fouronemux:inst19.rst
+i_load => fouronemux:inst13.rst
+i_load => fouronemux:inst12.rst
+i_load => fouronemux:inst11.rst
+i_load => fouronemux:inst10.rst
+i_clock => dflipflop:inst27.i_clock
+i_clock => dflipflop:inst26.i_clock
+i_clock => dflipflop:inst24.i_clock
+i_clock => dflipflop:inst7.i_clock
+i_clock => dflipflop:inst20.i_clock
+i_clock => dflipflop:inst21.i_clock
+i_clock => dflipflop:inst22.i_clock
+i_clock => dflipflop:inst5.i_clock
+i_clock => dflipflop:inst3.i_clock
+i_clock => dflipflop:inst2.i_clock
+i_clock => dflipflop:inst1.i_clock
+i_clock => dflipflop:inst.i_clock
+i_rst => dflipflop:inst27.i_async_reset
+i_rst => dflipflop:inst26.i_async_reset
+i_rst => dflipflop:inst24.i_async_reset
+i_rst => dflipflop:inst7.i_async_reset
+i_rst => dflipflop:inst20.i_async_reset
+i_rst => dflipflop:inst21.i_async_reset
+i_rst => dflipflop:inst22.i_async_reset
+i_rst => dflipflop:inst5.i_async_reset
+i_rst => dflipflop:inst3.i_async_reset
+i_rst => dflipflop:inst2.i_async_reset
+i_rst => dflipflop:inst1.i_async_reset
+i_rst => dflipflop:inst.i_async_reset
+O_10 <= dflipflop:inst1.o_q
+O_9 <= dflipflop:inst2.o_q
+O_8 <= dflipflop:inst3.o_q
+O_7 <= dflipflop:inst5.o_q
+O_6 <= dflipflop:inst22.o_q
+O_5 <= dflipflop:inst21.o_q
+O_4 <= dflipflop:inst20.o_q
+O_3 <= dflipflop:inst7.o_q
+O_2 <= dflipflop:inst24.o_q
+O_1 <= dflipflop:inst26.o_q
+O_0 <= dflipflop:inst27.o_q
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst10
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst10|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst10|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst10|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst1
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst1|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst1|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst1|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst11
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst11|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst11|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst11|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst2
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst2|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst2|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst2|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst12
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst12|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst12|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst12|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst3
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst3|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst3|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst3|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst13
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst13|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst13|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst13|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst5
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst5|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst5|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst5|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst19
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst19|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst19|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst19|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst22
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst22|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst22|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst22|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst18
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst18|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst18|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst18|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst21
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst21|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst21|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst21|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst17
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst17|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst17|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst17|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst20
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst20|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst20|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst20|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst16
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst16|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst16|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst16|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst15
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst15|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst15|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst15|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst24
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst24|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst24|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst24|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst23
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst23|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst23|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst23|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst26
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst26|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst26|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst26|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst28
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst28|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst28|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst28|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst27
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst27|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst27|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst27|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst29
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst29|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst29|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst29|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:Man_MUXA
+d0[0] => MUX2_1bit:m0.d0
+d0[1] => MUX2_1bit:m1.d0
+d0[2] => MUX2_1bit:m2.d0
+d0[3] => MUX2_1bit:m3.d0
+d0[4] => MUX2_1bit:m4.d0
+d0[5] => MUX2_1bit:m5.d0
+d0[6] => MUX2_1bit:m6.d0
+d0[7] => MUX2_1bit:m7.d0
+d1[0] => MUX2_1bit:m0.d1
+d1[1] => MUX2_1bit:m1.d1
+d1[2] => MUX2_1bit:m2.d1
+d1[3] => MUX2_1bit:m3.d1
+d1[4] => MUX2_1bit:m4.d1
+d1[5] => MUX2_1bit:m5.d1
+d1[6] => MUX2_1bit:m6.d1
+d1[7] => MUX2_1bit:m7.d1
+s => MUX2_1bit:m0.s
+s => MUX2_1bit:m1.s
+s => MUX2_1bit:m2.s
+s => MUX2_1bit:m3.s
+s => MUX2_1bit:m4.s
+s => MUX2_1bit:m5.s
+s => MUX2_1bit:m6.s
+s => MUX2_1bit:m7.s
+o_Value[0] <= MUX2_1bit:m0.y
+o_Value[1] <= MUX2_1bit:m1.y
+o_Value[2] <= MUX2_1bit:m2.y
+o_Value[3] <= MUX2_1bit:m3.y
+o_Value[4] <= MUX2_1bit:m4.y
+o_Value[5] <= MUX2_1bit:m5.y
+o_Value[6] <= MUX2_1bit:m6.y
+o_Value[7] <= MUX2_1bit:m7.y
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:Man_MUXA|MUX2_1bit:m0
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:Man_MUXA|MUX2_1bit:m1
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:Man_MUXA|MUX2_1bit:m2
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:Man_MUXA|MUX2_1bit:m3
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:Man_MUXA|MUX2_1bit:m4
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:Man_MUXA|MUX2_1bit:m5
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:Man_MUXA|MUX2_1bit:m6
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:Man_MUXA|MUX2_1bit:m7
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25
+O_11 <= dflipflop:inst.o_q
+i_data11 => fouronemux:inst10.w0
+i_data10 => fouronemux:inst11.w0
+i_data9 => fouronemux:inst12.w0
+i_data8 => fouronemux:inst13.w0
+i_data7 => fouronemux:inst19.w0
+i_data6 => fouronemux:inst18.w0
+i_data5 => fouronemux:inst17.w0
+i_data4 => fouronemux:inst16.w0
+i_data3 => fouronemux:inst15.w0
+i_data2 => fouronemux:inst23.w0
+i_data1 => fouronemux:inst28.w0
+i_data0 => fouronemux:inst29.w0
+i_shiftR => fouronemux:inst29.s0
+i_shiftR => inst6.IN1
+i_shiftR => fouronemux:inst28.s0
+i_shiftR => fouronemux:inst23.s0
+i_shiftR => fouronemux:inst15.s0
+i_shiftR => fouronemux:inst16.s0
+i_shiftR => fouronemux:inst17.s0
+i_shiftR => fouronemux:inst18.s0
+i_shiftR => fouronemux:inst19.s0
+i_shiftR => fouronemux:inst13.s0
+i_shiftR => fouronemux:inst12.s0
+i_shiftR => fouronemux:inst11.s0
+i_shiftR => fouronemux:inst10.s0
+i_shiftL => fouronemux:inst29.s1
+i_shiftL => inst6.IN0
+i_shiftL => fouronemux:inst28.s1
+i_shiftL => fouronemux:inst23.s1
+i_shiftL => fouronemux:inst15.s1
+i_shiftL => fouronemux:inst16.s1
+i_shiftL => fouronemux:inst17.s1
+i_shiftL => fouronemux:inst18.s1
+i_shiftL => fouronemux:inst19.s1
+i_shiftL => fouronemux:inst13.s1
+i_shiftL => fouronemux:inst12.s1
+i_shiftL => fouronemux:inst11.s1
+i_shiftL => fouronemux:inst10.s1
+i_load => fouronemux:inst29.rst
+i_load => inst6.IN2
+i_load => fouronemux:inst28.rst
+i_load => fouronemux:inst23.rst
+i_load => fouronemux:inst15.rst
+i_load => fouronemux:inst16.rst
+i_load => fouronemux:inst17.rst
+i_load => fouronemux:inst18.rst
+i_load => fouronemux:inst19.rst
+i_load => fouronemux:inst13.rst
+i_load => fouronemux:inst12.rst
+i_load => fouronemux:inst11.rst
+i_load => fouronemux:inst10.rst
+i_clock => dflipflop:inst27.i_clock
+i_clock => dflipflop:inst26.i_clock
+i_clock => dflipflop:inst24.i_clock
+i_clock => dflipflop:inst7.i_clock
+i_clock => dflipflop:inst20.i_clock
+i_clock => dflipflop:inst21.i_clock
+i_clock => dflipflop:inst22.i_clock
+i_clock => dflipflop:inst5.i_clock
+i_clock => dflipflop:inst3.i_clock
+i_clock => dflipflop:inst2.i_clock
+i_clock => dflipflop:inst1.i_clock
+i_clock => dflipflop:inst.i_clock
+i_rst => dflipflop:inst27.i_async_reset
+i_rst => dflipflop:inst26.i_async_reset
+i_rst => dflipflop:inst24.i_async_reset
+i_rst => dflipflop:inst7.i_async_reset
+i_rst => dflipflop:inst20.i_async_reset
+i_rst => dflipflop:inst21.i_async_reset
+i_rst => dflipflop:inst22.i_async_reset
+i_rst => dflipflop:inst5.i_async_reset
+i_rst => dflipflop:inst3.i_async_reset
+i_rst => dflipflop:inst2.i_async_reset
+i_rst => dflipflop:inst1.i_async_reset
+i_rst => dflipflop:inst.i_async_reset
+O_10 <= dflipflop:inst1.o_q
+O_9 <= dflipflop:inst2.o_q
+O_8 <= dflipflop:inst3.o_q
+O_7 <= dflipflop:inst5.o_q
+O_6 <= dflipflop:inst22.o_q
+O_5 <= dflipflop:inst21.o_q
+O_4 <= dflipflop:inst20.o_q
+O_3 <= dflipflop:inst7.o_q
+O_2 <= dflipflop:inst24.o_q
+O_1 <= dflipflop:inst26.o_q
+O_0 <= dflipflop:inst27.o_q
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst10
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst10|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst10|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst10|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst11
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst11|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst11|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst11|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst2
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst2|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst2|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst2|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst12
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst12|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst12|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst12|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst3
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst3|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst3|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst3|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst13
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst13|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst13|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst13|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst5
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst5|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst5|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst5|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst19
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst19|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst19|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst19|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst22
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst22|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst22|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst22|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst18
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst18|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst18|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst18|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst21
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst21|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst21|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst21|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst17
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst17|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst17|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst17|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst20
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst20|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst20|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst20|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst16
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst16|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst16|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst16|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst7
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst7|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst7|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst7|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst15
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst15|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst15|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst15|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst24
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst24|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst24|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst24|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst23
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst23|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst23|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst23|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst26
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst26|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst26|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst26|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst28
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst28|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst28|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst28|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst27
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst27|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst27|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst27|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst29
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst29|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst29|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|fouronemux:inst29|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:MAN_MUXB
+d0[0] => MUX2_1bit:m0.d0
+d0[1] => MUX2_1bit:m1.d0
+d0[2] => MUX2_1bit:m2.d0
+d0[3] => MUX2_1bit:m3.d0
+d0[4] => MUX2_1bit:m4.d0
+d0[5] => MUX2_1bit:m5.d0
+d0[6] => MUX2_1bit:m6.d0
+d0[7] => MUX2_1bit:m7.d0
+d1[0] => MUX2_1bit:m0.d1
+d1[1] => MUX2_1bit:m1.d1
+d1[2] => MUX2_1bit:m2.d1
+d1[3] => MUX2_1bit:m3.d1
+d1[4] => MUX2_1bit:m4.d1
+d1[5] => MUX2_1bit:m5.d1
+d1[6] => MUX2_1bit:m6.d1
+d1[7] => MUX2_1bit:m7.d1
+s => MUX2_1bit:m0.s
+s => MUX2_1bit:m1.s
+s => MUX2_1bit:m2.s
+s => MUX2_1bit:m3.s
+s => MUX2_1bit:m4.s
+s => MUX2_1bit:m5.s
+s => MUX2_1bit:m6.s
+s => MUX2_1bit:m7.s
+o_Value[0] <= MUX2_1bit:m0.y
+o_Value[1] <= MUX2_1bit:m1.y
+o_Value[2] <= MUX2_1bit:m2.y
+o_Value[3] <= MUX2_1bit:m3.y
+o_Value[4] <= MUX2_1bit:m4.y
+o_Value[5] <= MUX2_1bit:m5.y
+o_Value[6] <= MUX2_1bit:m6.y
+o_Value[7] <= MUX2_1bit:m7.y
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:MAN_MUXB|MUX2_1bit:m0
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:MAN_MUXB|MUX2_1bit:m1
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:MAN_MUXB|MUX2_1bit:m2
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:MAN_MUXB|MUX2_1bit:m3
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:MAN_MUXB|MUX2_1bit:m4
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:MAN_MUXB|MUX2_1bit:m5
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:MAN_MUXB|MUX2_1bit:m6
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|MUX2_8bit:MAN_MUXB|MUX2_1bit:m7
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20
+O_11 <= dflipflop:inst.o_q
+i_data11 => fouronemux:inst10.w0
+i_data10 => fouronemux:inst11.w0
+i_data9 => fouronemux:inst12.w0
+i_data8 => fouronemux:inst13.w0
+i_data7 => fouronemux:inst19.w0
+i_data6 => fouronemux:inst18.w0
+i_data5 => fouronemux:inst17.w0
+i_data4 => fouronemux:inst16.w0
+i_data3 => fouronemux:inst15.w0
+i_data2 => fouronemux:inst23.w0
+i_data1 => fouronemux:inst28.w0
+i_data0 => fouronemux:inst29.w0
+i_shiftR => fouronemux:inst29.s0
+i_shiftR => inst6.IN1
+i_shiftR => fouronemux:inst28.s0
+i_shiftR => fouronemux:inst23.s0
+i_shiftR => fouronemux:inst15.s0
+i_shiftR => fouronemux:inst16.s0
+i_shiftR => fouronemux:inst17.s0
+i_shiftR => fouronemux:inst18.s0
+i_shiftR => fouronemux:inst19.s0
+i_shiftR => fouronemux:inst13.s0
+i_shiftR => fouronemux:inst12.s0
+i_shiftR => fouronemux:inst11.s0
+i_shiftR => fouronemux:inst10.s0
+i_shiftL => fouronemux:inst29.s1
+i_shiftL => inst6.IN0
+i_shiftL => fouronemux:inst28.s1
+i_shiftL => fouronemux:inst23.s1
+i_shiftL => fouronemux:inst15.s1
+i_shiftL => fouronemux:inst16.s1
+i_shiftL => fouronemux:inst17.s1
+i_shiftL => fouronemux:inst18.s1
+i_shiftL => fouronemux:inst19.s1
+i_shiftL => fouronemux:inst13.s1
+i_shiftL => fouronemux:inst12.s1
+i_shiftL => fouronemux:inst11.s1
+i_shiftL => fouronemux:inst10.s1
+i_load => fouronemux:inst29.rst
+i_load => inst6.IN2
+i_load => fouronemux:inst28.rst
+i_load => fouronemux:inst23.rst
+i_load => fouronemux:inst15.rst
+i_load => fouronemux:inst16.rst
+i_load => fouronemux:inst17.rst
+i_load => fouronemux:inst18.rst
+i_load => fouronemux:inst19.rst
+i_load => fouronemux:inst13.rst
+i_load => fouronemux:inst12.rst
+i_load => fouronemux:inst11.rst
+i_load => fouronemux:inst10.rst
+i_clock => dflipflop:inst27.i_clock
+i_clock => dflipflop:inst26.i_clock
+i_clock => dflipflop:inst24.i_clock
+i_clock => dflipflop:inst7.i_clock
+i_clock => dflipflop:inst20.i_clock
+i_clock => dflipflop:inst21.i_clock
+i_clock => dflipflop:inst22.i_clock
+i_clock => dflipflop:inst5.i_clock
+i_clock => dflipflop:inst3.i_clock
+i_clock => dflipflop:inst2.i_clock
+i_clock => dflipflop:inst1.i_clock
+i_clock => dflipflop:inst.i_clock
+i_rst => dflipflop:inst27.i_async_reset
+i_rst => dflipflop:inst26.i_async_reset
+i_rst => dflipflop:inst24.i_async_reset
+i_rst => dflipflop:inst7.i_async_reset
+i_rst => dflipflop:inst20.i_async_reset
+i_rst => dflipflop:inst21.i_async_reset
+i_rst => dflipflop:inst22.i_async_reset
+i_rst => dflipflop:inst5.i_async_reset
+i_rst => dflipflop:inst3.i_async_reset
+i_rst => dflipflop:inst2.i_async_reset
+i_rst => dflipflop:inst1.i_async_reset
+i_rst => dflipflop:inst.i_async_reset
+O_10 <= dflipflop:inst1.o_q
+O_9 <= dflipflop:inst2.o_q
+O_8 <= dflipflop:inst3.o_q
+O_7 <= dflipflop:inst5.o_q
+O_6 <= dflipflop:inst22.o_q
+O_5 <= dflipflop:inst21.o_q
+O_4 <= dflipflop:inst20.o_q
+O_3 <= dflipflop:inst7.o_q
+O_2 <= dflipflop:inst24.o_q
+O_1 <= dflipflop:inst26.o_q
+O_0 <= dflipflop:inst27.o_q
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst10
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst10|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst10|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst10|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst11
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst11|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst11|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst11|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst12
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst12|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst12|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst12|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst13
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst13|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst13|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst13|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst19
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst19|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst19|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst19|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst18
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst18|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst18|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst18|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst17
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst17|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst17|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst17|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst16
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst16|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst16|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst16|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst15
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst15|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst15|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst15|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst23
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst23|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst23|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst23|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst28
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst28|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst28|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst28|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst27
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst27|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst27|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst27|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst29
+w0 => f.DATAB
+w0 => twoonemux:mux1.w0
+w1 => twoonemux:mux1.w1
+w2 => twoonemux:mux2.w0
+w3 => twoonemux:mux2.w1
+s0 => twoonemux:mux1.s
+s0 => twoonemux:mux2.s
+s1 => twoonemux:mux3.s
+rst => f.OUTPUTSELECT
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst29|twoonemux:mux1
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst29|twoonemux:mux2
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst29|twoonemux:mux3
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|SignBitLogic:inst31
+isAdd => SignOut.IN1
+isAdd => SignOut.IN1
+isSub => SignOut.IN1
+SignA => SignOut.IN0
+SignA => SignOut.IN1
+SignA => SignOut.IN0
+SignA => SignOut.IN0
+SignB => SignOut.IN1
+Cout => SignOut.IN1
+Cout => SignOut.IN1
+Cout => SignOut.IN1
+SignOut <= SignOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|RoundingUnit:inst10
+exponent_in[0] => exponent_out[0].DATAIN
+exponent_in[1] => exponent_out[1].DATAIN
+exponent_in[2] => exponent_out[2].DATAIN
+exponent_in[3] => exponent_out[3].DATAIN
+exponent_in[4] => exponent_out[4].DATAIN
+exponent_in[5] => exponent_out[5].DATAIN
+exponent_in[6] => exponent_out[6].DATAIN
+mantissa_in[0] => Equal0.IN5
+mantissa_in[1] => Equal0.IN4
+mantissa_in[2] => Equal0.IN3
+mantissa_in[3] => process_0.IN1
+mantissa_in[4] => Add0.IN16
+mantissa_in[4] => result_mantissa.DATAA
+mantissa_in[4] => result_mantissa.DATAA
+mantissa_in[5] => Add0.IN15
+mantissa_in[5] => result_mantissa.DATAA
+mantissa_in[5] => result_mantissa.DATAA
+mantissa_in[6] => Add0.IN14
+mantissa_in[6] => result_mantissa.DATAA
+mantissa_in[6] => result_mantissa.DATAA
+mantissa_in[7] => Add0.IN13
+mantissa_in[7] => result_mantissa.DATAA
+mantissa_in[7] => result_mantissa.DATAA
+mantissa_in[8] => Add0.IN12
+mantissa_in[8] => result_mantissa.DATAA
+mantissa_in[8] => result_mantissa.DATAA
+mantissa_in[9] => Add0.IN11
+mantissa_in[9] => result_mantissa.DATAA
+mantissa_in[9] => result_mantissa.DATAA
+mantissa_in[10] => Add0.IN10
+mantissa_in[10] => result_mantissa.DATAA
+mantissa_in[10] => result_mantissa.DATAA
+mantissa_in[11] => Add0.IN9
+mantissa_in[11] => result_mantissa.DATAA
+mantissa_in[11] => result_mantissa.DATAA
+round_enable => result_mantissa.OUTPUTSELECT
+round_enable => result_mantissa.OUTPUTSELECT
+round_enable => result_mantissa.OUTPUTSELECT
+round_enable => result_mantissa.OUTPUTSELECT
+round_enable => result_mantissa.OUTPUTSELECT
+round_enable => result_mantissa.OUTPUTSELECT
+round_enable => result_mantissa.OUTPUTSELECT
+round_enable => result_mantissa.OUTPUTSELECT
+exponent_out[0] <= exponent_in[0].DB_MAX_OUTPUT_PORT_TYPE
+exponent_out[1] <= exponent_in[1].DB_MAX_OUTPUT_PORT_TYPE
+exponent_out[2] <= exponent_in[2].DB_MAX_OUTPUT_PORT_TYPE
+exponent_out[3] <= exponent_in[3].DB_MAX_OUTPUT_PORT_TYPE
+exponent_out[4] <= exponent_in[4].DB_MAX_OUTPUT_PORT_TYPE
+exponent_out[5] <= exponent_in[5].DB_MAX_OUTPUT_PORT_TYPE
+exponent_out[6] <= exponent_in[6].DB_MAX_OUTPUT_PORT_TYPE
+mantissa_out[0] <= result_mantissa.DB_MAX_OUTPUT_PORT_TYPE
+mantissa_out[1] <= result_mantissa.DB_MAX_OUTPUT_PORT_TYPE
+mantissa_out[2] <= result_mantissa.DB_MAX_OUTPUT_PORT_TYPE
+mantissa_out[3] <= result_mantissa.DB_MAX_OUTPUT_PORT_TYPE
+mantissa_out[4] <= result_mantissa.DB_MAX_OUTPUT_PORT_TYPE
+mantissa_out[5] <= result_mantissa.DB_MAX_OUTPUT_PORT_TYPE
+mantissa_out[6] <= result_mantissa.DB_MAX_OUTPUT_PORT_TYPE
+mantissa_out[7] <= result_mantissa.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2
+incrementor_out[0] <= Register7bit:inst11.o_data[0]
+incrementor_out[1] <= Register7bit:inst11.o_data[1]
+incrementor_out[2] <= Register7bit:inst11.o_data[2]
+incrementor_out[3] <= Register7bit:inst11.o_data[3]
+incrementor_out[4] <= Register7bit:inst11.o_data[4]
+incrementor_out[5] <= Register7bit:inst11.o_data[5]
+incrementor_out[6] <= Register7bit:inst11.o_data[6]
+clk => Register7bit:inst11.i_clk
+INC => inst.IN0
+INC => Incrementor:inst7.inc
+DEC => inst.IN1
+DEC => Incrementor:inst7.dec
+load4 => inst9.IN1
+sel2 => MUX2_7bit:inst3.s
+expA[0] => MUX2_7bit:inst3.d0[0]
+expA[1] => MUX2_7bit:inst3.d0[1]
+expA[2] => MUX2_7bit:inst3.d0[2]
+expA[3] => MUX2_7bit:inst3.d0[3]
+expA[4] => MUX2_7bit:inst3.d0[4]
+expA[5] => MUX2_7bit:inst3.d0[5]
+expA[6] => MUX2_7bit:inst3.d0[6]
+expB[0] => MUX2_7bit:inst3.d1[0]
+expB[1] => MUX2_7bit:inst3.d1[1]
+expB[2] => MUX2_7bit:inst3.d1[2]
+expB[3] => MUX2_7bit:inst3.d1[3]
+expB[4] => MUX2_7bit:inst3.d1[4]
+expB[5] => MUX2_7bit:inst3.d1[5]
+expB[6] => MUX2_7bit:inst3.d1[6]
+rst => Incrementor:inst7.rst
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11
+o_data[0] <= dflipflop:inst7.o_q
+o_data[1] <= dflipflop:inst5.o_q
+o_data[2] <= dflipflop:inst3.o_q
+o_data[3] <= dflipflop:inst1.o_q
+o_data[4] <= dflipflop:inst6.o_q
+o_data[5] <= dflipflop:inst4.o_q
+o_data[6] <= dflipflop:inst2.o_q
+i_data[0] => dflipflop:inst7.i_d
+i_data[1] => dflipflop:inst5.i_d
+i_data[2] => dflipflop:inst3.i_d
+i_data[3] => dflipflop:inst1.i_d
+i_data[4] => dflipflop:inst6.i_d
+i_data[5] => dflipflop:inst4.i_d
+i_data[6] => dflipflop:inst2.i_d
+i_clk => dflipflop:inst2.i_clock
+i_clk => dflipflop:inst4.i_clock
+i_clk => dflipflop:inst6.i_clock
+i_clk => dflipflop:inst1.i_clock
+i_clk => dflipflop:inst3.i_clock
+i_clk => dflipflop:inst5.i_clock
+i_clk => dflipflop:inst7.i_clock
+i_load => dflipflop:inst2.i_enable
+i_load => dflipflop:inst4.i_enable
+i_load => dflipflop:inst6.i_enable
+i_load => dflipflop:inst1.i_enable
+i_load => dflipflop:inst3.i_enable
+i_load => dflipflop:inst5.i_enable
+i_load => dflipflop:inst7.i_enable
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst13
+d0[0] => MUX2_1bit:m0.d0
+d0[1] => MUX2_1bit:m1.d0
+d0[2] => MUX2_1bit:m2.d0
+d0[3] => MUX2_1bit:m3.d0
+d0[4] => MUX2_1bit:m4.d0
+d0[5] => MUX2_1bit:m5.d0
+d0[6] => MUX2_1bit:m6.d0
+d1[0] => MUX2_1bit:m0.d1
+d1[1] => MUX2_1bit:m1.d1
+d1[2] => MUX2_1bit:m2.d1
+d1[3] => MUX2_1bit:m3.d1
+d1[4] => MUX2_1bit:m4.d1
+d1[5] => MUX2_1bit:m5.d1
+d1[6] => MUX2_1bit:m6.d1
+s => MUX2_1bit:m0.s
+s => MUX2_1bit:m1.s
+s => MUX2_1bit:m2.s
+s => MUX2_1bit:m3.s
+s => MUX2_1bit:m4.s
+s => MUX2_1bit:m5.s
+s => MUX2_1bit:m6.s
+o_Value[0] <= MUX2_1bit:m0.y
+o_Value[1] <= MUX2_1bit:m1.y
+o_Value[2] <= MUX2_1bit:m2.y
+o_Value[3] <= MUX2_1bit:m3.y
+o_Value[4] <= MUX2_1bit:m4.y
+o_Value[5] <= MUX2_1bit:m5.y
+o_Value[6] <= MUX2_1bit:m6.y
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst13|MUX2_1bit:m0
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst13|MUX2_1bit:m1
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst13|MUX2_1bit:m2
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst13|MUX2_1bit:m3
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst13|MUX2_1bit:m4
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst13|MUX2_1bit:m5
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst13|MUX2_1bit:m6
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst3
+d0[0] => MUX2_1bit:m0.d0
+d0[1] => MUX2_1bit:m1.d0
+d0[2] => MUX2_1bit:m2.d0
+d0[3] => MUX2_1bit:m3.d0
+d0[4] => MUX2_1bit:m4.d0
+d0[5] => MUX2_1bit:m5.d0
+d0[6] => MUX2_1bit:m6.d0
+d1[0] => MUX2_1bit:m0.d1
+d1[1] => MUX2_1bit:m1.d1
+d1[2] => MUX2_1bit:m2.d1
+d1[3] => MUX2_1bit:m3.d1
+d1[4] => MUX2_1bit:m4.d1
+d1[5] => MUX2_1bit:m5.d1
+d1[6] => MUX2_1bit:m6.d1
+s => MUX2_1bit:m0.s
+s => MUX2_1bit:m1.s
+s => MUX2_1bit:m2.s
+s => MUX2_1bit:m3.s
+s => MUX2_1bit:m4.s
+s => MUX2_1bit:m5.s
+s => MUX2_1bit:m6.s
+o_Value[0] <= MUX2_1bit:m0.y
+o_Value[1] <= MUX2_1bit:m1.y
+o_Value[2] <= MUX2_1bit:m2.y
+o_Value[3] <= MUX2_1bit:m3.y
+o_Value[4] <= MUX2_1bit:m4.y
+o_Value[5] <= MUX2_1bit:m5.y
+o_Value[6] <= MUX2_1bit:m6.y
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst3|MUX2_1bit:m0
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst3|MUX2_1bit:m1
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst3|MUX2_1bit:m2
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst3|MUX2_1bit:m3
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst3|MUX2_1bit:m4
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst3|MUX2_1bit:m5
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst3|MUX2_1bit:m6
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Incrementor:inst7
+rst => temp_value.OUTPUTSELECT
+rst => temp_value.OUTPUTSELECT
+rst => temp_value.OUTPUTSELECT
+rst => temp_value.OUTPUTSELECT
+rst => temp_value.OUTPUTSELECT
+rst => temp_value.OUTPUTSELECT
+rst => temp_value.OUTPUTSELECT
+inc => process_0.IN0
+inc => process_0.IN0
+dec => process_0.IN1
+dec => process_0.IN1
+value[0] => Add0.IN14
+value[0] => Add1.IN14
+value[0] => temp_value.DATAA
+value[1] => Add0.IN13
+value[1] => Add1.IN13
+value[1] => temp_value.DATAA
+value[2] => Add0.IN12
+value[2] => Add1.IN12
+value[2] => temp_value.DATAA
+value[3] => Add0.IN11
+value[3] => Add1.IN11
+value[3] => temp_value.DATAA
+value[4] => Add0.IN10
+value[4] => Add1.IN10
+value[4] => temp_value.DATAA
+value[5] => Add0.IN9
+value[5] => Add1.IN9
+value[5] => temp_value.DATAA
+value[6] => Add0.IN8
+value[6] => Add1.IN8
+value[6] => temp_value.DATAA
+result[0] <= temp_value.DB_MAX_OUTPUT_PORT_TYPE
+result[1] <= temp_value.DB_MAX_OUTPUT_PORT_TYPE
+result[2] <= temp_value.DB_MAX_OUTPUT_PORT_TYPE
+result[3] <= temp_value.DB_MAX_OUTPUT_PORT_TYPE
+result[4] <= temp_value.DB_MAX_OUTPUT_PORT_TYPE
+result[5] <= temp_value.DB_MAX_OUTPUT_PORT_TYPE
+result[6] <= temp_value.DB_MAX_OUTPUT_PORT_TYPE
+
+

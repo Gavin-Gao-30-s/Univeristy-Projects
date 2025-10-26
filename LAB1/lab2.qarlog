@@ -1,0 +1,20 @@
+Quartus II Archive log --	E:/CEG3156LAB/LAB1/lab2.qarlog
+
+Archive:	E:/CEG3156LAB/LAB1/lab2.qar
+Date:		Mon Mar 03 22:46:54 2025
+Quartus II 64-Bit		13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+
+	=========== Files Selected: ===========
+C:/altera/13.0sp1/PC.vhd
+C:/altera/13.0sp1/Waveform.vwf
+C:/altera/13.0sp1/data_memory.vhd
+C:/altera/13.0sp1/incremental_db/compiled_partitions/lab2.db_info
+C:/altera/13.0sp1/instruction_memory.vhd
+C:/altera/13.0sp1/lab2.qpf
+C:/altera/13.0sp1/lab2.qsf
+C:/altera/13.0sp1/test_data_mem.vwf
+c:/altera/13.0sp1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 9 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

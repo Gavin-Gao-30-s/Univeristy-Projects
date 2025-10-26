@@ -1,0 +1,4 @@
+library verilog;
+use verilog.vl_types.all;
+entity bidirectional_shift_register_vlg_vec_tst is
+end bidirectional_shift_register_vlg_vec_tst;

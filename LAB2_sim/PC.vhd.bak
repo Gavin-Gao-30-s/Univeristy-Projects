@@ -1,0 +1,38 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.std_logic_arith.ALL;
+USE ieee.std_logic_unsigned.ALL;
+
+ENTITY PC IS
+    PORT (
+        clk      : IN std_logic;  -- Clock signal
+        reset    : IN std_logic;  -- Asynchronous reset
+        pc_sel   : IN std_logic;  -- Select signal for MUX (0 = PC+4, 1 = Branch/Jump)
+        pc_branch: IN std_logic_vector(7 DOWNTO 0);  -- Branch or Jump Target Address
+        pc_out   : OUT std_logic_vector(7 DOWNTO 0)  -- Current PC Address
+    );
+END PC;
+
+ARCHITECTURE behavioral OF PC IS
+    SIGNAL pc_reg : std_logic_vector(7 DOWNTO 0) := (OTHERS => '0');  -- PC register
+    SIGNAL pc_next : std_logic_vector(7 DOWNTO 0);
+    SIGNAL pc_plus4 : std_logic_vector(7 DOWNTO 0);
+BEGIN
+    PROCESS (clk, reset)
+    BEGIN
+        IF reset = '1' THEN
+            pc_reg <= (OTHERS => '0');  -- Reset PC to 0
+        ELSIF rising_edge(clk) THEN
+            pc_reg <= pc_next;  -- Update PC
+        END IF;
+    END PROCESS;
+    
+    -- Compute PC+4 (word-aligned instructions)
+    pc_plus4 <= pc_reg + X"04";
+    
+    -- MUX logic to choose between PC+4 and branch/jump address
+    pc_next <= pc_branch WHEN pc_sel = '1' ELSE pc_plus4;
+    
+    -- Output the PC value
+    pc_out <= pc_reg;
+END behavioral;

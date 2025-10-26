@@ -1,0 +1,66 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY IF_ID IS
+PORT (
+    clk       : IN  STD_LOGIC;
+    reset     : IN  STD_LOGIC;
+    set       : IN  STD_LOGIC;
+    enable    : IN  STD_LOGIC;
+    instr_in  : IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
+    pc_in     : IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+    instr_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    pc_out    : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+);
+END IF_ID;
+ARCHITECTURE structural OF IF_ID IS
+    COMPONENT OneBitRegister
+        PORT (
+            i_input       : IN  STD_LOGIC;
+            i_enable      : IN  STD_LOGIC;
+            i_clock       : IN  STD_LOGIC;
+            i_async_reset : IN  STD_LOGIC;
+            i_async_set   : IN  STD_LOGIC;
+            o_q           : OUT STD_LOGIC;
+            o_qBar        : OUT STD_LOGIC
+        );
+    END COMPONENT;
+
+    SIGNAL instr_q : STD_LOGIC_VECTOR(31 DOWNTO 0);
+    SIGNAL pc_q    : STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+BEGIN
+
+    -- Instruction registers (32 bits)
+    GEN_INSTR: FOR i IN 0 TO 31 GENERATE
+        bitreg_instr: OneBitRegister
+        PORT MAP (
+            i_input       => instr_in(i),
+            i_enable      => enable,
+            i_clock       => clk,
+            i_async_reset => reset,
+            i_async_set   => set,
+            o_q           => instr_q(i),
+            o_qBar        => OPEN
+        );
+    END GENERATE;
+
+    -- PC registers (8 bits)
+    GEN_PC: FOR i IN 0 TO 7 GENERATE
+        bitreg_pc: OneBitRegister
+        PORT MAP (
+            i_input       => pc_in(i),
+            i_enable      => enable,
+            i_clock       => clk,
+            i_async_reset => reset,
+            i_async_set   => set,
+            o_q           => pc_q(i),
+            o_qBar        => OPEN
+        );
+    END GENERATE;
+
+    -- Outputs
+    instr_out <= instr_q;
+    pc_out    <= pc_q;
+
+END structural;

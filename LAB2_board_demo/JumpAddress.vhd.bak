@@ -1,0 +1,22 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.std_logic_arith.ALL;
+USE ieee.std_logic_unsigned.ALL;
+
+ENTITY JumpAddress IS
+    PORT (
+        instr_in  : IN std_logic_vector(25 DOWNTO 0);  -- 26-bit input from instruction
+        pc_upper  : IN std_logic_vector(3 DOWNTO 0);   -- Upper 4 bits from PC+4
+        jump_addr : OUT std_logic_vector(31 DOWNTO 0)  -- 32-bit jump address output
+    );
+END JumpAddress;
+
+ARCHITECTURE structural OF JumpAddress IS
+    SIGNAL shifted_addr : std_logic_vector(27 DOWNTO 0);
+BEGIN
+    -- Shift left by 2 (equivalent to multiplying by 4)
+    shifted_addr <= instr_in & "00";
+    
+    -- Concatenate upper 4 bits of PC+4 with the shifted address
+    jump_addr <= pc_upper & shifted_addr;
+END structural;

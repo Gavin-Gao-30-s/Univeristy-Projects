@@ -1,0 +1,34 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity Incrementor is
+    Port (
+        clk      : in  STD_LOGIC;                     -- Clock signal
+        rst      : in  STD_LOGIC;                     -- Reset signal
+        inc      : in  STD_LOGIC;                     -- Increment signal
+        dec      : in  STD_LOGIC;                     -- Decrement signal
+        value    : in  STD_LOGIC_VECTOR(6 downto 0);  -- 7-bit input value
+        result   : out STD_LOGIC_VECTOR(6 downto 0)   -- 7-bit output value
+    );
+end Incrementor;
+
+architecture Behavioral of Incrementor is
+    signal temp_value : STD_LOGIC_VECTOR(6 downto 0);  -- Internal 7-bit register
+begin
+    process (clk, rst)
+    begin
+        if rst = '1' then
+            temp_value <= "0000000";  -- Reset to 0
+        elsif rising_edge(clk) then
+            if inc = '1' and dec = '0' then
+                temp_value <= temp_value + "0000001";  -- Increment by 1
+            elsif dec = '1' and inc = '0' then
+                temp_value <= temp_value - "0000001";  -- Decrement by 1
+            end if;
+        end if;
+    end process;
+
+    result <= temp_value;  -- Assign output value
+end Behavioral;

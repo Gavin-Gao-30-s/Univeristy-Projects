@@ -1,0 +1,451 @@
+|PC
+i_clock => OneBitRegister:GEN_PC:0:REG_BIT.i_clock
+i_clock => OneBitRegister:GEN_PC:1:REG_BIT.i_clock
+i_clock => OneBitRegister:GEN_PC:2:REG_BIT.i_clock
+i_clock => OneBitRegister:GEN_PC:3:REG_BIT.i_clock
+i_clock => OneBitRegister:GEN_PC:4:REG_BIT.i_clock
+i_clock => OneBitRegister:GEN_PC:5:REG_BIT.i_clock
+i_clock => OneBitRegister:GEN_PC:6:REG_BIT.i_clock
+i_clock => OneBitRegister:GEN_PC:7:REG_BIT.i_clock
+i_resetBar => OneBitRegister:GEN_PC:0:REG_BIT.i_async_reset
+i_resetBar => OneBitRegister:GEN_PC:1:REG_BIT.i_async_reset
+i_resetBar => OneBitRegister:GEN_PC:2:REG_BIT.i_async_reset
+i_resetBar => OneBitRegister:GEN_PC:3:REG_BIT.i_async_reset
+i_resetBar => OneBitRegister:GEN_PC:4:REG_BIT.i_async_reset
+i_resetBar => OneBitRegister:GEN_PC:5:REG_BIT.i_async_reset
+i_resetBar => OneBitRegister:GEN_PC:6:REG_BIT.i_async_reset
+i_resetBar => OneBitRegister:GEN_PC:7:REG_BIT.i_async_reset
+i_setBar => OneBitRegister:GEN_PC:0:REG_BIT.i_async_set
+i_setBar => OneBitRegister:GEN_PC:1:REG_BIT.i_async_set
+i_setBar => OneBitRegister:GEN_PC:2:REG_BIT.i_async_set
+i_setBar => OneBitRegister:GEN_PC:3:REG_BIT.i_async_set
+i_setBar => OneBitRegister:GEN_PC:4:REG_BIT.i_async_set
+i_setBar => OneBitRegister:GEN_PC:5:REG_BIT.i_async_set
+i_setBar => OneBitRegister:GEN_PC:6:REG_BIT.i_async_set
+i_setBar => OneBitRegister:GEN_PC:7:REG_BIT.i_async_set
+i_pcwrite => OneBitRegister:GEN_PC:0:REG_BIT.i_enable
+i_pcwrite => OneBitRegister:GEN_PC:1:REG_BIT.i_enable
+i_pcwrite => OneBitRegister:GEN_PC:2:REG_BIT.i_enable
+i_pcwrite => OneBitRegister:GEN_PC:3:REG_BIT.i_enable
+i_pcwrite => OneBitRegister:GEN_PC:4:REG_BIT.i_enable
+i_pcwrite => OneBitRegister:GEN_PC:5:REG_BIT.i_enable
+i_pcwrite => OneBitRegister:GEN_PC:6:REG_BIT.i_enable
+i_pcwrite => OneBitRegister:GEN_PC:7:REG_BIT.i_enable
+i_pc_in[0] => OneBitRegister:GEN_PC:0:REG_BIT.i_input
+i_pc_in[1] => OneBitRegister:GEN_PC:1:REG_BIT.i_input
+i_pc_in[2] => OneBitRegister:GEN_PC:2:REG_BIT.i_input
+i_pc_in[3] => OneBitRegister:GEN_PC:3:REG_BIT.i_input
+i_pc_in[4] => OneBitRegister:GEN_PC:4:REG_BIT.i_input
+i_pc_in[5] => OneBitRegister:GEN_PC:5:REG_BIT.i_input
+i_pc_in[6] => OneBitRegister:GEN_PC:6:REG_BIT.i_input
+i_pc_in[7] => OneBitRegister:GEN_PC:7:REG_BIT.i_input
+o_pc_out[0] <= OneBitRegister:GEN_PC:0:REG_BIT.o_q
+o_pc_out[1] <= OneBitRegister:GEN_PC:1:REG_BIT.o_q
+o_pc_out[2] <= OneBitRegister:GEN_PC:2:REG_BIT.o_q
+o_pc_out[3] <= OneBitRegister:GEN_PC:3:REG_BIT.o_q
+o_pc_out[4] <= OneBitRegister:GEN_PC:4:REG_BIT.o_q
+o_pc_out[5] <= OneBitRegister:GEN_PC:5:REG_BIT.o_q
+o_pc_out[6] <= OneBitRegister:GEN_PC:6:REG_BIT.o_q
+o_pc_out[7] <= OneBitRegister:GEN_PC:7:REG_BIT.o_q
+
+
+|PC|OneBitRegister:\GEN_PC:0:REG_BIT
+i_input => dflipflop:DFF_INST.i_d
+i_enable => dflipflop:DFF_INST.i_enable
+i_clock => dflipflop:DFF_INST.i_clock
+i_async_reset => dflipflop:DFF_INST.i_async_reset
+i_async_set => dflipflop:DFF_INST.i_async_set
+o_q <= dflipflop:DFF_INST.o_q
+o_qBar <= dflipflop:DFF_INST.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:0:REG_BIT|dflipflop:DFF_INST
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:0:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:0:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:0:REG_BIT|dflipflop:DFF_INST|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:1:REG_BIT
+i_input => dflipflop:DFF_INST.i_d
+i_enable => dflipflop:DFF_INST.i_enable
+i_clock => dflipflop:DFF_INST.i_clock
+i_async_reset => dflipflop:DFF_INST.i_async_reset
+i_async_set => dflipflop:DFF_INST.i_async_set
+o_q <= dflipflop:DFF_INST.o_q
+o_qBar <= dflipflop:DFF_INST.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:1:REG_BIT|dflipflop:DFF_INST
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:1:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:1:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:1:REG_BIT|dflipflop:DFF_INST|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:2:REG_BIT
+i_input => dflipflop:DFF_INST.i_d
+i_enable => dflipflop:DFF_INST.i_enable
+i_clock => dflipflop:DFF_INST.i_clock
+i_async_reset => dflipflop:DFF_INST.i_async_reset
+i_async_set => dflipflop:DFF_INST.i_async_set
+o_q <= dflipflop:DFF_INST.o_q
+o_qBar <= dflipflop:DFF_INST.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:2:REG_BIT|dflipflop:DFF_INST
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:2:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:2:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:2:REG_BIT|dflipflop:DFF_INST|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:3:REG_BIT
+i_input => dflipflop:DFF_INST.i_d
+i_enable => dflipflop:DFF_INST.i_enable
+i_clock => dflipflop:DFF_INST.i_clock
+i_async_reset => dflipflop:DFF_INST.i_async_reset
+i_async_set => dflipflop:DFF_INST.i_async_set
+o_q <= dflipflop:DFF_INST.o_q
+o_qBar <= dflipflop:DFF_INST.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:3:REG_BIT|dflipflop:DFF_INST
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:3:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:3:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:3:REG_BIT|dflipflop:DFF_INST|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:4:REG_BIT
+i_input => dflipflop:DFF_INST.i_d
+i_enable => dflipflop:DFF_INST.i_enable
+i_clock => dflipflop:DFF_INST.i_clock
+i_async_reset => dflipflop:DFF_INST.i_async_reset
+i_async_set => dflipflop:DFF_INST.i_async_set
+o_q <= dflipflop:DFF_INST.o_q
+o_qBar <= dflipflop:DFF_INST.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:4:REG_BIT|dflipflop:DFF_INST
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:4:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:4:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:4:REG_BIT|dflipflop:DFF_INST|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:5:REG_BIT
+i_input => dflipflop:DFF_INST.i_d
+i_enable => dflipflop:DFF_INST.i_enable
+i_clock => dflipflop:DFF_INST.i_clock
+i_async_reset => dflipflop:DFF_INST.i_async_reset
+i_async_set => dflipflop:DFF_INST.i_async_set
+o_q <= dflipflop:DFF_INST.o_q
+o_qBar <= dflipflop:DFF_INST.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:5:REG_BIT|dflipflop:DFF_INST
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:5:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:5:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:5:REG_BIT|dflipflop:DFF_INST|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:6:REG_BIT
+i_input => dflipflop:DFF_INST.i_d
+i_enable => dflipflop:DFF_INST.i_enable
+i_clock => dflipflop:DFF_INST.i_clock
+i_async_reset => dflipflop:DFF_INST.i_async_reset
+i_async_set => dflipflop:DFF_INST.i_async_set
+o_q <= dflipflop:DFF_INST.o_q
+o_qBar <= dflipflop:DFF_INST.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:6:REG_BIT|dflipflop:DFF_INST
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:6:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:6:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:6:REG_BIT|dflipflop:DFF_INST|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:7:REG_BIT
+i_input => dflipflop:DFF_INST.i_d
+i_enable => dflipflop:DFF_INST.i_enable
+i_clock => dflipflop:DFF_INST.i_clock
+i_async_reset => dflipflop:DFF_INST.i_async_reset
+i_async_set => dflipflop:DFF_INST.i_async_set
+o_q <= dflipflop:DFF_INST.o_q
+o_qBar <= dflipflop:DFF_INST.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:7:REG_BIT|dflipflop:DFF_INST
+i_d => twoonemux:enableMux.w1
+i_clock => int_clock_or_async.IN0
+i_clock => enabledSRLatch:masterLatch.i_enable
+i_enable => twoonemux:enableMux.s
+i_async_reset => int_qBar_or_async.IN1
+i_async_reset => int_clock_or_async.IN1
+i_async_reset => int_q_or_async.IN1
+i_async_set => int_q_or_async.IN1
+i_async_set => int_clock_or_async.IN1
+o_q <= enabledSRLatch:slaveLatch.o_q
+o_qBar <= enabledSRLatch:slaveLatch.o_qBar
+
+
+|PC|OneBitRegister:\GEN_PC:7:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:masterLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:7:REG_BIT|dflipflop:DFF_INST|enabledSRLatch:slaveLatch
+i_set => int_sSignal.IN0
+i_reset => int_rSignal.IN0
+i_enable => int_sSignal.IN1
+i_enable => int_rSignal.IN1
+o_q <= o_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_qBar.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PC|OneBitRegister:\GEN_PC:7:REG_BIT|dflipflop:DFF_INST|twoonemux:enableMux
+w0 => int_t1.IN0
+w1 => int_t2.IN0
+s => int_t2.IN1
+s => int_t1.IN1
+f <= f.DB_MAX_OUTPUT_PORT_TYPE
+
+

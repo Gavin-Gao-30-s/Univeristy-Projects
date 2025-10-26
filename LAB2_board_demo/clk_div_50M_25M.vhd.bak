@@ -1,0 +1,22 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+ENTITY clk_div_50M_25M IS
+    PORT (
+        clk_50Mhz : IN  STD_LOGIC;  -- 50 MHz input
+        clk_25Mhz : OUT STD_LOGIC   -- 25 MHz output
+    );
+END clk_div_50M_25M;
+
+ARCHITECTURE rtl OF clk_div_50M_25M IS
+    SIGNAL clk_25Mhz_int : STD_LOGIC := '0';
+BEGIN
+    PROCESS (clk_50Mhz)
+    BEGIN
+        IF rising_edge(clk_50Mhz) THEN
+            clk_25Mhz_int <= NOT clk_25Mhz_int;  -- Toggle every cycle (divide by 2)
+        END IF;
+    END PROCESS;
+
+    clk_25Mhz <= clk_25Mhz_int;  -- Assign the toggled clock to output
+END rtl;

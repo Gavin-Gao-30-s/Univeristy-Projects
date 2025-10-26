@@ -1,0 +1,57 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity RoundingUnit is
+    Port (
+        exponent_in : in STD_LOGIC_VECTOR(6 downto 0);  -- 7-bit exponent input
+        mantissa_in : in STD_LOGIC_VECTOR(11 downto 0); -- 12-bit mantissa input
+        exponent_out : out STD_LOGIC_VECTOR(6 downto 0); -- 7-bit exponent output
+        mantissa_out : out STD_LOGIC_VECTOR(7 downto 0)  -- 8-bit rounded mantissa output
+    );
+end RoundingUnit;
+
+architecture Behavioral of RoundingUnit is
+begin
+    process(exponent_in, mantissa_in)
+        variable mantissa_tmp : STD_LOGIC_VECTOR(11 downto 0); -- Temporary mantissa
+        variable exponent_tmp : STD_LOGIC_VECTOR(6 downto 0);  -- Temporary exponent
+        variable rounding_bit : STD_LOGIC;                    -- Rounding bit
+        variable sticky_bit : STD_LOGIC;                      -- Sticky bit
+        variable result_mantissa : STD_LOGIC_VECTOR(7 downto 0); -- Final mantissa
+    begin
+        -- Initialize temporary variables
+        mantissa_tmp := mantissa_in;
+        exponent_tmp := exponent_in;
+
+        -- Extract the rounding bit (bit 3 of the lower part of the mantissa)
+        rounding_bit := mantissa_tmp(3);
+
+        -- Check if any sticky bit exists (bits [2:0])
+        if (mantissa_tmp(2 downto 0) /= "000") then
+            sticky_bit := '1';
+        else
+            sticky_bit := '0';
+        end if;
+
+        -- Perform rounding
+        if rounding_bit = '1' and sticky_bit = '1' then
+            -- Round up
+            result_mantissa := mantissa_tmp(11 downto 4) + 1;
+        else
+            -- No rounding, truncate
+            result_mantissa := mantissa_tmp(11 downto 4);
+        end if;
+
+        -- Check for mantissa overflow
+        if result_mantissa(7) = '1' then
+            -- Overflow, normalize
+            exponent_tmp := exponent_tmp + 1;
+        end if;
+
+        -- Assign outputs
+        exponent_out <= exponent_tmp;
+        mantissa_out <= result_mantissa;
+    end process;
+end Behavioral;

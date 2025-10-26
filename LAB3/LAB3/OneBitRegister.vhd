@@ -1,0 +1,44 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY OneBitRegister IS
+    PORT (
+        i_input         : IN  STD_LOGIC;  -- actual data input
+        i_enable        : IN  STD_LOGIC;  -- write enable
+        i_clock         : IN  STD_LOGIC;
+        i_async_reset   : IN  STD_LOGIC;
+        i_async_set     : IN  STD_LOGIC;
+        o_q             : OUT STD_LOGIC;
+        o_qBar          : OUT STD_LOGIC
+    );
+END OneBitRegister;
+
+ARCHITECTURE structural OF OneBitRegister IS
+
+    COMPONENT dflipflop
+        PORT (
+            i_d             : IN  STD_LOGIC;
+            i_clock         : IN  STD_LOGIC;
+            i_enable        : IN  STD_LOGIC;
+            i_async_reset   : IN  STD_LOGIC;
+            i_async_set     : IN  STD_LOGIC;
+            o_q             : OUT STD_LOGIC;
+            o_qBar          : OUT STD_LOGIC
+        );
+    END COMPONENT;
+
+BEGIN
+
+    DFF_INST: dflipflop
+        PORT MAP (
+            i_d           => i_input,           -- Pass raw input
+            i_clock       => i_clock,
+            i_enable      => i_enable,          -- Enable controls latching only
+            i_async_reset => i_async_reset,
+            i_async_set   => i_async_set,
+            o_q           => o_q,
+            o_qBar        => o_qBar
+        );
+
+END structural;
+

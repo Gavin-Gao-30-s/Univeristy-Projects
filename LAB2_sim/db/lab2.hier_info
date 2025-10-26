@@ -1,0 +1,1521 @@
+|SignleCycleProcessor
+BranchOut <= ControlUnit:inst1.Branch
+GCLOCK => DATAPATH:inst.clk
+GRESET => DATAPATH:inst.reset
+ZeroOut <= DATAPATH:inst.ZeroOut
+MemWriteOut <= ControlUnit:inst1.MemWrite
+RegWriteOut <= ControlUnit:inst1.RegWrite
+RegDst <= ControlUnit:inst1.RegDst
+Jump <= ControlUnit:inst1.Jump
+Branch <= ControlUnit:inst1.Branch
+MemRead <= ControlUnit:inst1.MemRead
+MemToReg <= ControlUnit:inst1.MemToReg
+MemWrite <= ControlUnit:inst1.MemWrite
+ALUSrc <= ControlUnit:inst1.ALUSrc
+RegWrite <= ControlUnit:inst1.RegWrite
+ALUOp[0] <= ControlUnit:inst1.ALUOp[0]
+ALUOp[1] <= ControlUnit:inst1.ALUOp[1]
+ALUResult[0] <= DATAPATH:inst.ALUResult[0]
+ALUResult[1] <= DATAPATH:inst.ALUResult[1]
+ALUResult[2] <= DATAPATH:inst.ALUResult[2]
+ALUResult[3] <= DATAPATH:inst.ALUResult[3]
+ALUResult[4] <= DATAPATH:inst.ALUResult[4]
+ALUResult[5] <= DATAPATH:inst.ALUResult[5]
+ALUResult[6] <= DATAPATH:inst.ALUResult[6]
+ALUResult[7] <= DATAPATH:inst.ALUResult[7]
+InstructionOut[0] <= instr[0].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[1] <= instr[1].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[2] <= instr[2].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[3] <= instr[3].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[4] <= instr[4].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[5] <= instr[5].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[6] <= instr[6].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[7] <= instr[7].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[8] <= instr[8].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[9] <= instr[9].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[10] <= instr[10].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[11] <= instr[11].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[12] <= instr[12].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[13] <= instr[13].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[14] <= instr[14].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[15] <= instr[15].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[16] <= instr[16].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[17] <= instr[17].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[18] <= instr[18].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[19] <= instr[19].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[20] <= instr[20].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[21] <= instr[21].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[22] <= instr[22].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[23] <= instr[23].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[24] <= instr[24].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[25] <= instr[25].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[26] <= instr[26].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[27] <= instr[27].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[28] <= instr[28].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[29] <= instr[29].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[30] <= instr[30].DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[31] <= instr[31].DB_MAX_OUTPUT_PORT_TYPE
+MuxOut[0] <= MUX_OUTPUT:inst2.mux_out[0]
+MuxOut[1] <= MUX_OUTPUT:inst2.mux_out[1]
+MuxOut[2] <= MUX_OUTPUT:inst2.mux_out[2]
+MuxOut[3] <= MUX_OUTPUT:inst2.mux_out[3]
+MuxOut[4] <= MUX_OUTPUT:inst2.mux_out[4]
+MuxOut[5] <= MUX_OUTPUT:inst2.mux_out[5]
+MuxOut[6] <= MUX_OUTPUT:inst2.mux_out[6]
+MuxOut[7] <= MUX_OUTPUT:inst2.mux_out[7]
+ValueSelect[0] => MUX_OUTPUT:inst2.value_select[0]
+ValueSelect[1] => MUX_OUTPUT:inst2.value_select[1]
+ValueSelect[2] => MUX_OUTPUT:inst2.value_select[2]
+PCOut[0] <= DATAPATH:inst.PCOut[0]
+PCOut[1] <= DATAPATH:inst.PCOut[1]
+PCOut[2] <= DATAPATH:inst.PCOut[2]
+PCOut[3] <= DATAPATH:inst.PCOut[3]
+PCOut[4] <= DATAPATH:inst.PCOut[4]
+PCOut[5] <= DATAPATH:inst.PCOut[5]
+PCOut[6] <= DATAPATH:inst.PCOut[6]
+PCOut[7] <= DATAPATH:inst.PCOut[7]
+ReadData1[0] <= DATAPATH:inst.ReadData1[0]
+ReadData1[1] <= DATAPATH:inst.ReadData1[1]
+ReadData1[2] <= DATAPATH:inst.ReadData1[2]
+ReadData1[3] <= DATAPATH:inst.ReadData1[3]
+ReadData1[4] <= DATAPATH:inst.ReadData1[4]
+ReadData1[5] <= DATAPATH:inst.ReadData1[5]
+ReadData1[6] <= DATAPATH:inst.ReadData1[6]
+ReadData1[7] <= DATAPATH:inst.ReadData1[7]
+ReadData2[0] <= DATAPATH:inst.ReadData2[0]
+ReadData2[1] <= DATAPATH:inst.ReadData2[1]
+ReadData2[2] <= DATAPATH:inst.ReadData2[2]
+ReadData2[3] <= DATAPATH:inst.ReadData2[3]
+ReadData2[4] <= DATAPATH:inst.ReadData2[4]
+ReadData2[5] <= DATAPATH:inst.ReadData2[5]
+ReadData2[6] <= DATAPATH:inst.ReadData2[6]
+ReadData2[7] <= DATAPATH:inst.ReadData2[7]
+WriteData[0] <= DATAPATH:inst.WriteData[0]
+WriteData[1] <= DATAPATH:inst.WriteData[1]
+WriteData[2] <= DATAPATH:inst.WriteData[2]
+WriteData[3] <= DATAPATH:inst.WriteData[3]
+WriteData[4] <= DATAPATH:inst.WriteData[4]
+WriteData[5] <= DATAPATH:inst.WriteData[5]
+WriteData[6] <= DATAPATH:inst.WriteData[6]
+WriteData[7] <= DATAPATH:inst.WriteData[7]
+
+
+|SignleCycleProcessor|ControlUnit:inst1
+opcode[0] => Mux0.IN69
+opcode[0] => Mux1.IN69
+opcode[0] => Mux2.IN69
+opcode[0] => Mux3.IN69
+opcode[0] => Mux4.IN36
+opcode[0] => Mux5.IN69
+opcode[0] => Mux6.IN36
+opcode[0] => Mux7.IN69
+opcode[0] => Mux8.IN69
+opcode[0] => Mux9.IN69
+opcode[1] => Mux0.IN68
+opcode[1] => Mux1.IN68
+opcode[1] => Mux2.IN68
+opcode[1] => Mux3.IN68
+opcode[1] => Mux4.IN35
+opcode[1] => Mux5.IN68
+opcode[1] => Mux6.IN35
+opcode[1] => Mux7.IN68
+opcode[1] => Mux8.IN68
+opcode[1] => Mux9.IN68
+opcode[2] => Mux0.IN67
+opcode[2] => Mux1.IN67
+opcode[2] => Mux2.IN67
+opcode[2] => Mux3.IN67
+opcode[2] => Mux4.IN34
+opcode[2] => Mux5.IN67
+opcode[2] => Mux6.IN34
+opcode[2] => Mux7.IN67
+opcode[2] => Mux8.IN67
+opcode[2] => Mux9.IN67
+opcode[3] => Mux0.IN66
+opcode[3] => Mux1.IN66
+opcode[3] => Mux2.IN66
+opcode[3] => Mux3.IN66
+opcode[3] => Mux5.IN66
+opcode[3] => Mux7.IN66
+opcode[3] => Mux8.IN66
+opcode[3] => Mux9.IN66
+opcode[4] => Mux0.IN65
+opcode[4] => Mux1.IN65
+opcode[4] => Mux2.IN65
+opcode[4] => Mux3.IN65
+opcode[4] => Mux4.IN33
+opcode[4] => Mux5.IN65
+opcode[4] => Mux6.IN33
+opcode[4] => Mux7.IN65
+opcode[4] => Mux8.IN65
+opcode[4] => Mux9.IN65
+opcode[5] => Mux0.IN64
+opcode[5] => Mux1.IN64
+opcode[5] => Mux2.IN64
+opcode[5] => Mux3.IN64
+opcode[5] => Mux4.IN32
+opcode[5] => Mux5.IN64
+opcode[5] => Mux6.IN32
+opcode[5] => Mux7.IN64
+opcode[5] => Mux8.IN64
+opcode[5] => Mux9.IN64
+RegDst <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+Jump <= Mux9.DB_MAX_OUTPUT_PORT_TYPE
+Branch <= Mux8.DB_MAX_OUTPUT_PORT_TYPE
+MemRead <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+MemToReg <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+ALUOp[0] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+ALUOp[1] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+MemWrite <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+ALUSrc <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+RegWrite <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst
+ZeroOut <= ALU:inst7.zero
+clk => Central_RegisterFile:inst8.clk
+clk => PC:inst.clk
+clk => data_memory:inst2.clk
+RegWrite => Central_RegisterFile:inst8.reg_write
+instr[0] <= instruction_memory:inst15.instruction[0]
+instr[1] <= instruction_memory:inst15.instruction[1]
+instr[2] <= instruction_memory:inst15.instruction[2]
+instr[3] <= instruction_memory:inst15.instruction[3]
+instr[4] <= instruction_memory:inst15.instruction[4]
+instr[5] <= instruction_memory:inst15.instruction[5]
+instr[6] <= instruction_memory:inst15.instruction[6]
+instr[7] <= instruction_memory:inst15.instruction[7]
+instr[8] <= instruction_memory:inst15.instruction[8]
+instr[9] <= instruction_memory:inst15.instruction[9]
+instr[10] <= instruction_memory:inst15.instruction[10]
+instr[11] <= instruction_memory:inst15.instruction[11]
+instr[12] <= instruction_memory:inst15.instruction[12]
+instr[13] <= instruction_memory:inst15.instruction[13]
+instr[14] <= instruction_memory:inst15.instruction[14]
+instr[15] <= instruction_memory:inst15.instruction[15]
+instr[16] <= instruction_memory:inst15.instruction[16]
+instr[17] <= instruction_memory:inst15.instruction[17]
+instr[18] <= instruction_memory:inst15.instruction[18]
+instr[19] <= instruction_memory:inst15.instruction[19]
+instr[20] <= instruction_memory:inst15.instruction[20]
+instr[21] <= instruction_memory:inst15.instruction[21]
+instr[22] <= instruction_memory:inst15.instruction[22]
+instr[23] <= instruction_memory:inst15.instruction[23]
+instr[24] <= instruction_memory:inst15.instruction[24]
+instr[25] <= instruction_memory:inst15.instruction[25]
+instr[26] <= instruction_memory:inst15.instruction[26]
+instr[27] <= instruction_memory:inst15.instruction[27]
+instr[28] <= instruction_memory:inst15.instruction[28]
+instr[29] <= instruction_memory:inst15.instruction[29]
+instr[30] <= instruction_memory:inst15.instruction[30]
+instr[31] <= instruction_memory:inst15.instruction[31]
+reset => PC:inst.reset
+Jump => MUX2_8bit:inst13.s
+Branch => inst12.IN0
+MemtoReg => MUX2_8bit:inst11.s
+MemWrite => data_memory:inst2.mem_write
+MemRead => data_memory:inst2.mem_read
+RegDst => MUX2_3bit:inst3.s
+ALUop[0] => ALU:inst7.ALUop[0]
+ALUop[1] => ALU:inst7.ALUop[1]
+ALUSrc => MUX2_8bit:inst9.s
+ALUResult[0] <= ALU:inst7.ALU_result[0]
+ALUResult[1] <= ALU:inst7.ALU_result[1]
+ALUResult[2] <= ALU:inst7.ALU_result[2]
+ALUResult[3] <= ALU:inst7.ALU_result[3]
+ALUResult[4] <= ALU:inst7.ALU_result[4]
+ALUResult[5] <= ALU:inst7.ALU_result[5]
+ALUResult[6] <= ALU:inst7.ALU_result[6]
+ALUResult[7] <= ALU:inst7.ALU_result[7]
+PCOut[0] <= PC:inst.pc_out[0]
+PCOut[1] <= PC:inst.pc_out[1]
+PCOut[2] <= PC:inst.pc_out[2]
+PCOut[3] <= PC:inst.pc_out[3]
+PCOut[4] <= PC:inst.pc_out[4]
+PCOut[5] <= PC:inst.pc_out[5]
+PCOut[6] <= PC:inst.pc_out[6]
+PCOut[7] <= PC:inst.pc_out[7]
+ReadData1[0] <= Central_RegisterFile:inst8.read_data1[0]
+ReadData1[1] <= Central_RegisterFile:inst8.read_data1[1]
+ReadData1[2] <= Central_RegisterFile:inst8.read_data1[2]
+ReadData1[3] <= Central_RegisterFile:inst8.read_data1[3]
+ReadData1[4] <= Central_RegisterFile:inst8.read_data1[4]
+ReadData1[5] <= Central_RegisterFile:inst8.read_data1[5]
+ReadData1[6] <= Central_RegisterFile:inst8.read_data1[6]
+ReadData1[7] <= Central_RegisterFile:inst8.read_data1[7]
+ReadData2[0] <= Central_RegisterFile:inst8.read_data2[0]
+ReadData2[1] <= Central_RegisterFile:inst8.read_data2[1]
+ReadData2[2] <= Central_RegisterFile:inst8.read_data2[2]
+ReadData2[3] <= Central_RegisterFile:inst8.read_data2[3]
+ReadData2[4] <= Central_RegisterFile:inst8.read_data2[4]
+ReadData2[5] <= Central_RegisterFile:inst8.read_data2[5]
+ReadData2[6] <= Central_RegisterFile:inst8.read_data2[6]
+ReadData2[7] <= Central_RegisterFile:inst8.read_data2[7]
+WriteData[0] <= MUX2_8bit:inst11.o_Value[0]
+WriteData[1] <= MUX2_8bit:inst11.o_Value[1]
+WriteData[2] <= MUX2_8bit:inst11.o_Value[2]
+WriteData[3] <= MUX2_8bit:inst11.o_Value[3]
+WriteData[4] <= MUX2_8bit:inst11.o_Value[4]
+WriteData[5] <= MUX2_8bit:inst11.o_Value[5]
+WriteData[6] <= MUX2_8bit:inst11.o_Value[6]
+WriteData[7] <= MUX2_8bit:inst11.o_Value[7]
+
+
+|SignleCycleProcessor|DATAPATH:inst|ALU:inst7
+ALUop[0] => Mux8.IN5
+ALUop[0] => Mux9.IN5
+ALUop[0] => Mux10.IN5
+ALUop[0] => Mux11.IN5
+ALUop[0] => Mux12.IN5
+ALUop[0] => Mux13.IN5
+ALUop[0] => Mux14.IN5
+ALUop[0] => Mux15.IN5
+ALUop[1] => Mux8.IN4
+ALUop[1] => Mux9.IN4
+ALUop[1] => Mux10.IN4
+ALUop[1] => Mux11.IN4
+ALUop[1] => Mux12.IN4
+ALUop[1] => Mux13.IN4
+ALUop[1] => Mux14.IN4
+ALUop[1] => Mux15.IN4
+funct[0] => Mux0.IN69
+funct[0] => Mux1.IN69
+funct[0] => Mux2.IN69
+funct[0] => Mux3.IN69
+funct[0] => Mux4.IN69
+funct[0] => Mux5.IN69
+funct[0] => Mux6.IN69
+funct[0] => Mux7.IN69
+funct[1] => Mux0.IN68
+funct[1] => Mux1.IN68
+funct[1] => Mux2.IN68
+funct[1] => Mux3.IN68
+funct[1] => Mux4.IN68
+funct[1] => Mux5.IN68
+funct[1] => Mux6.IN68
+funct[1] => Mux7.IN68
+funct[2] => Mux0.IN67
+funct[2] => Mux1.IN67
+funct[2] => Mux2.IN67
+funct[2] => Mux3.IN67
+funct[2] => Mux4.IN67
+funct[2] => Mux5.IN67
+funct[2] => Mux6.IN67
+funct[2] => Mux7.IN67
+funct[3] => Mux0.IN66
+funct[3] => Mux1.IN66
+funct[3] => Mux2.IN66
+funct[3] => Mux3.IN66
+funct[3] => Mux4.IN66
+funct[3] => Mux5.IN66
+funct[3] => Mux6.IN66
+funct[3] => Mux7.IN66
+funct[4] => Mux0.IN65
+funct[4] => Mux1.IN65
+funct[4] => Mux2.IN65
+funct[4] => Mux3.IN65
+funct[4] => Mux4.IN65
+funct[4] => Mux5.IN65
+funct[4] => Mux6.IN65
+funct[4] => Mux7.IN65
+funct[5] => Mux0.IN64
+funct[5] => Mux1.IN64
+funct[5] => Mux2.IN64
+funct[5] => Mux3.IN64
+funct[5] => Mux4.IN64
+funct[5] => Mux5.IN64
+funct[5] => Mux6.IN64
+funct[5] => Mux7.IN64
+A[0] => Add0.IN8
+A[0] => Add1.IN16
+A[0] => result.IN0
+A[0] => result.IN0
+A[0] => LessThan0.IN8
+A[1] => Add0.IN7
+A[1] => Add1.IN15
+A[1] => result.IN0
+A[1] => result.IN0
+A[1] => LessThan0.IN7
+A[2] => Add0.IN6
+A[2] => Add1.IN14
+A[2] => result.IN0
+A[2] => result.IN0
+A[2] => LessThan0.IN6
+A[3] => Add0.IN5
+A[3] => Add1.IN13
+A[3] => result.IN0
+A[3] => result.IN0
+A[3] => LessThan0.IN5
+A[4] => Add0.IN4
+A[4] => Add1.IN12
+A[4] => result.IN0
+A[4] => result.IN0
+A[4] => LessThan0.IN4
+A[5] => Add0.IN3
+A[5] => Add1.IN11
+A[5] => result.IN0
+A[5] => result.IN0
+A[5] => LessThan0.IN3
+A[6] => Add0.IN2
+A[6] => Add1.IN10
+A[6] => result.IN0
+A[6] => result.IN0
+A[6] => LessThan0.IN2
+A[7] => Add0.IN1
+A[7] => Add1.IN9
+A[7] => result.IN0
+A[7] => result.IN0
+A[7] => LessThan0.IN1
+B[0] => Add0.IN16
+B[0] => result.IN1
+B[0] => result.IN1
+B[0] => LessThan0.IN16
+B[0] => Add1.IN8
+B[1] => Add0.IN15
+B[1] => result.IN1
+B[1] => result.IN1
+B[1] => LessThan0.IN15
+B[1] => Add1.IN7
+B[2] => Add0.IN14
+B[2] => result.IN1
+B[2] => result.IN1
+B[2] => LessThan0.IN14
+B[2] => Add1.IN6
+B[3] => Add0.IN13
+B[3] => result.IN1
+B[3] => result.IN1
+B[3] => LessThan0.IN13
+B[3] => Add1.IN5
+B[4] => Add0.IN12
+B[4] => result.IN1
+B[4] => result.IN1
+B[4] => LessThan0.IN12
+B[4] => Add1.IN4
+B[5] => Add0.IN11
+B[5] => result.IN1
+B[5] => result.IN1
+B[5] => LessThan0.IN11
+B[5] => Add1.IN3
+B[6] => Add0.IN10
+B[6] => result.IN1
+B[6] => result.IN1
+B[6] => LessThan0.IN10
+B[6] => Add1.IN2
+B[7] => Add0.IN9
+B[7] => result.IN1
+B[7] => result.IN1
+B[7] => LessThan0.IN9
+B[7] => Add1.IN1
+ALU_result[0] <= Mux15.DB_MAX_OUTPUT_PORT_TYPE
+ALU_result[1] <= Mux14.DB_MAX_OUTPUT_PORT_TYPE
+ALU_result[2] <= Mux13.DB_MAX_OUTPUT_PORT_TYPE
+ALU_result[3] <= Mux12.DB_MAX_OUTPUT_PORT_TYPE
+ALU_result[4] <= Mux11.DB_MAX_OUTPUT_PORT_TYPE
+ALU_result[5] <= Mux10.DB_MAX_OUTPUT_PORT_TYPE
+ALU_result[6] <= Mux9.DB_MAX_OUTPUT_PORT_TYPE
+ALU_result[7] <= Mux8.DB_MAX_OUTPUT_PORT_TYPE
+zero <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|Central_RegisterFile:inst8
+clk => registers~11.CLK
+clk => registers~0.CLK
+clk => registers~1.CLK
+clk => registers~2.CLK
+clk => registers~3.CLK
+clk => registers~4.CLK
+clk => registers~5.CLK
+clk => registers~6.CLK
+clk => registers~7.CLK
+clk => registers~8.CLK
+clk => registers~9.CLK
+clk => registers~10.CLK
+clk => registers.CLK0
+reg_write => registers~11.DATAIN
+reg_write => registers.WE
+read_reg1[0] => registers.RADDR
+read_reg1[1] => registers.RADDR1
+read_reg1[2] => registers.RADDR2
+read_reg2[0] => registers.PORTBRADDR
+read_reg2[1] => registers.PORTBRADDR1
+read_reg2[2] => registers.PORTBRADDR2
+write_reg[0] => registers~2.DATAIN
+write_reg[0] => registers.WADDR
+write_reg[1] => registers~1.DATAIN
+write_reg[1] => registers.WADDR1
+write_reg[2] => registers~0.DATAIN
+write_reg[2] => registers.WADDR2
+write_data[0] => registers~10.DATAIN
+write_data[0] => registers.DATAIN
+write_data[1] => registers~9.DATAIN
+write_data[1] => registers.DATAIN1
+write_data[2] => registers~8.DATAIN
+write_data[2] => registers.DATAIN2
+write_data[3] => registers~7.DATAIN
+write_data[3] => registers.DATAIN3
+write_data[4] => registers~6.DATAIN
+write_data[4] => registers.DATAIN4
+write_data[5] => registers~5.DATAIN
+write_data[5] => registers.DATAIN5
+write_data[6] => registers~4.DATAIN
+write_data[6] => registers.DATAIN6
+write_data[7] => registers~3.DATAIN
+write_data[7] => registers.DATAIN7
+read_data1[0] <= registers.DATAOUT
+read_data1[1] <= registers.DATAOUT1
+read_data1[2] <= registers.DATAOUT2
+read_data1[3] <= registers.DATAOUT3
+read_data1[4] <= registers.DATAOUT4
+read_data1[5] <= registers.DATAOUT5
+read_data1[6] <= registers.DATAOUT6
+read_data1[7] <= registers.DATAOUT7
+read_data2[0] <= registers.PORTBDATAOUT
+read_data2[1] <= registers.PORTBDATAOUT1
+read_data2[2] <= registers.PORTBDATAOUT2
+read_data2[3] <= registers.PORTBDATAOUT3
+read_data2[4] <= registers.PORTBDATAOUT4
+read_data2[5] <= registers.PORTBDATAOUT5
+read_data2[6] <= registers.PORTBDATAOUT6
+read_data2[7] <= registers.PORTBDATAOUT7
+
+
+|SignleCycleProcessor|DATAPATH:inst|instruction_memory:inst15
+address[0] => Mux0.IN263
+address[0] => Mux1.IN134
+address[0] => Mux2.IN263
+address[0] => Mux3.IN263
+address[0] => Mux4.IN263
+address[0] => Mux5.IN134
+address[0] => Mux6.IN263
+address[0] => Mux7.IN263
+address[0] => Mux8.IN263
+address[0] => Mux9.IN263
+address[0] => Mux10.IN263
+address[0] => Mux11.IN263
+address[0] => Mux12.IN263
+address[0] => Mux13.IN263
+address[0] => Mux14.IN263
+address[0] => Mux15.IN263
+address[0] => Mux16.IN263
+address[0] => Mux17.IN263
+address[0] => Mux18.IN263
+address[0] => Mux19.IN263
+address[0] => Mux20.IN263
+address[0] => Mux21.IN263
+address[0] => Mux22.IN263
+address[0] => Mux23.IN263
+address[0] => Mux24.IN263
+address[0] => Mux25.IN263
+address[1] => Mux0.IN262
+address[1] => Mux1.IN133
+address[1] => Mux2.IN262
+address[1] => Mux3.IN262
+address[1] => Mux4.IN262
+address[1] => Mux5.IN133
+address[1] => Mux6.IN262
+address[1] => Mux7.IN262
+address[1] => Mux8.IN262
+address[1] => Mux9.IN262
+address[1] => Mux10.IN262
+address[1] => Mux11.IN262
+address[1] => Mux12.IN262
+address[1] => Mux13.IN262
+address[1] => Mux14.IN262
+address[1] => Mux15.IN262
+address[1] => Mux16.IN262
+address[1] => Mux17.IN262
+address[1] => Mux18.IN262
+address[1] => Mux19.IN262
+address[1] => Mux20.IN262
+address[1] => Mux21.IN262
+address[1] => Mux22.IN262
+address[1] => Mux23.IN262
+address[1] => Mux24.IN262
+address[1] => Mux25.IN262
+address[2] => Mux0.IN261
+address[2] => Mux1.IN132
+address[2] => Mux2.IN261
+address[2] => Mux3.IN261
+address[2] => Mux4.IN261
+address[2] => Mux5.IN132
+address[2] => Mux6.IN261
+address[2] => Mux7.IN261
+address[2] => Mux8.IN261
+address[2] => Mux9.IN261
+address[2] => Mux10.IN261
+address[2] => Mux11.IN261
+address[2] => Mux12.IN261
+address[2] => Mux13.IN261
+address[2] => Mux14.IN261
+address[2] => Mux15.IN261
+address[2] => Mux16.IN261
+address[2] => Mux17.IN261
+address[2] => Mux18.IN261
+address[2] => Mux19.IN261
+address[2] => Mux20.IN261
+address[2] => Mux21.IN261
+address[2] => Mux22.IN261
+address[2] => Mux23.IN261
+address[2] => Mux24.IN261
+address[2] => Mux25.IN261
+address[3] => Mux0.IN260
+address[3] => Mux2.IN260
+address[3] => Mux3.IN260
+address[3] => Mux4.IN260
+address[3] => Mux5.IN131
+address[3] => Mux6.IN260
+address[3] => Mux7.IN260
+address[3] => Mux8.IN260
+address[3] => Mux9.IN260
+address[3] => Mux10.IN260
+address[3] => Mux11.IN260
+address[3] => Mux12.IN260
+address[3] => Mux13.IN260
+address[3] => Mux14.IN260
+address[3] => Mux15.IN260
+address[3] => Mux16.IN260
+address[3] => Mux17.IN260
+address[3] => Mux18.IN260
+address[3] => Mux19.IN260
+address[3] => Mux20.IN260
+address[3] => Mux21.IN260
+address[3] => Mux22.IN260
+address[3] => Mux23.IN260
+address[3] => Mux24.IN260
+address[3] => Mux25.IN260
+address[4] => Mux0.IN259
+address[4] => Mux1.IN131
+address[4] => Mux2.IN259
+address[4] => Mux3.IN259
+address[4] => Mux4.IN259
+address[4] => Mux6.IN259
+address[4] => Mux7.IN259
+address[4] => Mux8.IN259
+address[4] => Mux9.IN259
+address[4] => Mux10.IN259
+address[4] => Mux11.IN259
+address[4] => Mux12.IN259
+address[4] => Mux13.IN259
+address[4] => Mux14.IN259
+address[4] => Mux15.IN259
+address[4] => Mux16.IN259
+address[4] => Mux17.IN259
+address[4] => Mux18.IN259
+address[4] => Mux19.IN259
+address[4] => Mux20.IN259
+address[4] => Mux21.IN259
+address[4] => Mux22.IN259
+address[4] => Mux23.IN259
+address[4] => Mux24.IN259
+address[4] => Mux25.IN259
+address[5] => Mux0.IN258
+address[5] => Mux1.IN130
+address[5] => Mux2.IN258
+address[5] => Mux3.IN258
+address[5] => Mux4.IN258
+address[5] => Mux5.IN130
+address[5] => Mux6.IN258
+address[5] => Mux7.IN258
+address[5] => Mux8.IN258
+address[5] => Mux9.IN258
+address[5] => Mux10.IN258
+address[5] => Mux11.IN258
+address[5] => Mux12.IN258
+address[5] => Mux13.IN258
+address[5] => Mux14.IN258
+address[5] => Mux15.IN258
+address[5] => Mux16.IN258
+address[5] => Mux17.IN258
+address[5] => Mux18.IN258
+address[5] => Mux19.IN258
+address[5] => Mux20.IN258
+address[5] => Mux21.IN258
+address[5] => Mux22.IN258
+address[5] => Mux23.IN258
+address[5] => Mux24.IN258
+address[5] => Mux25.IN258
+address[6] => Mux0.IN257
+address[6] => Mux1.IN129
+address[6] => Mux2.IN257
+address[6] => Mux3.IN257
+address[6] => Mux4.IN257
+address[6] => Mux5.IN129
+address[6] => Mux6.IN257
+address[6] => Mux7.IN257
+address[6] => Mux8.IN257
+address[6] => Mux9.IN257
+address[6] => Mux10.IN257
+address[6] => Mux11.IN257
+address[6] => Mux12.IN257
+address[6] => Mux13.IN257
+address[6] => Mux14.IN257
+address[6] => Mux15.IN257
+address[6] => Mux16.IN257
+address[6] => Mux17.IN257
+address[6] => Mux18.IN257
+address[6] => Mux19.IN257
+address[6] => Mux20.IN257
+address[6] => Mux21.IN257
+address[6] => Mux22.IN257
+address[6] => Mux23.IN257
+address[6] => Mux24.IN257
+address[6] => Mux25.IN257
+address[7] => Mux0.IN256
+address[7] => Mux1.IN128
+address[7] => Mux2.IN256
+address[7] => Mux3.IN256
+address[7] => Mux4.IN256
+address[7] => Mux5.IN128
+address[7] => Mux6.IN256
+address[7] => Mux7.IN256
+address[7] => Mux8.IN256
+address[7] => Mux9.IN256
+address[7] => Mux10.IN256
+address[7] => Mux11.IN256
+address[7] => Mux12.IN256
+address[7] => Mux13.IN256
+address[7] => Mux14.IN256
+address[7] => Mux15.IN256
+address[7] => Mux16.IN256
+address[7] => Mux17.IN256
+address[7] => Mux18.IN256
+address[7] => Mux19.IN256
+address[7] => Mux20.IN256
+address[7] => Mux21.IN256
+address[7] => Mux22.IN256
+address[7] => Mux23.IN256
+address[7] => Mux24.IN256
+address[7] => Mux25.IN256
+instruction[0] <= Mux25.DB_MAX_OUTPUT_PORT_TYPE
+instruction[1] <= Mux24.DB_MAX_OUTPUT_PORT_TYPE
+instruction[2] <= Mux23.DB_MAX_OUTPUT_PORT_TYPE
+instruction[3] <= Mux22.DB_MAX_OUTPUT_PORT_TYPE
+instruction[4] <= Mux21.DB_MAX_OUTPUT_PORT_TYPE
+instruction[5] <= Mux20.DB_MAX_OUTPUT_PORT_TYPE
+instruction[6] <= Mux19.DB_MAX_OUTPUT_PORT_TYPE
+instruction[7] <= Mux18.DB_MAX_OUTPUT_PORT_TYPE
+instruction[8] <= Mux17.DB_MAX_OUTPUT_PORT_TYPE
+instruction[9] <= Mux16.DB_MAX_OUTPUT_PORT_TYPE
+instruction[10] <= Mux15.DB_MAX_OUTPUT_PORT_TYPE
+instruction[11] <= Mux14.DB_MAX_OUTPUT_PORT_TYPE
+instruction[12] <= Mux13.DB_MAX_OUTPUT_PORT_TYPE
+instruction[13] <= Mux12.DB_MAX_OUTPUT_PORT_TYPE
+instruction[14] <= Mux11.DB_MAX_OUTPUT_PORT_TYPE
+instruction[15] <= Mux10.DB_MAX_OUTPUT_PORT_TYPE
+instruction[16] <= Mux9.DB_MAX_OUTPUT_PORT_TYPE
+instruction[17] <= Mux8.DB_MAX_OUTPUT_PORT_TYPE
+instruction[18] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+instruction[19] <= <GND>
+instruction[20] <= <GND>
+instruction[21] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+instruction[22] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+instruction[23] <= <GND>
+instruction[24] <= <GND>
+instruction[25] <= <GND>
+instruction[26] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+instruction[27] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+instruction[28] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+instruction[29] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+instruction[30] <= <GND>
+instruction[31] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|PC:inst
+clk => pc_reg[0].CLK
+clk => pc_reg[1].CLK
+clk => pc_reg[2].CLK
+clk => pc_reg[3].CLK
+clk => pc_reg[4].CLK
+clk => pc_reg[5].CLK
+clk => pc_reg[6].CLK
+clk => pc_reg[7].CLK
+reset => pc_reg[0].ACLR
+reset => pc_reg[1].ACLR
+reset => pc_reg[2].ACLR
+reset => pc_reg[3].ACLR
+reset => pc_reg[4].ACLR
+reset => pc_reg[5].ACLR
+reset => pc_reg[6].ACLR
+reset => pc_reg[7].ACLR
+pc_in[0] => pc_reg[0].DATAIN
+pc_in[1] => pc_reg[1].DATAIN
+pc_in[2] => pc_reg[2].DATAIN
+pc_in[3] => pc_reg[3].DATAIN
+pc_in[4] => pc_reg[4].DATAIN
+pc_in[5] => pc_reg[5].DATAIN
+pc_in[6] => pc_reg[6].DATAIN
+pc_in[7] => pc_reg[7].DATAIN
+pc_out[0] <= pc_reg[0].DB_MAX_OUTPUT_PORT_TYPE
+pc_out[1] <= pc_reg[1].DB_MAX_OUTPUT_PORT_TYPE
+pc_out[2] <= pc_reg[2].DB_MAX_OUTPUT_PORT_TYPE
+pc_out[3] <= pc_reg[3].DB_MAX_OUTPUT_PORT_TYPE
+pc_out[4] <= pc_reg[4].DB_MAX_OUTPUT_PORT_TYPE
+pc_out[5] <= pc_reg[5].DB_MAX_OUTPUT_PORT_TYPE
+pc_out[6] <= pc_reg[6].DB_MAX_OUTPUT_PORT_TYPE
+pc_out[7] <= pc_reg[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst13
+d0[0] => MUX2_1bit:m0.d0
+d0[1] => MUX2_1bit:m1.d0
+d0[2] => MUX2_1bit:m2.d0
+d0[3] => MUX2_1bit:m3.d0
+d0[4] => MUX2_1bit:m4.d0
+d0[5] => MUX2_1bit:m5.d0
+d0[6] => MUX2_1bit:m6.d0
+d0[7] => MUX2_1bit:m7.d0
+d1[0] => MUX2_1bit:m0.d1
+d1[1] => MUX2_1bit:m1.d1
+d1[2] => MUX2_1bit:m2.d1
+d1[3] => MUX2_1bit:m3.d1
+d1[4] => MUX2_1bit:m4.d1
+d1[5] => MUX2_1bit:m5.d1
+d1[6] => MUX2_1bit:m6.d1
+d1[7] => MUX2_1bit:m7.d1
+s => MUX2_1bit:m0.s
+s => MUX2_1bit:m1.s
+s => MUX2_1bit:m2.s
+s => MUX2_1bit:m3.s
+s => MUX2_1bit:m4.s
+s => MUX2_1bit:m5.s
+s => MUX2_1bit:m6.s
+s => MUX2_1bit:m7.s
+o_Value[0] <= MUX2_1bit:m0.y
+o_Value[1] <= MUX2_1bit:m1.y
+o_Value[2] <= MUX2_1bit:m2.y
+o_Value[3] <= MUX2_1bit:m3.y
+o_Value[4] <= MUX2_1bit:m4.y
+o_Value[5] <= MUX2_1bit:m5.y
+o_Value[6] <= MUX2_1bit:m6.y
+o_Value[7] <= MUX2_1bit:m7.y
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst13|MUX2_1bit:m0
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst13|MUX2_1bit:m1
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst13|MUX2_1bit:m2
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst13|MUX2_1bit:m3
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst13|MUX2_1bit:m4
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst13|MUX2_1bit:m5
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst13|MUX2_1bit:m6
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst13|MUX2_1bit:m7
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst10
+d0[0] => MUX2_1bit:m0.d0
+d0[1] => MUX2_1bit:m1.d0
+d0[2] => MUX2_1bit:m2.d0
+d0[3] => MUX2_1bit:m3.d0
+d0[4] => MUX2_1bit:m4.d0
+d0[5] => MUX2_1bit:m5.d0
+d0[6] => MUX2_1bit:m6.d0
+d0[7] => MUX2_1bit:m7.d0
+d1[0] => MUX2_1bit:m0.d1
+d1[1] => MUX2_1bit:m1.d1
+d1[2] => MUX2_1bit:m2.d1
+d1[3] => MUX2_1bit:m3.d1
+d1[4] => MUX2_1bit:m4.d1
+d1[5] => MUX2_1bit:m5.d1
+d1[6] => MUX2_1bit:m6.d1
+d1[7] => MUX2_1bit:m7.d1
+s => MUX2_1bit:m0.s
+s => MUX2_1bit:m1.s
+s => MUX2_1bit:m2.s
+s => MUX2_1bit:m3.s
+s => MUX2_1bit:m4.s
+s => MUX2_1bit:m5.s
+s => MUX2_1bit:m6.s
+s => MUX2_1bit:m7.s
+o_Value[0] <= MUX2_1bit:m0.y
+o_Value[1] <= MUX2_1bit:m1.y
+o_Value[2] <= MUX2_1bit:m2.y
+o_Value[3] <= MUX2_1bit:m3.y
+o_Value[4] <= MUX2_1bit:m4.y
+o_Value[5] <= MUX2_1bit:m5.y
+o_Value[6] <= MUX2_1bit:m6.y
+o_Value[7] <= MUX2_1bit:m7.y
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst10|MUX2_1bit:m0
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst10|MUX2_1bit:m1
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst10|MUX2_1bit:m2
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst10|MUX2_1bit:m3
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst10|MUX2_1bit:m4
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst10|MUX2_1bit:m5
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst10|MUX2_1bit:m6
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst10|MUX2_1bit:m7
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|fullAdder8_bit_plus4:inst4
+A[0] => fullAdder:bit0.A
+A[1] => fullAdder:bit1.A
+A[2] => fullAdder:bit2.A
+A[3] => fullAdder:bit3.A
+A[4] => fullAdder:bit4.A
+A[5] => fullAdder:bit5.A
+A[6] => fullAdder:bit6.A
+A[7] => fullAdder:bit7.A
+Sum[0] <= fullAdder:bit0.Sum
+Sum[1] <= fullAdder:bit1.Sum
+Sum[2] <= fullAdder:bit2.Sum
+Sum[3] <= fullAdder:bit3.Sum
+Sum[4] <= fullAdder:bit4.Sum
+Sum[5] <= fullAdder:bit5.Sum
+Sum[6] <= fullAdder:bit6.Sum
+Sum[7] <= fullAdder:bit7.Sum
+Cout <= fullAdder:bit7.Cout
+
+
+|SignleCycleProcessor|DATAPATH:inst|fullAdder8_bit_plus4:inst4|fullAdder:bit0
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|fullAdder8_bit_plus4:inst4|fullAdder:bit1
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|fullAdder8_bit_plus4:inst4|fullAdder:bit2
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|fullAdder8_bit_plus4:inst4|fullAdder:bit3
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|fullAdder8_bit_plus4:inst4|fullAdder:bit4
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|fullAdder8_bit_plus4:inst4|fullAdder:bit5
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|fullAdder8_bit_plus4:inst4|fullAdder:bit6
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|fullAdder8_bit_plus4:inst4|fullAdder:bit7
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Cin => Sum.IN1
+Cin => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|ALU_With_Shift:inst6
+inputA[0] => Add0.IN10
+inputA[1] => Add0.IN9
+inputA[2] => Add0.IN8
+inputA[3] => Add0.IN7
+inputA[4] => Add0.IN6
+inputA[5] => Add0.IN5
+inputA[6] => Add0.IN4
+inputA[7] => Add0.IN3
+inputB[0] => Add0.IN16
+inputB[1] => Add0.IN15
+inputB[2] => Add0.IN14
+inputB[3] => Add0.IN13
+inputB[4] => Add0.IN12
+inputB[5] => Add0.IN11
+inputB[6] => ~NO_FANOUT~
+inputB[7] => ~NO_FANOUT~
+ALUResult[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+ALUResult[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+ALUResult[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+ALUResult[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+ALUResult[4] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+ALUResult[5] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+ALUResult[6] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+ALUResult[7] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|JumpAddress:inst5
+instr_in[0] => jump_addr[2].DATAIN
+instr_in[1] => jump_addr[3].DATAIN
+instr_in[2] => jump_addr[4].DATAIN
+instr_in[3] => jump_addr[5].DATAIN
+instr_in[4] => jump_addr[6].DATAIN
+instr_in[5] => jump_addr[7].DATAIN
+instr_in[6] => ~NO_FANOUT~
+instr_in[7] => ~NO_FANOUT~
+jump_addr[0] <= <GND>
+jump_addr[1] <= <GND>
+jump_addr[2] <= instr_in[0].DB_MAX_OUTPUT_PORT_TYPE
+jump_addr[3] <= instr_in[1].DB_MAX_OUTPUT_PORT_TYPE
+jump_addr[4] <= instr_in[2].DB_MAX_OUTPUT_PORT_TYPE
+jump_addr[5] <= instr_in[3].DB_MAX_OUTPUT_PORT_TYPE
+jump_addr[6] <= instr_in[4].DB_MAX_OUTPUT_PORT_TYPE
+jump_addr[7] <= instr_in[5].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst11
+d0[0] => MUX2_1bit:m0.d0
+d0[1] => MUX2_1bit:m1.d0
+d0[2] => MUX2_1bit:m2.d0
+d0[3] => MUX2_1bit:m3.d0
+d0[4] => MUX2_1bit:m4.d0
+d0[5] => MUX2_1bit:m5.d0
+d0[6] => MUX2_1bit:m6.d0
+d0[7] => MUX2_1bit:m7.d0
+d1[0] => MUX2_1bit:m0.d1
+d1[1] => MUX2_1bit:m1.d1
+d1[2] => MUX2_1bit:m2.d1
+d1[3] => MUX2_1bit:m3.d1
+d1[4] => MUX2_1bit:m4.d1
+d1[5] => MUX2_1bit:m5.d1
+d1[6] => MUX2_1bit:m6.d1
+d1[7] => MUX2_1bit:m7.d1
+s => MUX2_1bit:m0.s
+s => MUX2_1bit:m1.s
+s => MUX2_1bit:m2.s
+s => MUX2_1bit:m3.s
+s => MUX2_1bit:m4.s
+s => MUX2_1bit:m5.s
+s => MUX2_1bit:m6.s
+s => MUX2_1bit:m7.s
+o_Value[0] <= MUX2_1bit:m0.y
+o_Value[1] <= MUX2_1bit:m1.y
+o_Value[2] <= MUX2_1bit:m2.y
+o_Value[3] <= MUX2_1bit:m3.y
+o_Value[4] <= MUX2_1bit:m4.y
+o_Value[5] <= MUX2_1bit:m5.y
+o_Value[6] <= MUX2_1bit:m6.y
+o_Value[7] <= MUX2_1bit:m7.y
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst11|MUX2_1bit:m0
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst11|MUX2_1bit:m1
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst11|MUX2_1bit:m2
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst11|MUX2_1bit:m3
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst11|MUX2_1bit:m4
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst11|MUX2_1bit:m5
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst11|MUX2_1bit:m6
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst11|MUX2_1bit:m7
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|data_memory:inst2
+address[0] => ram~7.DATAIN
+address[0] => ram.WADDR
+address[0] => ram.RADDR
+address[1] => ram~6.DATAIN
+address[1] => ram.WADDR1
+address[1] => ram.RADDR1
+address[2] => ram~5.DATAIN
+address[2] => ram.WADDR2
+address[2] => ram.RADDR2
+address[3] => ram~4.DATAIN
+address[3] => ram.WADDR3
+address[3] => ram.RADDR3
+address[4] => ram~3.DATAIN
+address[4] => ram.WADDR4
+address[4] => ram.RADDR4
+address[5] => ram~2.DATAIN
+address[5] => ram.WADDR5
+address[5] => ram.RADDR5
+address[6] => ram~1.DATAIN
+address[6] => ram.WADDR6
+address[6] => ram.RADDR6
+address[7] => ram~0.DATAIN
+address[7] => ram.WADDR7
+address[7] => ram.RADDR7
+write_data[0] => ram~15.DATAIN
+write_data[0] => ram.DATAIN
+write_data[1] => ram~14.DATAIN
+write_data[1] => ram.DATAIN1
+write_data[2] => ram~13.DATAIN
+write_data[2] => ram.DATAIN2
+write_data[3] => ram~12.DATAIN
+write_data[3] => ram.DATAIN3
+write_data[4] => ram~11.DATAIN
+write_data[4] => ram.DATAIN4
+write_data[5] => ram~10.DATAIN
+write_data[5] => ram.DATAIN5
+write_data[6] => ram~9.DATAIN
+write_data[6] => ram.DATAIN6
+write_data[7] => ram~8.DATAIN
+write_data[7] => ram.DATAIN7
+read_data[0] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[1] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[2] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[3] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[4] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[5] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[6] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[7] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+mem_write => ram~16.DATAIN
+mem_write => ram.WE
+mem_read => read_data.OUTPUTSELECT
+mem_read => read_data.OUTPUTSELECT
+mem_read => read_data.OUTPUTSELECT
+mem_read => read_data.OUTPUTSELECT
+mem_read => read_data.OUTPUTSELECT
+mem_read => read_data.OUTPUTSELECT
+mem_read => read_data.OUTPUTSELECT
+mem_read => read_data.OUTPUTSELECT
+clk => ram~16.CLK
+clk => ram~0.CLK
+clk => ram~1.CLK
+clk => ram~2.CLK
+clk => ram~3.CLK
+clk => ram~4.CLK
+clk => ram~5.CLK
+clk => ram~6.CLK
+clk => ram~7.CLK
+clk => ram~8.CLK
+clk => ram~9.CLK
+clk => ram~10.CLK
+clk => ram~11.CLK
+clk => ram~12.CLK
+clk => ram~13.CLK
+clk => ram~14.CLK
+clk => ram~15.CLK
+clk => ram.CLK0
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_3bit:inst3
+d0[0] => MUX2_1bit:m0.d0
+d0[1] => MUX2_1bit:m1.d0
+d0[2] => MUX2_1bit:m2.d0
+d1[0] => MUX2_1bit:m0.d1
+d1[1] => MUX2_1bit:m1.d1
+d1[2] => MUX2_1bit:m2.d1
+s => MUX2_1bit:m0.s
+s => MUX2_1bit:m1.s
+s => MUX2_1bit:m2.s
+o_Value[0] <= MUX2_1bit:m0.y
+o_Value[1] <= MUX2_1bit:m1.y
+o_Value[2] <= MUX2_1bit:m2.y
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_3bit:inst3|MUX2_1bit:m0
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_3bit:inst3|MUX2_1bit:m1
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_3bit:inst3|MUX2_1bit:m2
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst9
+d0[0] => MUX2_1bit:m0.d0
+d0[1] => MUX2_1bit:m1.d0
+d0[2] => MUX2_1bit:m2.d0
+d0[3] => MUX2_1bit:m3.d0
+d0[4] => MUX2_1bit:m4.d0
+d0[5] => MUX2_1bit:m5.d0
+d0[6] => MUX2_1bit:m6.d0
+d0[7] => MUX2_1bit:m7.d0
+d1[0] => MUX2_1bit:m0.d1
+d1[1] => MUX2_1bit:m1.d1
+d1[2] => MUX2_1bit:m2.d1
+d1[3] => MUX2_1bit:m3.d1
+d1[4] => MUX2_1bit:m4.d1
+d1[5] => MUX2_1bit:m5.d1
+d1[6] => MUX2_1bit:m6.d1
+d1[7] => MUX2_1bit:m7.d1
+s => MUX2_1bit:m0.s
+s => MUX2_1bit:m1.s
+s => MUX2_1bit:m2.s
+s => MUX2_1bit:m3.s
+s => MUX2_1bit:m4.s
+s => MUX2_1bit:m5.s
+s => MUX2_1bit:m6.s
+s => MUX2_1bit:m7.s
+o_Value[0] <= MUX2_1bit:m0.y
+o_Value[1] <= MUX2_1bit:m1.y
+o_Value[2] <= MUX2_1bit:m2.y
+o_Value[3] <= MUX2_1bit:m3.y
+o_Value[4] <= MUX2_1bit:m4.y
+o_Value[5] <= MUX2_1bit:m5.y
+o_Value[6] <= MUX2_1bit:m6.y
+o_Value[7] <= MUX2_1bit:m7.y
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst9|MUX2_1bit:m0
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst9|MUX2_1bit:m1
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst9|MUX2_1bit:m2
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst9|MUX2_1bit:m3
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst9|MUX2_1bit:m4
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst9|MUX2_1bit:m5
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst9|MUX2_1bit:m6
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|DATAPATH:inst|MUX2_8bit:inst9|MUX2_1bit:m7
+s => y.IN0
+s => y.IN0
+d0 => y.IN1
+d1 => y.IN1
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SignleCycleProcessor|MUX_OUTPUT:inst2
+value_select[0] => Mux0.IN5
+value_select[0] => Mux1.IN2
+value_select[0] => Mux2.IN2
+value_select[0] => Mux3.IN2
+value_select[0] => Mux4.IN2
+value_select[0] => Mux5.IN2
+value_select[0] => Mux6.IN2
+value_select[0] => Mux7.IN2
+value_select[1] => Mux0.IN4
+value_select[1] => Mux1.IN1
+value_select[1] => Mux2.IN1
+value_select[1] => Mux3.IN1
+value_select[1] => Mux4.IN1
+value_select[1] => Mux5.IN1
+value_select[1] => Mux6.IN1
+value_select[1] => Mux7.IN1
+value_select[2] => Mux0.IN3
+value_select[2] => Mux1.IN0
+value_select[2] => Mux2.IN0
+value_select[2] => Mux3.IN0
+value_select[2] => Mux4.IN0
+value_select[2] => Mux5.IN0
+value_select[2] => Mux6.IN0
+value_select[2] => Mux7.IN0
+pc_value[0] => Mux7.IN3
+pc_value[1] => Mux6.IN3
+pc_value[2] => Mux5.IN3
+pc_value[3] => Mux4.IN3
+pc_value[4] => Mux3.IN3
+pc_value[5] => Mux2.IN3
+pc_value[6] => Mux1.IN3
+pc_value[7] => Mux0.IN6
+alu_result[0] => Mux7.IN4
+alu_result[1] => Mux6.IN4
+alu_result[2] => Mux5.IN4
+alu_result[3] => Mux4.IN4
+alu_result[4] => Mux3.IN4
+alu_result[5] => Mux2.IN4
+alu_result[6] => Mux1.IN4
+alu_result[7] => Mux0.IN7
+read_data1[0] => Mux7.IN5
+read_data1[1] => Mux6.IN5
+read_data1[2] => Mux5.IN5
+read_data1[3] => Mux4.IN5
+read_data1[4] => Mux3.IN5
+read_data1[5] => Mux2.IN5
+read_data1[6] => Mux1.IN5
+read_data1[7] => Mux0.IN8
+read_data2[0] => Mux7.IN6
+read_data2[1] => Mux6.IN6
+read_data2[2] => Mux5.IN6
+read_data2[3] => Mux4.IN6
+read_data2[4] => Mux3.IN6
+read_data2[5] => Mux2.IN6
+read_data2[6] => Mux1.IN6
+read_data2[7] => Mux0.IN9
+write_data[0] => Mux7.IN7
+write_data[1] => Mux6.IN7
+write_data[2] => Mux5.IN7
+write_data[3] => Mux4.IN7
+write_data[4] => Mux3.IN7
+write_data[5] => Mux2.IN7
+write_data[6] => Mux1.IN7
+write_data[7] => Mux0.IN10
+reg_dst => Mux1.IN8
+reg_dst => Mux1.IN9
+reg_dst => Mux1.IN10
+jump => Mux2.IN8
+jump => Mux2.IN9
+jump => Mux2.IN10
+mem_read => Mux3.IN8
+mem_read => Mux3.IN9
+mem_read => Mux3.IN10
+mem_to_reg => Mux4.IN8
+mem_to_reg => Mux4.IN9
+mem_to_reg => Mux4.IN10
+alu_op[0] => Mux6.IN8
+alu_op[0] => Mux6.IN9
+alu_op[0] => Mux6.IN10
+alu_op[1] => Mux5.IN8
+alu_op[1] => Mux5.IN9
+alu_op[1] => Mux5.IN10
+alu_src => Mux7.IN8
+alu_src => Mux7.IN9
+alu_src => Mux7.IN10
+mux_out[0] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+mux_out[1] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+mux_out[2] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+mux_out[3] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+mux_out[4] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+mux_out[5] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+mux_out[6] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+mux_out[7] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

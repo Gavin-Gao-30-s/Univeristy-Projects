@@ -1,0 +1,1317 @@
+Analysis & Synthesis report for LAB1
+Fri Feb 14 22:48:36 2025
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. User-Specified and Inferred Latches
+  9. Logic Cells Representing Combinational Loops
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S11"
+ 14. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S10"
+ 15. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S9"
+ 16. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S8"
+ 17. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S7"
+ 18. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_Sextra"
+ 19. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S6"
+ 20. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S5"
+ 21. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S4"
+ 22. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S3"
+ 23. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S2"
+ 24. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S1"
+ 25. Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S0"
+ 26. Elapsed Time Per Partition
+ 27. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Fri Feb 14 22:48:36 2025           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; LAB1                                            ;
+; Top-level Entity Name              ; FP_16bit_Adder                                  ;
+; Family                             ; Cyclone IV E                                    ;
+; Total logic elements               ; 457                                             ;
+;     Total combinational functions  ; 457                                             ;
+;     Dedicated logic registers      ; 41                                              ;
+; Total registers                    ; 41                                              ;
+; Total pins                         ; 63                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; FP_16bit_Adder     ; LAB1               ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 20     ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                ;
++----------------------------------+-----------------+------------------------------------+---------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                      ; Library ;
++----------------------------------+-----------------+------------------------------------+---------------------------------------------------+---------+
+; enabledSRLatch.vhd               ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/enabledSRLatch.vhd             ;         ;
+; twoonemux.vhd                    ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/twoonemux.vhd                  ;         ;
+; dflipflop.vhd                    ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/dflipflop.vhd                  ;         ;
+; MUX2_8bit.vhd                    ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/MUX2_8bit.vhd                  ;         ;
+; MUX2_7bit.vhd                    ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/MUX2_7bit.vhd                  ;         ;
+; MUX2_1bit.vhd                    ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/MUX2_1bit.vhd                  ;         ;
+; fullAdder.vhd                    ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/fullAdder.vhd                  ;         ;
+; DATAPATH.bdf                     ; yes             ; User Block Diagram/Schematic File  ; E:/CEG3156LAB/LAB1/DATAPATH.bdf                   ;         ;
+; fourbitcounter.vhd               ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/fourbitcounter.vhd             ;         ;
+; Comparator_1bit.vhd              ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/Comparator_1bit.vhd            ;         ;
+; Comparator_4bit.vhd              ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/Comparator_4bit.vhd            ;         ;
+; DifferenceChecker.vhd            ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/DifferenceChecker.vhd          ;         ;
+; Incrementor.vhd                  ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/Incrementor.vhd                ;         ;
+; fouronemux.vhd                   ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/fouronemux.vhd                 ;         ;
+; bi_shift_12bit.bdf               ; yes             ; User Block Diagram/Schematic File  ; E:/CEG3156LAB/LAB1/bi_shift_12bit.bdf             ;         ;
+; RoundingUnit.vhd                 ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/RoundingUnit.vhd               ;         ;
+; fullAdder12_bit.vhd              ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/fullAdder12_bit.vhd            ;         ;
+; bi_shift_12bit_filledWith1.bdf   ; yes             ; User Block Diagram/Schematic File  ; E:/CEG3156LAB/LAB1/bi_shift_12bit_filledWith1.bdf ;         ;
+; Register7bit.bdf                 ; yes             ; User Block Diagram/Schematic File  ; E:/CEG3156LAB/LAB1/Register7bit.bdf               ;         ;
+; incrementor_reg.bdf              ; yes             ; User Block Diagram/Schematic File  ; E:/CEG3156LAB/LAB1/incrementor_reg.bdf            ;         ;
+; Register4bit.bdf                 ; yes             ; User Block Diagram/Schematic File  ; E:/CEG3156LAB/LAB1/Register4bit.bdf               ;         ;
+; ALU_12b.vhd                      ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/ALU_12b.vhd                    ;         ;
+; SignBitLogic.vhd                 ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/SignBitLogic.vhd               ;         ;
+; CONTROL_PATH.vhd                 ; yes             ; User VHDL File                     ; E:/CEG3156LAB/LAB1/CONTROL_PATH.vhd               ;         ;
+; FP_16bit_Adder.bdf               ; yes             ; User Block Diagram/Schematic File  ; E:/CEG3156LAB/LAB1/FP_16bit_Adder.bdf             ;         ;
++----------------------------------+-----------------+------------------------------------+---------------------------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 457          ;
+;                                             ;              ;
+; Total combinational functions               ; 457          ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 187          ;
+;     -- 3 input functions                    ; 223          ;
+;     -- <=2 input functions                  ; 47           ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 339          ;
+;     -- arithmetic mode                      ; 118          ;
+;                                             ;              ;
+; Total registers                             ; 41           ;
+;     -- Dedicated logic registers            ; 41           ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 63           ;
+; Embedded Multiplier 9-bit elements          ; 0            ;
+; Maximum fan-out node                        ; GCLOCK~input ;
+; Maximum fan-out                             ; 171          ;
+; Total fan-out                               ; 1707         ;
+; Average fan-out                             ; 2.74         ;
++---------------------------------------------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                           ;
++---------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                  ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                  ; Library Name ;
++---------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------+--------------+
+; |FP_16bit_Adder                             ; 457 (0)           ; 41 (0)       ; 0           ; 0            ; 0       ; 0         ; 63   ; 0            ; |FP_16bit_Adder                                                                                                      ; work         ;
+;    |CONTROL_PATH:inst|                      ; 36 (2)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst                                                                                    ; work         ;
+;       |dflipflop:dff_S0|                    ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S0                                                                   ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_S10|                   ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S10                                                                  ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S10|enabledSRLatch:masterLatch                                       ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S10|enabledSRLatch:slaveLatch                                        ; work         ;
+;       |dflipflop:dff_S11|                   ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S11                                                                  ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S11|enabledSRLatch:masterLatch                                       ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S11|enabledSRLatch:slaveLatch                                        ; work         ;
+;       |dflipflop:dff_S1|                    ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S1                                                                   ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S1|enabledSRLatch:masterLatch                                        ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S1|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_S2|                    ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S2                                                                   ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S2|enabledSRLatch:masterLatch                                        ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S2|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_S3|                    ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S3                                                                   ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S3|enabledSRLatch:masterLatch                                        ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S3|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_S4|                    ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S4                                                                   ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S4|enabledSRLatch:masterLatch                                        ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S4|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_S5|                    ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S5                                                                   ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S5|enabledSRLatch:masterLatch                                        ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S5|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_S6|                    ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S6                                                                   ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S6|enabledSRLatch:masterLatch                                        ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S6|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_S7|                    ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S7                                                                   ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S7|enabledSRLatch:masterLatch                                        ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S7|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_S8|                    ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S8                                                                   ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S8|enabledSRLatch:masterLatch                                        ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S8|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_S9|                    ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S9                                                                   ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S9|enabledSRLatch:masterLatch                                        ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_S9|enabledSRLatch:slaveLatch                                         ; work         ;
+;       |dflipflop:dff_Sextra|                ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_Sextra                                                               ; work         ;
+;          |enabledSRLatch:masterLatch|       ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_Sextra|enabledSRLatch:masterLatch                                    ; work         ;
+;          |enabledSRLatch:slaveLatch|        ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|CONTROL_PATH:inst|dflipflop:dff_Sextra|enabledSRLatch:slaveLatch                                     ; work         ;
+;    |DATAPATH:inst14|                        ; 421 (2)           ; 41 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14                                                                                      ; work         ;
+;       |ALU_12b:inst32|                      ; 24 (0)            ; 37 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32                                                                       ; work         ;
+;          |fullAdder12_bit:adder_inst|       ; 24 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst                                            ; work         ;
+;             |fullAdder:\GEN_FA:0:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:0:FA                     ; work         ;
+;             |fullAdder:\GEN_FA:10:FA|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:10:FA                    ; work         ;
+;             |fullAdder:\GEN_FA:11:FA|       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:11:FA                    ; work         ;
+;             |fullAdder:\GEN_FA:1:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:1:FA                     ; work         ;
+;             |fullAdder:\GEN_FA:2:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:2:FA                     ; work         ;
+;             |fullAdder:\GEN_FA:3:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:3:FA                     ; work         ;
+;             |fullAdder:\GEN_FA:4:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:4:FA                     ; work         ;
+;             |fullAdder:\GEN_FA:5:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:5:FA                     ; work         ;
+;             |fullAdder:\GEN_FA:6:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:6:FA                     ; work         ;
+;             |fullAdder:\GEN_FA:7:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:7:FA                     ; work         ;
+;             |fullAdder:\GEN_FA:8:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:8:FA                     ; work         ;
+;             |fullAdder:\GEN_FA:9:FA|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:9:FA                     ; work         ;
+;       |Comparator_4bit:inst12|              ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Comparator_4bit:inst12                                                               ; work         ;
+;       |DifferenceChecker:inst30|            ; 175 (175)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|DifferenceChecker:inst30                                                             ; work         ;
+;       |Register4bit:inst|                   ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst                                                                    ; work         ;
+;          |dflipflop:inst1|                  ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst1                                                    ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst1|enabledSRLatch:masterLatch                         ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst1|enabledSRLatch:slaveLatch                          ; work         ;
+;          |dflipflop:inst3|                  ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst3                                                    ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst3|enabledSRLatch:masterLatch                         ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst3|enabledSRLatch:slaveLatch                          ; work         ;
+;          |dflipflop:inst5|                  ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst5                                                    ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst5|enabledSRLatch:masterLatch                         ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst5|enabledSRLatch:slaveLatch                          ; work         ;
+;          |dflipflop:inst7|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst7                                                    ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst7|enabledSRLatch:masterLatch                         ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst7|enabledSRLatch:slaveLatch                          ; work         ;
+;       |RoundingUnit:inst10|                 ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|RoundingUnit:inst10                                                                  ; work         ;
+;       |SignBitLogic:inst31|                 ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|SignBitLogic:inst31                                                                  ; work         ;
+;       |bi_shift_12bit:inst19|               ; 45 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19                                                                ; work         ;
+;          |dflipflop:inst1|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst1                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst1|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst1|enabledSRLatch:slaveLatch                      ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst1|twoonemux:enableMux                            ; work         ;
+;          |dflipflop:inst20|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst20                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst20|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst20|enabledSRLatch:slaveLatch                     ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst20|twoonemux:enableMux                           ; work         ;
+;          |dflipflop:inst21|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst21                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst21|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst21|enabledSRLatch:slaveLatch                     ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst21|twoonemux:enableMux                           ; work         ;
+;          |dflipflop:inst22|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst22                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst22|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst22|enabledSRLatch:slaveLatch                     ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst22|twoonemux:enableMux                           ; work         ;
+;          |dflipflop:inst24|                 ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst24                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst24|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst24|enabledSRLatch:slaveLatch                     ; work         ;
+;          |dflipflop:inst26|                 ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst26                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst26|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst26|enabledSRLatch:slaveLatch                     ; work         ;
+;          |dflipflop:inst27|                 ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst27                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst27|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst27|enabledSRLatch:slaveLatch                     ; work         ;
+;          |dflipflop:inst2|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst2                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst2|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst2|enabledSRLatch:slaveLatch                      ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst2|twoonemux:enableMux                            ; work         ;
+;          |dflipflop:inst3|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst3                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst3|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst3|enabledSRLatch:slaveLatch                      ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst3|twoonemux:enableMux                            ; work         ;
+;          |dflipflop:inst5|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst5                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst5|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst5|enabledSRLatch:slaveLatch                      ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst5|twoonemux:enableMux                            ; work         ;
+;          |dflipflop:inst7|                  ; 5 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7|enabledSRLatch:slaveLatch                      ; work         ;
+;             |twoonemux:enableMux|           ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7|twoonemux:enableMux                            ; work         ;
+;          |dflipflop:inst|                   ; 3 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst                                                 ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst|enabledSRLatch:masterLatch                      ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst|enabledSRLatch:slaveLatch                       ; work         ;
+;       |bi_shift_12bit:inst25|               ; 40 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25                                                                ; work         ;
+;          |dflipflop:inst1|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1|enabledSRLatch:slaveLatch                      ; work         ;
+;          |dflipflop:inst20|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst20                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst20|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst20|enabledSRLatch:slaveLatch                     ; work         ;
+;          |dflipflop:inst21|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst21                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst21|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst21|enabledSRLatch:slaveLatch                     ; work         ;
+;          |dflipflop:inst22|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst22                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst22|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst22|enabledSRLatch:slaveLatch                     ; work         ;
+;          |dflipflop:inst24|                 ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst24                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst24|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst24|enabledSRLatch:slaveLatch                     ; work         ;
+;          |dflipflop:inst26|                 ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst26                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst26|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst26|enabledSRLatch:slaveLatch                     ; work         ;
+;          |dflipflop:inst27|                 ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst27                                               ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst27|enabledSRLatch:masterLatch                    ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst27|enabledSRLatch:slaveLatch                     ; work         ;
+;          |dflipflop:inst2|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst2                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst2|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst2|enabledSRLatch:slaveLatch                      ; work         ;
+;          |dflipflop:inst3|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst3                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst3|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst3|enabledSRLatch:slaveLatch                      ; work         ;
+;          |dflipflop:inst5|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst5                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst5|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst5|enabledSRLatch:slaveLatch                      ; work         ;
+;          |dflipflop:inst7|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst7                                                ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst7|enabledSRLatch:masterLatch                     ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst7|enabledSRLatch:slaveLatch                      ; work         ;
+;          |dflipflop:inst|                   ; 2 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst                                                 ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst|enabledSRLatch:masterLatch                      ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst|enabledSRLatch:slaveLatch                       ; work         ;
+;       |bi_shift_12bit_filledWith1:inst20|   ; 61 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20                                                    ; work         ;
+;          |dflipflop:inst1|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1                                    ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1|enabledSRLatch:masterLatch         ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1|enabledSRLatch:slaveLatch          ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1|twoonemux:enableMux                ; work         ;
+;          |dflipflop:inst20|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20                                   ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20|enabledSRLatch:masterLatch        ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20|enabledSRLatch:slaveLatch         ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20|twoonemux:enableMux               ; work         ;
+;          |dflipflop:inst21|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21                                   ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21|enabledSRLatch:masterLatch        ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21|enabledSRLatch:slaveLatch         ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21|twoonemux:enableMux               ; work         ;
+;          |dflipflop:inst22|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22                                   ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22|enabledSRLatch:masterLatch        ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22|enabledSRLatch:slaveLatch         ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22|twoonemux:enableMux               ; work         ;
+;          |dflipflop:inst24|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24                                   ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24|enabledSRLatch:masterLatch        ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24|enabledSRLatch:slaveLatch         ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24|twoonemux:enableMux               ; work         ;
+;          |dflipflop:inst26|                 ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26                                   ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26|enabledSRLatch:masterLatch        ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26|enabledSRLatch:slaveLatch         ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26|twoonemux:enableMux               ; work         ;
+;          |dflipflop:inst27|                 ; 5 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst27                                   ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst27|enabledSRLatch:masterLatch        ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst27|enabledSRLatch:slaveLatch         ; work         ;
+;          |dflipflop:inst2|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2                                    ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2|enabledSRLatch:masterLatch         ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2|enabledSRLatch:slaveLatch          ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2|twoonemux:enableMux                ; work         ;
+;          |dflipflop:inst3|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3                                    ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3|enabledSRLatch:masterLatch         ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3|enabledSRLatch:slaveLatch          ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3|twoonemux:enableMux                ; work         ;
+;          |dflipflop:inst5|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5                                    ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5|enabledSRLatch:masterLatch         ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5|enabledSRLatch:slaveLatch          ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5|twoonemux:enableMux                ; work         ;
+;          |dflipflop:inst7|                  ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7                                    ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7|enabledSRLatch:masterLatch         ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7|enabledSRLatch:slaveLatch          ; work         ;
+;             |twoonemux:enableMux|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7|twoonemux:enableMux                ; work         ;
+;          |dflipflop:inst|                   ; 6 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst                                     ; work         ;
+;             |enabledSRLatch:masterLatch|    ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst|enabledSRLatch:masterLatch          ; work         ;
+;             |enabledSRLatch:slaveLatch|     ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst|enabledSRLatch:slaveLatch           ; work         ;
+;             |twoonemux:enableMux|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst|twoonemux:enableMux                 ; work         ;
+;          |fouronemux:inst11|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst11                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst11|twoonemux:mux2                   ; work         ;
+;          |fouronemux:inst12|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst12                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst12|twoonemux:mux2                   ; work         ;
+;          |fouronemux:inst13|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst13                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst13|twoonemux:mux2                   ; work         ;
+;          |fouronemux:inst15|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst15                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst15|twoonemux:mux2                   ; work         ;
+;          |fouronemux:inst16|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst16                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst16|twoonemux:mux2                   ; work         ;
+;          |fouronemux:inst17|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst17                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst17|twoonemux:mux2                   ; work         ;
+;          |fouronemux:inst18|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst18                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst18|twoonemux:mux2                   ; work         ;
+;          |fouronemux:inst19|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst19                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst19|twoonemux:mux2                   ; work         ;
+;          |fouronemux:inst23|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst23                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst23|twoonemux:mux2                   ; work         ;
+;          |fouronemux:inst28|                ; 1 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst28                                  ; work         ;
+;             |twoonemux:mux2|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|fouronemux:inst28|twoonemux:mux2                   ; work         ;
+;       |fourbitcounter:inst16|               ; 5 (5)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|fourbitcounter:inst16                                                                ; work         ;
+;       |incrementor_reg:inst2|               ; 41 (1)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2                                                                ; work         ;
+;          |Incrementor:inst7|                ; 9 (9)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Incrementor:inst7                                              ; work         ;
+;          |Register7bit:inst11|              ; 31 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11                                            ; work         ;
+;             |dflipflop:inst1|               ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1                            ; work         ;
+;                |enabledSRLatch:masterLatch| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1|enabledSRLatch:masterLatch ; work         ;
+;                |enabledSRLatch:slaveLatch|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1|enabledSRLatch:slaveLatch  ; work         ;
+;                |twoonemux:enableMux|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1|twoonemux:enableMux        ; work         ;
+;             |dflipflop:inst2|               ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2                            ; work         ;
+;                |enabledSRLatch:masterLatch| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2|enabledSRLatch:masterLatch ; work         ;
+;                |enabledSRLatch:slaveLatch|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2|enabledSRLatch:slaveLatch  ; work         ;
+;                |twoonemux:enableMux|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2|twoonemux:enableMux        ; work         ;
+;             |dflipflop:inst3|               ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3                            ; work         ;
+;                |enabledSRLatch:masterLatch| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3|enabledSRLatch:masterLatch ; work         ;
+;                |enabledSRLatch:slaveLatch|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3|enabledSRLatch:slaveLatch  ; work         ;
+;                |twoonemux:enableMux|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3|twoonemux:enableMux        ; work         ;
+;             |dflipflop:inst4|               ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4                            ; work         ;
+;                |enabledSRLatch:masterLatch| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4|enabledSRLatch:masterLatch ; work         ;
+;                |enabledSRLatch:slaveLatch|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4|enabledSRLatch:slaveLatch  ; work         ;
+;                |twoonemux:enableMux|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4|twoonemux:enableMux        ; work         ;
+;             |dflipflop:inst5|               ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5                            ; work         ;
+;                |enabledSRLatch:masterLatch| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5|enabledSRLatch:masterLatch ; work         ;
+;                |enabledSRLatch:slaveLatch|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5|enabledSRLatch:slaveLatch  ; work         ;
+;                |twoonemux:enableMux|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5|twoonemux:enableMux        ; work         ;
+;             |dflipflop:inst6|               ; 4 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6                            ; work         ;
+;                |enabledSRLatch:masterLatch| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6|enabledSRLatch:masterLatch ; work         ;
+;                |enabledSRLatch:slaveLatch|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6|enabledSRLatch:slaveLatch  ; work         ;
+;                |twoonemux:enableMux|        ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6|twoonemux:enableMux        ; work         ;
+;             |dflipflop:inst7|               ; 7 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7                            ; work         ;
+;                |enabledSRLatch:masterLatch| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7|enabledSRLatch:masterLatch ; work         ;
+;                |enabledSRLatch:slaveLatch|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7|enabledSRLatch:slaveLatch  ; work         ;
+;                |twoonemux:enableMux|        ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7|twoonemux:enableMux        ; work         ;
++---------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                                                 ;
++-------------------------------------------------------+--------------------------------------------------------------------+------------------------+
+; Latch Name                                            ; Latch Enable Signal                                                ; Free of Timing Hazards ;
++-------------------------------------------------------+--------------------------------------------------------------------+------------------------+
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[31] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[7]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[6]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[5]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[4]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[3]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[9]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[10] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[11] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[12] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[13] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[14] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[15] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[16] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[17] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[18] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[19] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[20] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[21] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[22] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[23] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[24] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[25] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[26] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[27] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[28] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[29] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[30] ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[8]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[2]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[1]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|abs_diff[0]  ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[0]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[0]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[1]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[1]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[2]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[2]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[3]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[3]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[4]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[4]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[5]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[5]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[6]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[6]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[8]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[8]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[9]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[9]     ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[10]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[10]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[11]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[11]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[12]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[12]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[13]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[13]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[14]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[14]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[15]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[15]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[16]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[16]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[17]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[17]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[18]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[18]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[19]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[19]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[20]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[20]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[21]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[21]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[22]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[22]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[23]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[23]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[24]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[24]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[25]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[25]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[26]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[26]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[27]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[27]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[28]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[28]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[29]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[29]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[30]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[30]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|B_dec[31]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; DATAPATH:inst14|DifferenceChecker:inst30|A_dec[31]    ; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0 ; yes                    ;
+; Number of user-specified and inferred latches = 96    ;                                                                    ;                        ;
++-------------------------------------------------------+--------------------------------------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Logic Cells Representing Combinational Loops                                                                     ;
++------------------------------------------------------------------------------------------------------------+-----+
+; Logic Cell Name                                                                                            ;     ;
++------------------------------------------------------------------------------------------------------------+-----+
+; CONTROL_PATH:inst|dflipflop:dff_S11|enabledSRLatch:slaveLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S1|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S2|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S3|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S4|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S5|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S6|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S7|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S8|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S9|enabledSRLatch:slaveLatch|o_q~0                                         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S10|enabledSRLatch:slaveLatch|o_q~0                                        ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2|enabledSRLatch:slaveLatch|o_q~0  ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4|enabledSRLatch:slaveLatch|o_q~0  ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6|enabledSRLatch:slaveLatch|o_q~0  ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1|enabledSRLatch:slaveLatch|o_q~0  ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3|enabledSRLatch:slaveLatch|o_q~0  ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5|enabledSRLatch:slaveLatch|o_q~0  ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7|enabledSRLatch:slaveLatch|o_q~0  ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst|enabledSRLatch:slaveLatch|o_q~0           ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1|enabledSRLatch:slaveLatch|o_q~0          ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2|enabledSRLatch:slaveLatch|o_q~0          ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3|enabledSRLatch:slaveLatch|o_q~0          ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5|enabledSRLatch:slaveLatch|o_q~0          ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22|enabledSRLatch:slaveLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21|enabledSRLatch:slaveLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20|enabledSRLatch:slaveLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7|enabledSRLatch:slaveLatch|o_q~0          ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24|enabledSRLatch:slaveLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26|enabledSRLatch:slaveLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst27|enabledSRLatch:slaveLatch|o_q~0         ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S11|enabledSRLatch:masterLatch|o_q~0                                       ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S1|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S2|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S3|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S4|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S5|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S6|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S7|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S8|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S9|enabledSRLatch:masterLatch|o_q~0                                        ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_S10|enabledSRLatch:masterLatch|o_q~0                                       ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst2|enabledSRLatch:masterLatch|o_q~0 ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst4|enabledSRLatch:masterLatch|o_q~0 ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst6|enabledSRLatch:masterLatch|o_q~0 ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst1|enabledSRLatch:masterLatch|o_q~0 ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst3|enabledSRLatch:masterLatch|o_q~0 ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst5|enabledSRLatch:masterLatch|o_q~0 ;     ;
+; DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7|enabledSRLatch:masterLatch|o_q~0 ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst|enabledSRLatch:masterLatch|o_q~0          ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst1|enabledSRLatch:masterLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst2|enabledSRLatch:masterLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst3|enabledSRLatch:masterLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst5|enabledSRLatch:masterLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst22|enabledSRLatch:masterLatch|o_q~0        ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst21|enabledSRLatch:masterLatch|o_q~0        ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20|enabledSRLatch:masterLatch|o_q~0        ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst7|enabledSRLatch:masterLatch|o_q~0         ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst24|enabledSRLatch:masterLatch|o_q~0        ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst26|enabledSRLatch:masterLatch|o_q~0        ;     ;
+; DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst27|enabledSRLatch:masterLatch|o_q~0        ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst|enabledSRLatch:slaveLatch|o_q~0                       ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst2|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst3|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst5|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst22|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst21|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst20|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst7|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst24|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst26|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst27|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst27|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst26|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst24|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst20|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst21|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst22|enabledSRLatch:slaveLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst5|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst3|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst2|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst1|enabledSRLatch:slaveLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst|enabledSRLatch:slaveLatch|o_q~0                       ;     ;
+; DATAPATH:inst14|Register4bit:inst|dflipflop:inst7|enabledSRLatch:slaveLatch|o_q~0                          ;     ;
+; DATAPATH:inst14|Register4bit:inst|dflipflop:inst5|enabledSRLatch:slaveLatch|o_q~0                          ;     ;
+; DATAPATH:inst14|Register4bit:inst|dflipflop:inst3|enabledSRLatch:slaveLatch|o_q~0                          ;     ;
+; DATAPATH:inst14|Register4bit:inst|dflipflop:inst1|enabledSRLatch:slaveLatch|o_q~0                          ;     ;
+; CONTROL_PATH:inst|dflipflop:dff_Sextra|enabledSRLatch:slaveLatch|o_q~0                                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst|enabledSRLatch:masterLatch|o_q~0                      ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1|enabledSRLatch:masterLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst2|enabledSRLatch:masterLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst3|enabledSRLatch:masterLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst5|enabledSRLatch:masterLatch|o_q~0                     ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst22|enabledSRLatch:masterLatch|o_q~0                    ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst21|enabledSRLatch:masterLatch|o_q~0                    ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst20|enabledSRLatch:masterLatch|o_q~0                    ;     ;
+; DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst7|enabledSRLatch:masterLatch|o_q~0                     ;     ;
+; Number of logic cells representing combinational loops                                                     ; 120 ;
++------------------------------------------------------------------------------------------------------------+-----+
+Table restricted to first 100 entries. Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 41    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 4     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 24    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++----------------------------------------------------------+
+; Inverted Register Statistics                             ;
++------------------------------------------------+---------+
+; Inverted Register                              ; Fan out ;
++------------------------------------------------+---------+
+; DATAPATH:inst14|fourbitcounter:inst16|int_q[0] ; 4       ;
+; Total number of inverted registers = 1         ;         ;
++------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst25|dflipflop:inst1|twoonemux:enableMux|f                     ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst26|twoonemux:enableMux|f                    ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |FP_16bit_Adder|DATAPATH:inst14|Register4bit:inst|dflipflop:inst1|twoonemux:enableMux|f                         ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |FP_16bit_Adder|DATAPATH:inst14|RoundingUnit:inst10|mantissa_out[5]                                             ;
+; 5:1                ; 10 bits   ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; No         ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20|dflipflop:inst20|twoonemux:enableMux|f        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |FP_16bit_Adder|DATAPATH:inst14|bi_shift_12bit:inst19|dflipflop:inst7|twoonemux:enableMux|f                     ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; No         ; |FP_16bit_Adder|DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11|dflipflop:inst7|twoonemux:enableMux|f ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S11"                                                       ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S10"                                                       ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S9"                                                        ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S8"                                                        ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S7"                                                        ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_Sextra"                                                    ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S6"                                                        ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S5"                                                        ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S4"                                                        ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S3"                                                        ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S2"                                                        ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S1"                                                        ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_async_set ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CONTROL_PATH:inst|dflipflop:dff_S0"                                                          ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; i_d           ; Input  ; Info     ; Stuck at GND                                                                        ;
+; i_async_reset ; Input  ; Info     ; Stuck at GND                                                                        ;
+; o_qbar        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Fri Feb 14 22:48:34 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LAB1 -c LAB1
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file enabledsrlatch.vhd
+    Info (12022): Found design unit 1: enabledSRLatch-rtl
+    Info (12023): Found entity 1: enabledSRLatch
+Info (12021): Found 2 design units, including 1 entities, in source file twoonemux.vhd
+    Info (12022): Found design unit 1: twoonemux-rtl
+    Info (12023): Found entity 1: twoonemux
+Info (12021): Found 2 design units, including 1 entities, in source file dflipflop.vhd
+    Info (12022): Found design unit 1: dflipflop-rtl
+    Info (12023): Found entity 1: dflipflop
+Info (12021): Found 2 design units, including 1 entities, in source file mux2_8bit.vhd
+    Info (12022): Found design unit 1: MUX2_8bit-rtl
+    Info (12023): Found entity 1: MUX2_8bit
+Info (12021): Found 2 design units, including 1 entities, in source file mux2_7bit.vhd
+    Info (12022): Found design unit 1: MUX2_7bit-rtl
+    Info (12023): Found entity 1: MUX2_7bit
+Info (12021): Found 2 design units, including 1 entities, in source file mux2_1bit.vhd
+    Info (12022): Found design unit 1: MUX2_1bit-rtl
+    Info (12023): Found entity 1: MUX2_1bit
+Info (12021): Found 2 design units, including 1 entities, in source file fulladder.vhd
+    Info (12022): Found design unit 1: fullAdder-rtl
+    Info (12023): Found entity 1: fullAdder
+Info (12021): Found 2 design units, including 1 entities, in source file fulladder7_bit.vhd
+    Info (12022): Found design unit 1: fullAdder7_bit-rtl
+    Info (12023): Found entity 1: fullAdder7_bit
+Info (12021): Found 2 design units, including 1 entities, in source file alu_7bit.vhd
+    Info (12022): Found design unit 1: ALU_12bit-Behavioral
+    Info (12023): Found entity 1: ALU_12bit
+Info (12021): Found 1 design units, including 1 entities, in source file datapath.bdf
+    Info (12023): Found entity 1: DATAPATH
+Info (12021): Found 1 design units, including 1 entities, in source file shift_4bit.bdf
+    Info (12023): Found entity 1: Shift_4bit
+Info (12021): Found 1 design units, including 1 entities, in source file counter_test.bdf
+    Info (12023): Found entity 1: counter_test
+Info (12021): Found 2 design units, including 1 entities, in source file fourbitcounter.vhd
+    Info (12022): Found design unit 1: fourbitcounter-structural
+    Info (12023): Found entity 1: fourbitcounter
+Info (12021): Found 2 design units, including 1 entities, in source file control_logic.vhd
+    Info (12022): Found design unit 1: CONTROLPATH-structural
+    Info (12023): Found entity 1: CONTROLPATH
+Info (12021): Found 2 design units, including 1 entities, in source file mux4to1_4bit.vhd
+    Info (12022): Found design unit 1: MUX4to1_4bit-Behavioral
+    Info (12023): Found entity 1: MUX4to1_4bit
+Info (12021): Found 2 design units, including 1 entities, in source file comparator_1bit.vhd
+    Info (12022): Found design unit 1: Comparator_1bit-Behavioral
+    Info (12023): Found entity 1: Comparator_1bit
+Info (12021): Found 2 design units, including 1 entities, in source file comparator_4bit.vhd
+    Info (12022): Found design unit 1: Comparator_4bit-Structural
+    Info (12023): Found entity 1: Comparator_4bit
+Info (12021): Found 2 design units, including 1 entities, in source file comparator_7bit.vhd
+    Info (12022): Found design unit 1: Comparator_7bit-Structural
+    Info (12023): Found entity 1: Comparator_7bit
+Info (12021): Found 2 design units, including 1 entities, in source file differencechecker.vhd
+    Info (12022): Found design unit 1: DifferenceChecker-Behavioral
+    Info (12023): Found entity 1: DifferenceChecker
+Info (12021): Found 2 design units, including 1 entities, in source file incrementor.vhd
+    Info (12022): Found design unit 1: Incrementor-Behavioral
+    Info (12023): Found entity 1: Incrementor
+Info (12021): Found 2 design units, including 1 entities, in source file fouronemux.vhd
+    Info (12022): Found design unit 1: fouronemux-structural
+    Info (12023): Found entity 1: fouronemux
+Info (12021): Found 1 design units, including 1 entities, in source file bi_shift_12bit.bdf
+    Info (12023): Found entity 1: bi_shift_12bit
+Info (12021): Found 2 design units, including 1 entities, in source file roundingunit.vhd
+    Info (12022): Found design unit 1: RoundingUnit-Behavioral
+    Info (12023): Found entity 1: RoundingUnit
+Info (12021): Found 2 design units, including 1 entities, in source file fulladder12_bit.vhd
+    Info (12022): Found design unit 1: fullAdder12_bit-rtl
+    Info (12023): Found entity 1: fullAdder12_bit
+Info (12021): Found 1 design units, including 1 entities, in source file bi_shift_12bit_filledwith1.bdf
+    Info (12023): Found entity 1: bi_shift_12bit_filledWith1
+Info (12021): Found 2 design units, including 1 entities, in source file extender_8to12.vhd
+    Info (12022): Found design unit 1: Extender_8to12-Behavioral
+    Info (12023): Found entity 1: Extender_8to12
+Info (12021): Found 1 design units, including 1 entities, in source file register8bit.bdf
+    Info (12023): Found entity 1: Register8bit
+Info (12021): Found 1 design units, including 1 entities, in source file register7bit.bdf
+    Info (12023): Found entity 1: Register7bit
+Info (12021): Found 1 design units, including 1 entities, in source file incrementor_reg.bdf
+    Info (12023): Found entity 1: incrementor_reg
+Info (12021): Found 1 design units, including 1 entities, in source file register4bit.bdf
+    Info (12023): Found entity 1: Register4bit
+Info (12021): Found 2 design units, including 1 entities, in source file alu_12b.vhd
+    Info (12022): Found design unit 1: ALU_12b-Behavioral
+    Info (12023): Found entity 1: ALU_12b
+Info (12021): Found 2 design units, including 1 entities, in source file signbitlogic.vhd
+    Info (12022): Found design unit 1: SignBitLogic-Behavioral
+    Info (12023): Found entity 1: SignBitLogic
+Info (12021): Found 2 design units, including 1 entities, in source file control_path.vhd
+    Info (12022): Found design unit 1: CONTROL_PATH-structural
+    Info (12023): Found entity 1: CONTROL_PATH
+Info (12021): Found 1 design units, including 1 entities, in source file fp_16bit_adder.bdf
+    Info (12023): Found entity 1: FP_16bit_Adder
+Info (12127): Elaborating entity "FP_16bit_Adder" for the top level hierarchy
+Info (12128): Elaborating entity "CONTROL_PATH" for hierarchy "CONTROL_PATH:inst"
+Warning (10541): VHDL Signal Declaration warning at CONTROL_PATH.vhd(17): used implicit default value for signal "S11_out" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Info (12128): Elaborating entity "dflipflop" for hierarchy "CONTROL_PATH:inst|dflipflop:dff_S0"
+Info (12128): Elaborating entity "enabledSRLatch" for hierarchy "CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:masterLatch"
+Info (12128): Elaborating entity "twoonemux" for hierarchy "CONTROL_PATH:inst|dflipflop:dff_S0|twoonemux:enableMux"
+Info (12128): Elaborating entity "DATAPATH" for hierarchy "DATAPATH:inst14"
+Warning (275083): Bus "shiftReg2[11..0]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[11]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[9]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[10]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[1]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[0]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[6]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[5]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[4]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[3]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[8]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[7]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[2]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[11]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[10]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275083): Bus "shiftReg2[11]" found using same base name as "shiftReg", which might lead to a name conflict.
+Warning (275080): Converted elements in bus name "shiftReg" using legacy naming rules. Make any assignments on the new names, not on the original names.
+    Warning (275081): Converted element name(s) from "shiftReg[2]" to "shiftReg2"
+    Warning (275081): Converted element name(s) from "shiftReg[0]" to "shiftReg0"
+    Warning (275081): Converted element name(s) from "shiftReg[11]" to "shiftReg11"
+    Warning (275081): Converted element name(s) from "shiftReg[9]" to "shiftReg9"
+    Warning (275081): Converted element name(s) from "shiftReg[10]" to "shiftReg10"
+    Warning (275081): Converted element name(s) from "shiftReg[1]" to "shiftReg1"
+    Warning (275081): Converted element name(s) from "shiftReg[6]" to "shiftReg6"
+    Warning (275081): Converted element name(s) from "shiftReg[5]" to "shiftReg5"
+    Warning (275081): Converted element name(s) from "shiftReg[4]" to "shiftReg4"
+    Warning (275081): Converted element name(s) from "shiftReg[3]" to "shiftReg3"
+    Warning (275081): Converted element name(s) from "shiftReg[8]" to "shiftReg8"
+    Warning (275081): Converted element name(s) from "shiftReg[7]" to "shiftReg7"
+    Warning (275081): Converted element name(s) from "shiftReg[11..0]" to "shiftReg11..0"
+Warning (275080): Converted elements in bus name "shiftReg2" using legacy naming rules. Make any assignments on the new names, not on the original names.
+    Warning (275081): Converted element name(s) from "shiftReg2[11..0]" to "shiftReg211..0"
+    Warning (275081): Converted element name(s) from "shiftReg2[11]" to "shiftReg211"
+    Warning (275081): Converted element name(s) from "shiftReg2[9]" to "shiftReg29"
+    Warning (275081): Converted element name(s) from "shiftReg2[10]" to "shiftReg210"
+    Warning (275081): Converted element name(s) from "shiftReg2[1]" to "shiftReg21"
+    Warning (275081): Converted element name(s) from "shiftReg2[0]" to "shiftReg20"
+    Warning (275081): Converted element name(s) from "shiftReg2[6]" to "shiftReg26"
+    Warning (275081): Converted element name(s) from "shiftReg2[5]" to "shiftReg25"
+    Warning (275081): Converted element name(s) from "shiftReg2[4]" to "shiftReg24"
+    Warning (275081): Converted element name(s) from "shiftReg2[3]" to "shiftReg23"
+    Warning (275081): Converted element name(s) from "shiftReg2[8]" to "shiftReg28"
+    Warning (275081): Converted element name(s) from "shiftReg2[7]" to "shiftReg27"
+    Warning (275081): Converted element name(s) from "shiftReg2[2]" to "shiftReg22"
+    Warning (275081): Converted element name(s) from "shiftReg2[11]" to "shiftReg211"
+    Warning (275081): Converted element name(s) from "shiftReg2[10]" to "shiftReg210"
+    Warning (275081): Converted element name(s) from "shiftReg2[11]" to "shiftReg211"
+Info (12128): Elaborating entity "DifferenceChecker" for hierarchy "DATAPATH:inst14|DifferenceChecker:inst30"
+Warning (10492): VHDL Process Statement warning at DifferenceChecker.vhd(31): signal "A_dec" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at DifferenceChecker.vhd(31): signal "B_dec" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at DifferenceChecker.vhd(34): signal "abs_diff" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at DifferenceChecker.vhd(38): signal "abs_diff" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at DifferenceChecker.vhd(43): signal "A_dec" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at DifferenceChecker.vhd(43): signal "B_dec" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at DifferenceChecker.vhd(47): signal "A_dec" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at DifferenceChecker.vhd(47): signal "B_dec" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at DifferenceChecker.vhd(23): inferring latch(es) for signal or variable "A_dec", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at DifferenceChecker.vhd(23): inferring latch(es) for signal or variable "B_dec", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at DifferenceChecker.vhd(23): inferring latch(es) for signal or variable "abs_diff", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "abs_diff[0]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[1]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[2]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[3]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[4]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[5]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[6]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[7]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[8]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[9]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[10]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[11]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[12]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[13]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[14]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[15]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[16]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[17]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[18]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[19]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[20]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[21]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[22]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[23]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[24]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[25]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[26]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[27]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[28]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[29]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[30]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "abs_diff[31]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[0]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[1]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[2]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[3]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[4]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[5]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[6]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[7]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[8]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[9]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[10]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[11]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[12]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[13]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[14]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[15]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[16]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[17]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[18]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[19]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[20]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[21]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[22]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[23]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[24]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[25]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[26]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[27]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[28]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[29]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[30]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "B_dec[31]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[0]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[1]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[2]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[3]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[4]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[5]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[6]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[7]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[8]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[9]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[10]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[11]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[12]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[13]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[14]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[15]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[16]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[17]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[18]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[19]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[20]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[21]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[22]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[23]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[24]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[25]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[26]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[27]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[28]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[29]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[30]" at DifferenceChecker.vhd(23)
+Info (10041): Inferred latch for "A_dec[31]" at DifferenceChecker.vhd(23)
+Info (12128): Elaborating entity "Comparator_4bit" for hierarchy "DATAPATH:inst14|Comparator_4bit:inst12"
+Info (12128): Elaborating entity "Comparator_1bit" for hierarchy "DATAPATH:inst14|Comparator_4bit:inst12|Comparator_1bit:COMP0"
+Info (12128): Elaborating entity "Register4bit" for hierarchy "DATAPATH:inst14|Register4bit:inst"
+Info (12128): Elaborating entity "fourbitcounter" for hierarchy "DATAPATH:inst14|fourbitcounter:inst16"
+Info (12128): Elaborating entity "ALU_12b" for hierarchy "DATAPATH:inst14|ALU_12b:inst32"
+Info (12128): Elaborating entity "fullAdder12_bit" for hierarchy "DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst"
+Info (12128): Elaborating entity "fullAdder" for hierarchy "DATAPATH:inst14|ALU_12b:inst32|fullAdder12_bit:adder_inst|fullAdder:\GEN_FA:0:FA"
+Info (12128): Elaborating entity "bi_shift_12bit" for hierarchy "DATAPATH:inst14|bi_shift_12bit:inst19"
+Info (12128): Elaborating entity "fouronemux" for hierarchy "DATAPATH:inst14|bi_shift_12bit:inst19|fouronemux:inst10"
+Info (12128): Elaborating entity "MUX2_8bit" for hierarchy "DATAPATH:inst14|MUX2_8bit:Man_MUXA"
+Info (12128): Elaborating entity "MUX2_1bit" for hierarchy "DATAPATH:inst14|MUX2_8bit:Man_MUXA|MUX2_1bit:m0"
+Info (12128): Elaborating entity "bi_shift_12bit_filledWith1" for hierarchy "DATAPATH:inst14|bi_shift_12bit_filledWith1:inst20"
+Info (12128): Elaborating entity "SignBitLogic" for hierarchy "DATAPATH:inst14|SignBitLogic:inst31"
+Info (12128): Elaborating entity "RoundingUnit" for hierarchy "DATAPATH:inst14|RoundingUnit:inst10"
+Info (12128): Elaborating entity "incrementor_reg" for hierarchy "DATAPATH:inst14|incrementor_reg:inst2"
+Info (12128): Elaborating entity "Register7bit" for hierarchy "DATAPATH:inst14|incrementor_reg:inst2|Register7bit:inst11"
+Info (12128): Elaborating entity "MUX2_7bit" for hierarchy "DATAPATH:inst14|incrementor_reg:inst2|MUX2_7bit:inst13"
+Info (12128): Elaborating entity "Incrementor" for hierarchy "DATAPATH:inst14|incrementor_reg:inst2|Incrementor:inst7"
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[8]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[9]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[10]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[11]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[12]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[13]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[14]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[15]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[16]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[17]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[18]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[19]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[20]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[21]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[22]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[23]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[24]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[25]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[26]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[27]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[28]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[29]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[30]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[31]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|B_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[8]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[9]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[10]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[11]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[12]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[13]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[14]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[15]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[16]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[17]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[18]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[19]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[20]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[21]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[22]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[23]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[24]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[25]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[26]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[27]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[28]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[29]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[30]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+    Info (13026): Duplicate LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[31]" merged with LATCH primitive "DATAPATH:inst14|DifferenceChecker:inst30|A_dec[7]"
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "S11" is stuck at GND
+Info (286030): Timing-Driven Synthesis is running
+Warning (20013): Ignored assignments for entity "Incrementor_7Bit" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_PRESERVE_HIGH_SPEED_TILES ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES OFF -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ALWAYS_USE_QXP_NETLIST OFF -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_COLOR 16764057 -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_ASSIGNMENTS ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_ASSIGNMENTS REPLACE_CONFLICTING -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS UPDATE_CONFLICTING -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PIN_ASSIGNMENTS ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PROMOTE_ASSIGNMENTS ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_TYPE STANDARD_PARTITION -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ALLOW_MULTIPLE_PERSONAS OFF -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ASD_REGION_ID 1 -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name CROSS_BOUNDARY_OPTIMIZATIONS OFF -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_CONSTANTS_ON_INPUTS ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_INVERSIONS_ON_INPUTS ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_INPUTS ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_BIDIRS ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity Incrementor_7Bit -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity Incrementor_7Bit -section_id Top was ignored
+Warning (20013): Ignored assignments for entity "enARdFF" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_PRESERVE_HIGH_SPEED_TILES ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES OFF -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ALWAYS_USE_QXP_NETLIST OFF -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_COLOR 16764057 -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_ASSIGNMENTS ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_ASSIGNMENTS REPLACE_CONFLICTING -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS UPDATE_CONFLICTING -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PIN_ASSIGNMENTS ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PROMOTE_ASSIGNMENTS ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_TYPE STANDARD_PARTITION -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ALLOW_MULTIPLE_PERSONAS OFF -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ASD_REGION_ID 1 -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name CROSS_BOUNDARY_OPTIMIZATIONS OFF -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_CONSTANTS_ON_INPUTS ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_INVERSIONS_ON_INPUTS ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_INPUTS ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_BIDIRS ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity enARdFF -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity enARdFF -section_id Top was ignored
+Warning (20013): Ignored assignments for entity "enARdFF_2" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_PRESERVE_HIGH_SPEED_TILES ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES OFF -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ALWAYS_USE_QXP_NETLIST OFF -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_COLOR 16764057 -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_ASSIGNMENTS ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_ASSIGNMENTS REPLACE_CONFLICTING -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS UPDATE_CONFLICTING -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PIN_ASSIGNMENTS ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PROMOTE_ASSIGNMENTS ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_TYPE STANDARD_PARTITION -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ALLOW_MULTIPLE_PERSONAS OFF -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ASD_REGION_ID 1 -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name CROSS_BOUNDARY_OPTIMIZATIONS OFF -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_CONSTANTS_ON_INPUTS ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_INVERSIONS_ON_INPUTS ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_INPUTS ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_BIDIRS ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity enARdFF_2 -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity enARdFF_2 -section_id Top was ignored
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 544 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 34 input pins
+    Info (21059): Implemented 29 output pins
+    Info (21061): Implemented 481 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 134 warnings
+    Info: Peak virtual memory: 4635 megabytes
+    Info: Processing ended: Fri Feb 14 22:48:36 2025
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
+
+

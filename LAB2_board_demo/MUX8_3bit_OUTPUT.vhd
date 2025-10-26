@@ -1,0 +1,39 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY MUX_OUTPUT IS
+    PORT (
+        value_select : IN std_logic_vector(2 DOWNTO 0); -- 3-bit select signal
+        pc_value     : IN std_logic_vector(7 DOWNTO 0); -- PC[7:0]
+        alu_result   : IN std_logic_vector(7 DOWNTO 0); -- ALUResult[7:0]
+        read_data1   : IN std_logic_vector(7 DOWNTO 0); -- ReadData1[7:0]
+        read_data2   : IN std_logic_vector(7 DOWNTO 0); -- ReadData2[7:0]
+        write_data   : IN std_logic_vector(7 DOWNTO 0); -- WriteData[7:0]
+        -- Control Signals for "Other" case
+        reg_dst      : IN std_logic; -- RegDst signal
+        jump         : IN std_logic; -- Jump signal
+        mem_read     : IN std_logic; -- MemRead signal
+        mem_to_reg   : IN std_logic; -- MemtoReg signal
+        alu_op       : IN std_logic_vector(1 DOWNTO 0); -- ALUOp[1:0]
+        alu_src      : IN std_logic; -- ALUSrc signal
+        mux_out      : OUT std_logic_vector(7 DOWNTO 0) -- Output
+    );
+END MUX_OUTPUT;
+
+ARCHITECTURE rtl OF MUX_OUTPUT IS
+BEGIN
+    PROCESS (value_select, pc_value, alu_result, read_data1, read_data2, write_data, 
+             reg_dst, jump, mem_read, mem_to_reg, alu_op, alu_src)
+    BEGIN
+        CASE value_select IS
+            WHEN "000" => mux_out <= pc_value;      -- Select PC[7:0]
+            WHEN "001" => mux_out <= alu_result;    -- Select ALUResult[7:0]
+            WHEN "010" => mux_out <= read_data1;    -- Select ReadData1[7:0]
+            WHEN "011" => mux_out <= read_data2;    -- Select ReadData2[7:0]
+            WHEN "100" => mux_out <= write_data;    -- Select WriteData[7:0]
+            WHEN OTHERS => 
+                -- Concatenate control signals into an 8-bit output
+                mux_out <= '0' & reg_dst & jump & mem_read & mem_to_reg & alu_op & alu_src;
+        END CASE;
+    END PROCESS;
+END rtl;

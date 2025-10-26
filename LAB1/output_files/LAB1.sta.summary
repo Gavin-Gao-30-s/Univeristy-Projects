@@ -1,0 +1,101 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|int_q~0'
+Slack : -8.786
+TNS   : -244.893
+
+Type  : Slow 1200mV 85C Model Setup 'GCLOCK'
+Slack : -6.182
+TNS   : -367.142
+
+Type  : Slow 1200mV 85C Model Hold 'GCLOCK'
+Slack : -0.120
+TNS   : -0.149
+
+Type  : Slow 1200mV 85C Model Hold 'CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|int_q~0'
+Slack : 2.409
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'GCLOCK'
+Slack : -0.869
+TNS   : -3.794
+
+Type  : Slow 1200mV 85C Model Removal 'GCLOCK'
+Slack : -0.959
+TNS   : -25.898
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'GCLOCK'
+Slack : -3.000
+TNS   : -55.685
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|int_q~0'
+Slack : 0.469
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|int_q~0'
+Slack : -7.792
+TNS   : -217.341
+
+Type  : Slow 1200mV 0C Model Setup 'GCLOCK'
+Slack : -5.428
+TNS   : -331.128
+
+Type  : Slow 1200mV 0C Model Hold 'GCLOCK'
+Slack : -0.099
+TNS   : -0.191
+
+Type  : Slow 1200mV 0C Model Hold 'CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|int_q~0'
+Slack : 2.143
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'GCLOCK'
+Slack : -0.757
+TNS   : -2.660
+
+Type  : Slow 1200mV 0C Model Removal 'GCLOCK'
+Slack : -0.942
+TNS   : -26.406
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'GCLOCK'
+Slack : -3.000
+TNS   : -55.685
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|int_q~0'
+Slack : 0.455
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|int_q~0'
+Slack : -3.787
+TNS   : -104.370
+
+Type  : Fast 1200mV 0C Model Setup 'GCLOCK'
+Slack : -2.864
+TNS   : -146.247
+
+Type  : Fast 1200mV 0C Model Hold 'GCLOCK'
+Slack : -0.202
+TNS   : -0.729
+
+Type  : Fast 1200mV 0C Model Hold 'CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|int_q~0'
+Slack : 1.076
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'GCLOCK'
+Slack : 0.161
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'GCLOCK'
+Slack : -0.768
+TNS   : -24.064
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'GCLOCK'
+Slack : -3.000
+TNS   : -46.487
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CONTROL_PATH:inst|dflipflop:dff_S0|enabledSRLatch:slaveLatch|int_q~0'
+Slack : 0.431
+TNS   : 0.000
+
+------------------------------------------------------------

@@ -1,0 +1,859 @@
+$comment
+	File created using the following command:
+		vcd file LAB3.msim.vcd -direction
+$end
+$date
+	Fri Apr 04 21:17:11 2025
+$end
+$version
+	ModelSim Version 10.1d
+$end
+$timescale
+	1ps
+$end
+$scope module MEM_WB_vlg_vec_tst $end
+$var reg 8 ! i_ALUResult [7:0] $end
+$var reg 1 " i_clock $end
+$var reg 1 # i_enable $end
+$var reg 8 $ i_ReadData [7:0] $end
+$var reg 3 % i_RegDstOut [2:0] $end
+$var reg 1 & i_reset $end
+$var reg 1 ' i_WB_MemToReg $end
+$var reg 1 ( i_WB_RegWrite $end
+$var wire 1 ) o_ALUResult [7] $end
+$var wire 1 * o_ALUResult [6] $end
+$var wire 1 + o_ALUResult [5] $end
+$var wire 1 , o_ALUResult [4] $end
+$var wire 1 - o_ALUResult [3] $end
+$var wire 1 . o_ALUResult [2] $end
+$var wire 1 / o_ALUResult [1] $end
+$var wire 1 0 o_ALUResult [0] $end
+$var wire 1 1 o_ReadData [7] $end
+$var wire 1 2 o_ReadData [6] $end
+$var wire 1 3 o_ReadData [5] $end
+$var wire 1 4 o_ReadData [4] $end
+$var wire 1 5 o_ReadData [3] $end
+$var wire 1 6 o_ReadData [2] $end
+$var wire 1 7 o_ReadData [1] $end
+$var wire 1 8 o_ReadData [0] $end
+$var wire 1 9 o_RegDstOut [2] $end
+$var wire 1 : o_RegDstOut [1] $end
+$var wire 1 ; o_RegDstOut [0] $end
+$var wire 1 < o_WB_MemToReg $end
+$var wire 1 = o_WB_RegWrite $end
+$var wire 1 > sampler $end
+$scope module i1 $end
+$var wire 1 ? gnd $end
+$var wire 1 @ vcc $end
+$var wire 1 A unknown $end
+$var tri1 1 B devclrn $end
+$var tri1 1 C devpor $end
+$var tri1 1 D devoe $end
+$var wire 1 E wb_regwrite|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 F rd0|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 G rd7|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 H alu0|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 I alu1|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 J alu3|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 K alu4|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 L alu7|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 M r0|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 N i_WB_RegWrite~input_o $end
+$var wire 1 O i_WB_MemToReg~input_o $end
+$var wire 1 P i_ReadData[0]~input_o $end
+$var wire 1 Q i_ReadData[6]~input_o $end
+$var wire 1 R i_ReadData[7]~input_o $end
+$var wire 1 S i_ALUResult[0]~input_o $end
+$var wire 1 T i_ALUResult[1]~input_o $end
+$var wire 1 U i_ALUResult[3]~input_o $end
+$var wire 1 V i_ALUResult[4]~input_o $end
+$var wire 1 W i_ALUResult[6]~input_o $end
+$var wire 1 X i_ALUResult[7]~input_o $end
+$var wire 1 Y i_RegDstOut[0]~input_o $end
+$var wire 1 Z o_WB_RegWrite~output_o $end
+$var wire 1 [ o_WB_MemToReg~output_o $end
+$var wire 1 \ o_ReadData[0]~output_o $end
+$var wire 1 ] o_ReadData[1]~output_o $end
+$var wire 1 ^ o_ReadData[2]~output_o $end
+$var wire 1 _ o_ReadData[3]~output_o $end
+$var wire 1 ` o_ReadData[4]~output_o $end
+$var wire 1 a o_ReadData[5]~output_o $end
+$var wire 1 b o_ReadData[6]~output_o $end
+$var wire 1 c o_ReadData[7]~output_o $end
+$var wire 1 d o_ALUResult[0]~output_o $end
+$var wire 1 e o_ALUResult[1]~output_o $end
+$var wire 1 f o_ALUResult[2]~output_o $end
+$var wire 1 g o_ALUResult[3]~output_o $end
+$var wire 1 h o_ALUResult[4]~output_o $end
+$var wire 1 i o_ALUResult[5]~output_o $end
+$var wire 1 j o_ALUResult[6]~output_o $end
+$var wire 1 k o_ALUResult[7]~output_o $end
+$var wire 1 l o_RegDstOut[0]~output_o $end
+$var wire 1 m o_RegDstOut[1]~output_o $end
+$var wire 1 n o_RegDstOut[2]~output_o $end
+$var wire 1 o i_reset~input_o $end
+$var wire 1 p i_clock~input_o $end
+$var wire 1 q wb_regwrite|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 r i_clock~inputclkctrl_outclk $end
+$var wire 1 s wb_regwrite|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 t i_enable~input_o $end
+$var wire 1 u wb_memtoreg|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 v wb_memtoreg|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 w wb_memtoreg|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 x rd0|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 y rd0|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 z i_ReadData[1]~input_o $end
+$var wire 1 { rd1|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 | rd1|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 } rd1|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 ~ i_ReadData[2]~input_o $end
+$var wire 1 !! rd2|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 "! rd2|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 #! rd2|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 $! i_ReadData[3]~input_o $end
+$var wire 1 %! rd3|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 &! rd3|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 '! rd3|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 (! i_ReadData[4]~input_o $end
+$var wire 1 )! rd4|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 *! rd4|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 +! rd4|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 ,! i_ReadData[5]~input_o $end
+$var wire 1 -! rd5|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 .! rd5|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 /! rd5|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 0! rd6|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 1! rd6|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 2! rd6|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 3! rd7|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 4! rd7|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 5! alu0|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 6! alu0|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 7! alu1|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 8! alu1|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 9! i_ALUResult[2]~input_o $end
+$var wire 1 :! alu2|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 ;! alu2|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 <! alu2|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 =! alu3|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 >! alu3|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 ?! alu4|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 @! alu4|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 A! i_ALUResult[5]~input_o $end
+$var wire 1 B! alu5|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 C! alu5|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 D! alu5|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 E! alu6|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 F! alu6|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 G! alu6|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 H! alu7|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 I! alu7|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 J! r0|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 K! r0|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 L! i_RegDstOut[1]~input_o $end
+$var wire 1 M! r1|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 N! r1|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 O! r1|DFF_INST|slaveLatch|int_q~0_combout $end
+$var wire 1 P! i_RegDstOut[2]~input_o $end
+$var wire 1 Q! r2|DFF_INST|masterLatch|int_q~0_combout $end
+$var wire 1 R! r2|DFF_INST|masterLatch|int_q~1_combout $end
+$var wire 1 S! r2|DFF_INST|slaveLatch|int_q~0_combout $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 !
+0"
+0#
+b0 $
+b0 %
+0&
+0'
+0(
+x0
+x/
+x.
+x-
+x,
+x+
+x*
+x)
+x8
+x7
+x6
+x5
+x4
+x3
+x2
+x1
+x;
+x:
+x9
+x<
+x=
+x>
+0?
+1@
+xA
+1B
+1C
+1D
+xE
+xF
+xG
+xH
+xI
+xJ
+xK
+xL
+xM
+0N
+0O
+0P
+0Q
+0R
+0S
+0T
+0U
+0V
+0W
+0X
+0Y
+xZ
+x[
+x\
+x]
+x^
+x_
+x`
+xa
+xb
+xc
+xd
+xe
+xf
+xg
+xh
+xi
+xj
+xk
+xl
+xm
+xn
+0o
+0p
+xq
+0r
+xs
+0t
+xu
+xv
+xw
+xx
+xy
+0z
+x{
+x|
+x}
+0~
+x!!
+x"!
+x#!
+0$!
+x%!
+x&!
+x'!
+0(!
+x)!
+x*!
+x+!
+0,!
+x-!
+x.!
+x/!
+x0!
+x1!
+x2!
+x3!
+x4!
+x5!
+x6!
+x7!
+x8!
+09!
+x:!
+x;!
+x<!
+x=!
+x>!
+x?!
+x@!
+0A!
+xB!
+xC!
+xD!
+xE!
+xF!
+xG!
+xH!
+xI!
+xJ!
+xK!
+0L!
+xM!
+xN!
+xO!
+0P!
+xQ!
+xR!
+xS!
+$end
+#20000
+1"
+b10000000 !
+1#
+b10000000 $
+b100 %
+1'
+1(
+1p
+1t
+1P!
+1R
+1X
+1O
+1N
+1r
+0>
+0Q!
+0M!
+0E!
+0B!
+0:!
+00!
+0-!
+0)!
+0%!
+0!!
+0{
+0u
+0M
+0L
+0K
+0J
+0I
+0H
+0G
+0F
+0E
+#40000
+0"
+0p
+0r
+1>
+1R!
+1Q!
+1N!
+1J!
+1H!
+1F!
+1C!
+1?!
+1=!
+1;!
+17!
+15!
+13!
+11!
+1.!
+1*!
+1&!
+1"!
+1|
+1x
+1v
+1u
+1q
+1L
+1G
+1E
+0R!
+0H!
+03!
+0v
+0q
+#60000
+b11000000 !
+b11000000 $
+b11100000 $
+b110 %
+0#
+0'
+0(
+1"
+1L!
+1,!
+1Q
+1W
+0t
+0O
+0N
+1p
+1r
+0>
+0Q!
+0u
+0L
+0G
+0E
+0S!
+1O!
+1K!
+0I!
+1G!
+1D!
+1@!
+1>!
+1<!
+18!
+16!
+04!
+12!
+1/!
+1+!
+1'!
+1#!
+1}
+1y
+0w
+0s
+1n
+0m
+0l
+1k
+0j
+0i
+0h
+0g
+0f
+0e
+0d
+1c
+0b
+0a
+0`
+0_
+0^
+0]
+0\
+1[
+1Z
+19
+0:
+0;
+1)
+0*
+0+
+0,
+0-
+0.
+0/
+00
+11
+02
+03
+04
+05
+06
+07
+08
+1<
+1=
+#80000
+0"
+0p
+0r
+1>
+1R!
+1Q!
+1H!
+13!
+1v
+1u
+1q
+1L
+1G
+1E
+0R!
+0H!
+03!
+0v
+0q
+#100000
+b111 %
+1#
+1'
+1(
+1"
+1Y
+1t
+1O
+1N
+1p
+1r
+0>
+0Q!
+0u
+0L
+0G
+0E
+#110000
+b11100000 !
+1A!
+1>
+#120000
+0"
+0p
+0r
+0>
+1R!
+1Q!
+1M!
+1H!
+1E!
+1B!
+13!
+10!
+1-!
+1v
+1u
+1q
+1M
+1L
+1G
+1E
+0R!
+0N!
+0H!
+0F!
+0C!
+03!
+01!
+0.!
+0v
+0q
+0J!
+#140000
+b1100000 !
+b1100000 $
+b11 %
+b100000 !
+b100000 $
+b0 $
+b1 %
+b0 %
+0'
+0(
+b0 !
+1"
+0Y
+0L!
+0P!
+0,!
+0Q
+0R
+0A!
+0W
+0X
+0O
+0N
+1p
+1r
+1>
+0M
+0M!
+0Q!
+0-!
+00!
+0G
+0B!
+0E!
+0L
+0u
+0E
+0O!
+0K!
+0G!
+0D!
+02!
+0/!
+1m
+1l
+1j
+1i
+1b
+1a
+1:
+1;
+1*
+1+
+12
+13
+#160000
+0"
+0p
+0r
+0>
+1R!
+1N!
+1J!
+1H!
+1F!
+1C!
+13!
+11!
+1.!
+1v
+1q
+#180000
+0#
+1"
+0t
+1p
+1r
+1>
+1S!
+1O!
+1K!
+1I!
+1G!
+1D!
+14!
+12!
+1/!
+1w
+1s
+0n
+0m
+0l
+0k
+0j
+0i
+0c
+0b
+0a
+0[
+0Z
+09
+0:
+0;
+0)
+0*
+0+
+01
+02
+03
+0<
+0=
+#200000
+0"
+0p
+0r
+0>
+#220000
+1"
+1p
+1r
+1>
+#240000
+0"
+0p
+0r
+0>
+#260000
+1"
+1p
+1r
+1>
+#280000
+0"
+0p
+0r
+0>
+#300000
+1"
+1p
+1r
+1>
+#320000
+0"
+0p
+0r
+0>
+#340000
+1"
+1p
+1r
+1>
+#360000
+0"
+0p
+0r
+0>
+#380000
+1"
+1p
+1r
+1>
+#400000
+0"
+0p
+0r
+0>
+#420000
+1"
+1p
+1r
+1>
+#440000
+0"
+0p
+0r
+0>
+#460000
+1"
+1p
+1r
+1>
+#480000
+0"
+0p
+0r
+0>
+#500000
+1"
+1p
+1r
+1>
+#520000
+0"
+0p
+0r
+0>
+#540000
+1"
+1p
+1r
+1>
+#560000
+0"
+0p
+0r
+0>
+#580000
+1"
+1p
+1r
+1>
+#600000
+0"
+0p
+0r
+0>
+#620000
+1"
+1p
+1r
+1>
+#640000
+0"
+0p
+0r
+0>
+#660000
+1"
+1p
+1r
+1>
+#680000
+0"
+0p
+0r
+0>
+#700000
+1"
+1p
+1r
+1>
+#720000
+0"
+0p
+0r
+0>
+#740000
+1"
+1p
+1r
+1>
+#760000
+0"
+0p
+0r
+0>
+#780000
+1"
+1p
+1r
+1>
+#800000
+0"
+0p
+0r
+0>
+#820000
+1"
+1p
+1r
+1>
+#840000
+0"
+0p
+0r
+0>
+#860000
+1"
+1p
+1r
+1>
+#880000
+0"
+0p
+0r
+0>
+#900000
+1"
+1p
+1r
+1>
+#920000
+0"
+0p
+0r
+0>
+#940000
+1"
+1p
+1r
+1>
+#960000
+0"
+0p
+0r
+0>
+#980000
+1"
+1p
+1r
+1>
+#1000000
